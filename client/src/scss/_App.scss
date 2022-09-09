@@ -1,0 +1,7 @@
+@import './root.scss';
+@import './mixins.scss';
+
+.App {
+    @include baseDisplay($--bg-color, 100vh, 100vw);
+    min-height: 100%;
+}

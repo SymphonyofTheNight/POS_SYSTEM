@@ -1,0 +1,5 @@
+@mixin baseDisplay($bg, $height, $width) {
+    background: $bg;
+    height: $height;
+    width: $width;
+}
