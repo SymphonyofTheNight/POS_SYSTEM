@@ -9,6 +9,18 @@ const model_schema = mongoose.Schema({
         type: String,
         require: true
     },
+    total_profit: {
+        type: String,
+        require: true
+    },
+    sales_revenue: {
+        type: String,
+        require: true
+    },
+    total_product_sold: {
+        type: String,
+        require: true
+    },
     products: [
         {
             _id: {
@@ -18,6 +30,14 @@ const model_schema = mongoose.Schema({
                 auto: true,
             },
             brand_name: {
+                type: String,
+                require: true,
+            },
+            generic_name: {
+                type: String,
+                require: true,
+            },
+            category_description: {
                 type: String,
                 require: true,
             },
@@ -46,6 +66,62 @@ const model_schema = mongoose.Schema({
                 require: true
             },
             expiration_date: {
+                type: String,
+                require: true
+            }
+        }
+    ],
+    supplier: [
+        {
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                index: true,
+                required: true,
+                auto: true,
+            },
+            supplier_name: {
+                type: String,
+                require: true
+            },
+            address: {
+                type: String,
+                require: true
+            },
+            contact_person: {
+                type: String,
+                require: true
+            },
+            contact_number: {
+                type: String,
+                require: true
+            },
+            note: {
+                type: String,
+                require: true
+            }
+        }
+    ],
+    activity: [
+        {
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                index: true,
+                required: true,
+                auto: true,
+            },
+            brand_name: {
+                type: String,
+                require: true
+            },
+            quantity: {
+                type: String,
+                require: true
+            },
+            total_amount: {
+                type: String,
+                require: true
+            },
+            date: {
                 type: String,
                 require: true
             }
