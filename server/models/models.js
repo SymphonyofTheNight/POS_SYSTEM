@@ -10,16 +10,22 @@ const model_schema = mongoose.Schema({
         require: true
     },
     total_profit: {
-        type: String,
-        require: true
+        type: Number,
+        default: true,
+        min: 0,
+        max: 99999999,
     },
     sales_revenue: {
-        type: String,
-        require: true
+        type: Number,
+        default: true,
+        min: 0,
+        max: 99999999,
     },
     total_product_sold: {
-        type: String,
-        require: true
+        type: Number,
+        default: true,
+        min: 0,
+        max: 99999999,
     },
     products: [
         {
