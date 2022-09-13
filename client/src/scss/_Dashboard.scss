@@ -1,0 +1,16 @@
+@import './root.scss';
+@import './mixins.scss';
+
+.Dashboard {
+    @include baseDisplay(purple, 100vh, 100vw);
+    display: flex;
+    flex-direction: row;
+
+    .nav-tab {
+        @include baseDisplay(red, 100vh, 16vw);
+    }
+
+    .dashboard-container {
+        @include baseDisplay(green, 100vh, 84vw);
+    }
+}

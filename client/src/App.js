@@ -1,12 +1,14 @@
 import React from 'react';
+import { Routes as Switch, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // actions 
 import { get_db_from_api } from './controllers/actions.js';
 
 // components
 import Login from './components/Login/Login.jsx';
+import Dashboard from './components/Dashboard/Dashboard.jsx';
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,17 +21,16 @@ const App = () => {
   // call to call action thunks
   const dispatch = useDispatch();
 
-  const getdata = useSelector(state => state.reducer.store);
-
-  console.log(getdata);
-
   useEffect(() => {
     dispatch(get_db_from_api());
   }, [dispatch])
 
   return (
     <div className='App col-lg-12 m-0 p-0'>
-      <Login />
+      <Switch>
+        <Route path='/' element={<><Login /></>} />
+        <Route path='/home' element={<><Dashboard /></>} />
+      </Switch>
     </div>
   )
 }

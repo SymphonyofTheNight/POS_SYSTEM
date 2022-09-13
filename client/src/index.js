@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
 //import global_state_manager - redux
 import { createStore, compose, applyMiddleware } from 'redux';
@@ -19,8 +20,10 @@ const store = createStore(redux, compose(applyMiddleware(logger, thunk)));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 );
 

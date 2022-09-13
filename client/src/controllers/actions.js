@@ -8,3 +8,12 @@ export const get_db_from_api = () => async (dispatch) => {
         console.log({ 'error': error });
     }
 }
+
+export const _login = (admin, password) => async (dispatch) => {
+    try {
+        const { data } = await api.login(admin, password);
+        dispatch({ type: 'LOGIN_AUTH', payload: data });
+    } catch (error) {
+        console.log({ 'error': error });
+    }
+}

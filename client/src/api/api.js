@@ -7,3 +7,7 @@ export const register = (admin, password) => base_api.post('/register', {
     admin: admin,
     password: password
 })
+export const login = (admin, password) => base_api.post('/', {
+    admin: admin,
+    password: password
+})
