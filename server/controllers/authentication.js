@@ -51,7 +51,7 @@ export const login_auth = async (req, res) => {
 
         if (!_check_hash) return res.status(404).json({ message: 'Invalid credentials' });
 
-        const token = await jwt.sign({ admin: check_user.admin, _id: check_user._id }, process.env.TOKEN, { expiresIn: '1h' });
+        const token = jwt.sign({ admin: check_user.admin, _id: check_user._id }, process.env.TOKEN, { expiresIn: '1h' });
 
         res.json({ result: check_user, token });
     } catch (error) {

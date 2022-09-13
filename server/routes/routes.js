@@ -13,6 +13,6 @@ const router = express.Router();
 
 router.get('/', get_db);
 router.post('/register', registration);
-router.post('/admin', middleware, login_auth);
+router.post('/', login_auth);
 
 export default router;

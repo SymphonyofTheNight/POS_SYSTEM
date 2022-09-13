@@ -1,6 +1,5 @@
-import jwt_decode from 'jwt-decode';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { decode } from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -12,12 +11,13 @@ const verifyToken = (req, res, next) => {
         return res.status(403).send("A token is required for authentication");
     }
 
-    /// doesnt validate the token but to read base64
-    const decoded = jwt_decode(token);
+    jwt.verify(token, process.env.TOKEN, (err, decoded) => {
+        if (err) return console.log(err);
 
-    if (!decoded) return res.status(404).json({ message: 'token invalidated' });
+        console.log({ decoded: decoded });
+        if (decoded) return next();
+    });
 
-    return next();
 };
 
 export default verifyToken;
