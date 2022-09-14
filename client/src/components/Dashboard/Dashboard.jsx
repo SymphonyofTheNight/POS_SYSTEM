@@ -2,6 +2,9 @@ import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 
+// brand img
+import brand from '../../assets/img/brand.png';
+
 import '../../scss/_Dashboard.scss';
 
 const Dashboard = () => {
@@ -41,7 +44,7 @@ const Dashboard = () => {
         <div className='Dashboard'>
             <nav className='nav-tab' ref={nav_tab}>
                 <div className='titleContainer'>
-
+                    <img src={brand} className='brand' alt='brand logo' />
                 </div>
                 <div className='navigation'>
                     <div className='category'>
