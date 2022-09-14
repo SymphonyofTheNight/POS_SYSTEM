@@ -5,12 +5,58 @@
     @include baseDisplay(purple, 100vh, 100vw);
     display: flex;
     flex-direction: row;
+    position: relative;
 
     .nav-tab {
-        @include baseDisplay(red, 100vh, 16vw);
+        @include baseDisplay($--bg-div-color, 100vh, 13vw);
+        box-shadow: 0px 5px 5px rgba($color: #000000, $alpha: 1.0);
+
+        .titleContainer {
+            @include baseDisplay(black, 10vh, 13vw);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     .dashboard-container {
-        @include baseDisplay(green, 100vh, 84vw);
+        @include baseDisplay(rgb(202, 202, 202), 100vh, 87vw);
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        transition: .2s ease-in-out;
+
+        .navContainer {
+            @include baseDisplay(rgb(255, 255, 255), 10vh, 87vw);
+            display: flex;
+            flex-direction: column;
+            transition: .2s ease-in-out;
+            border-bottom: .5px solid rgb(146, 146, 146);
+
+            .tabsContainer {
+                @include baseDisplay(none, 6vh, 87vw);
+                transition: .2s ease-in-out;
+                border-bottom: .5px solid rgb(146, 146, 146);
+
+                .tabsBtn {
+                    background: white;
+                    height: 6vh;
+                    width: 5vw;
+                    border: 0px solid transparent;
+                    border-bottom: .5px solid rgb(146, 146, 146);
+
+                    .bars {
+                        font-size: 1.5em;
+                    }
+                }
+            }
+
+            .tabsContainer_2 {
+                @include baseDisplay(none, 4vh, 87vw);
+                transition: .2s ease-in-out;
+            }
+        }
     }
 }
