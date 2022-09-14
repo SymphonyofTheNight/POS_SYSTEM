@@ -15,9 +15,14 @@ const verifyToken = (req, res, next) => {
         if (err) return console.log(err);
 
         console.log({ decoded: decoded });
-        if (decoded) return next();
+        if (decoded) {
+
+            req.user = decoded;
+
+            return next();
+        }
     });
 
 };
 
-export default verifyToken;
+export default verifyToken;  
