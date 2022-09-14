@@ -14,6 +14,8 @@ const Dashboard = () => {
     const nav_2 = useRef(null);
     const nav_3 = useRef(null);
 
+    const nav_tab = useRef(null);
+
     //side effect
     useEffect(() => {
         if (tabswitch) {
@@ -21,20 +23,47 @@ const Dashboard = () => {
             nav_1.current.style.width = '100vw';
             nav_2.current.style.width = '100vw';
             nav_3.current.style.width = '100vw';
+
+            nav_tab.current.style.transform = 'translateX(-13vw)';
+
         } else {
             _tabs.current.style.width = '87vw';
             nav_1.current.style.width = '87vw';
             nav_2.current.style.width = '87vw';
             nav_3.current.style.width = '87vw';
 
+            nav_tab.current.style.transform = 'translateX(0vw)';
+
         }
     }, [tabswitch])
 
     return (
         <div className='Dashboard'>
-            <nav className='nav-tab'>
+            <nav className='nav-tab' ref={nav_tab}>
                 <div className='titleContainer'>
 
+                </div>
+                <div className='navigation'>
+                    <div className='category'>
+                        <span className='text'>
+                            Dashboard
+                        </span>
+                    </div>
+                    <button className='btn-1'>
+
+                    </button>
+                    <button className='btn-1'>
+
+                    </button>
+                    <button className='btn-1'>
+
+                    </button>
+                    <button className='btn-1'>
+
+                    </button>
+                    <button className='btn-1'>
+
+                    </button>
                 </div>
             </nav>
             <div className='dashboard-container' ref={_tabs}>
