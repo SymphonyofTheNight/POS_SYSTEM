@@ -2,7 +2,7 @@
 @import './mixins.scss';
 
 .Dashboard {
-    @include baseDisplay(purple, 100vh, 100vw);
+    @include baseDisplay(transparent, 100vh, 100vw);
     display: flex;
     flex-direction: row;
     position: relative;
@@ -16,6 +16,7 @@
         flex-direction: column;
         min-width: 13vw;
         transition: .2s ease-in-out;
+        position: relative;
 
         .titleContainer {
             @include baseDisplay(none, 10vh, 13vw);
@@ -28,27 +29,149 @@
         }
 
         .navigation {
-            @include baseDisplay(none, 70vh, 13vw);
+            @include baseDisplay(none, auto, 13vw);
             display: flex;
             flex-direction: column;
 
             .category {
                 @include baseDisplay(none, 5vh, 13vw);
-                display: grid;
-                place-items: center;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                position: relative;
+
+                .meter {
+                    color: #0e6cb9;
+                    position: absolute;
+                    left: 10%;
+                    font-size: 1.3em;
+                }
 
                 .text {
                     font-family: $--text-font;
-                    font-size: 1.3em;
+                    font-size: 1em;
                     color: #0e6cb9;
+                    position: absolute;
+                    right: 10%;
                 }
             }
 
             .btn-1 {
-                height: 5vh;
-                width: 13vw;
-                background: pink;
-                border: 2px solid black;
+                @include baseDisplay(none, 5vh, 13vw);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                position: relative;
+                border: 0px solid transparent;
+
+                .cartIcon {
+                    color: #0e6cb9;
+                    position: absolute;
+                    left: 10%;
+                    font-size: 1.3em;
+                }
+
+                .tableIcon {
+                    color: #0e6cb9;
+                    position: absolute;
+                    left: 10%;
+                    font-size: 1.3em;
+                }
+
+                .personIcon {
+                    color: #0e6cb9;
+                    position: absolute;
+                    left: 10%;
+                    font-size: 1.3em;
+                }
+
+                .truckIcon {
+                    color: #0e6cb9;
+                    position: absolute;
+                    left: 10%;
+                    font-size: 1.3em;
+                }
+
+                .chartIcon {
+                    color: #0e6cb9;
+                    position: absolute;
+                    left: 10%;
+                    font-size: 1.3em;
+                }
+
+                .text {
+                    font-family: $--text-font;
+                    font-size: .8em;
+                    color: #0e6cb9;
+                    position: absolute;
+                    right: 10%;
+                }
+            }
+
+            .btn-1:hover {
+                background: #0e6cb9;
+
+                .cartIcon {
+                    color: $--bg-div-color;
+                }
+
+                .tableIcon {
+                    color: $--bg-div-color;
+                }
+
+                .personIcon {
+                    color: $--bg-div-color;
+                }
+
+                .truckIcon {
+                    color: $--bg-div-color;
+                }
+
+                .chartIcon {
+                    color: $--bg-div-color;
+                }
+
+                .text {
+                    color: $--bg-div-color;
+                }
+            }
+        }
+
+        .btnLogout {
+            @include baseDisplay(none, 5vh, 13vw);
+            position: relative;
+            position: absolute;
+            bottom: 2%;
+            display: grid;
+            place-items: center;
+            border: 0px solid transparent;
+
+            .signoutIcon {
+                color: #0e6cb9;
+                position: absolute;
+                left: 10%;
+                font-size: 1.3em;
+            }
+
+            .text {
+                font-family: $--text-font;
+                font-size: .9em;
+                color: #0e6cb9;
+                position: absolute;
+                right: 10%;
+            }
+        }
+
+        .btnLogout:hover {
+            background: #0e6cb9;
+
+            .signoutIcon {
+                color: $--bg-div-color;
+            }
+
+            .text {
+                color: $--bg-div-color;
+                font-family: $--text-font;
             }
         }
     }
