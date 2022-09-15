@@ -1,6 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { FaBars, FaTachometerAlt, FaShoppingCart, FaTable, FaUser, FaTruck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
+
+// Dashboard Components
+import Home from './DashboardComponents/Home/Home';
+import Sales from './DashboardComponents/Sales/Sales';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -9,13 +14,18 @@ import '../../scss/_Dashboard.scss';
 
 const Dashboard = () => {
 
+    // call to navigate on routes
+    const navigate = useNavigate();
+
     //hooks 
+    const [Component, setComponent] = useState();
     const [tabswitch, setTabswitch] = useState(false);
 
     const _tabs = useRef(null);
     const nav_1 = useRef(null);
     const nav_2 = useRef(null);
     const nav_3 = useRef(null);
+    const rended_tag = useRef(null);
 
     const nav_tab = useRef(null);
 
@@ -26,7 +36,7 @@ const Dashboard = () => {
             nav_1.current.style.width = '100vw';
             nav_2.current.style.width = '100vw';
             nav_3.current.style.width = '100vw';
-
+            rended_tag.current.style.width = '100vw';
             nav_tab.current.style.transform = 'translateX(-13vw)';
 
         } else {
@@ -34,7 +44,7 @@ const Dashboard = () => {
             nav_1.current.style.width = '87vw';
             nav_2.current.style.width = '87vw';
             nav_3.current.style.width = '87vw';
-
+            rended_tag.current.style.width = '87vw';
             nav_tab.current.style.transform = 'translateX(0vw)';
 
         }
@@ -47,15 +57,25 @@ const Dashboard = () => {
                     <img src={brand} className='brand' alt='brand logo' />
                 </div>
                 <div className='navigation'>
-                    <div className='category'>
+                    <button className='category'
+                        onClick={() => {
+                            setComponent(<Home />)
+                            navigate('/home')
+                        }}
+                    >
                         <FaTachometerAlt className='meter' />
                         <span className='text'>
                             Dashboard
                         </span>
-                    </div>
+                    </button>
                     <button className='btn-1' style={{
                         marginTop: '1.5vh'
-                    }}>
+                    }}
+                        onClick={() => {
+                            setComponent(<Sales />)
+                            navigate('/dashboard/sales')
+                        }}
+                    >
                         <FaShoppingCart className='cartIcon' />
                         <span className='text'>
                             Sales
@@ -107,6 +127,9 @@ const Dashboard = () => {
                     <div className='tabsContainer_2' ref={nav_3}>
 
                     </div>
+                </div>
+                <div className='renderComponentContainer' ref={rended_tag}>
+                    {Component}
                 </div>
             </div>
         </div>

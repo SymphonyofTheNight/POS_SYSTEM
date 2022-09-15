@@ -19,12 +19,12 @@
         position: relative;
 
         .titleContainer {
-            @include baseDisplay(none, 10vh, 13vw);
+            @include baseDisplay(none, 15vh, 13vw);
             display: grid;
             place-items: center;
 
             .brand {
-                height: 9vh;
+                height: 11vh;
             }
         }
 
@@ -39,6 +39,7 @@
                 flex-direction: row;
                 align-items: center;
                 position: relative;
+                border: 0px solid transparent;
 
                 .meter {
                     color: #0e6cb9;
@@ -181,6 +182,7 @@
         position: absolute;
         right: 0;
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
         justify-content: center;
         transition: .2s ease-in-out;
@@ -220,6 +222,53 @@
             .tabsContainer_2 {
                 @include baseDisplay(none, 4vh, 87vw);
                 transition: .2s ease-in-out;
+
+            }
+        }
+
+        .renderComponentContainer {
+            @include baseDisplay(rgb(233, 233, 233), 90vh, 87vw);
+            transition: .2s ease-in-out;
+            display: grid;
+            place-items: center;
+
+            .Home {
+                @include baseDisplay(red, 100vh, 1280px);
+                display: flex;
+                flex-direction: column;
+
+                .data-statistics-container {
+                    @include baseDisplay(green, 20vh, 1280px);
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-top: 3vh;
+
+                    .chart {
+                        @include baseDisplay(rgb(152, 45, 240), 18vh, 300px);
+                        border-radius: 5px;
+                    }
+
+                    .chart-2 {
+                        @include baseDisplay(rgb(36, 137, 196), 18vh, 300px);
+                        border-radius: 5px;
+                    }
+
+                    .chart-3 {
+                        @include baseDisplay(rgb(226, 162, 43), 18vh, 300px);
+                        border-radius: 5px;
+                    }
+
+                    .chart-4 {
+                        @include baseDisplay(rgb(243, 50, 43), 18vh, 300px);
+                        border-radius: 5px;
+                    }
+                }
+
+                .chartContainer {
+                    @include baseDisplay(purple, 50vh, 1280px);
+                }
             }
         }
     }
