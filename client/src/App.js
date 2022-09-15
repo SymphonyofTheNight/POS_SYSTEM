@@ -30,6 +30,7 @@ const App = () => {
       <Switch>
         <Route path='/' element={<><Login /></>} />
         <Route path='/home' element={<><Dashboard /></>} />
+        <Route path='/dashboard/sales' element={<><Dashboard /></>} />
       </Switch>
     </div>
   )
