@@ -178,7 +178,7 @@
     }
 
     .dashboard-container {
-        @include baseDisplay(rgb(202, 202, 202), 100vh, 87vw);
+        @include baseDisplay(rgb(202, 202, 202), auto, 87vw);
         position: absolute;
         right: 0;
         display: flex;
@@ -233,12 +233,17 @@
             place-items: center;
 
             .Home {
-                @include baseDisplay(red, 100vh, 1280px);
+                @include baseDisplay(none, 90vh, 1280px);
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
+                flex-wrap: wrap;
+                overflow-y: scroll;
+
+                padding-bottom: 5vh;
+
 
                 .data-statistics-container {
-                    @include baseDisplay(green, 20vh, 1280px);
+                    @include baseDisplay(none, 20vh, 1280px);
                     display: flex;
                     flex-direction: row;
                     align-items: center;
@@ -247,27 +252,45 @@
 
                     .chart {
                         @include baseDisplay(rgb(152, 45, 240), 18vh, 300px);
-                        border-radius: 5px;
+                        border-radius: 4px;
                     }
 
                     .chart-2 {
                         @include baseDisplay(rgb(36, 137, 196), 18vh, 300px);
-                        border-radius: 5px;
+                        border-radius: 4px;
                     }
 
                     .chart-3 {
                         @include baseDisplay(rgb(226, 162, 43), 18vh, 300px);
-                        border-radius: 5px;
+                        border-radius: 4px;
                     }
 
                     .chart-4 {
                         @include baseDisplay(rgb(243, 50, 43), 18vh, 300px);
-                        border-radius: 5px;
+                        border-radius: 4px;
                     }
                 }
 
                 .chartContainer {
+                    @include baseDisplay(white, 50vh, 1280px);
+                    border-radius: 4px;
+                    margin-top: 2vh;
+                    display: grid;
+                    place-items: center;
+                    position: relative;
+
+                    .chart-data {
+                        position: absolute;
+                        transform: translate(-50%, -50%);
+                        top: 50%;
+                        left: 47%;
+                    }
+                }
+
+                .chartContainer-2 {
                     @include baseDisplay(purple, 50vh, 1280px);
+                    border-radius: 4px;
+                    margin-top: 2vh;
                 }
             }
         }
