@@ -7,6 +7,7 @@ import { FaBars, FaTachometerAlt, FaShoppingCart, FaTable, FaUser, FaTruck, FaCh
 import Home from './DashboardComponents/Home/Home';
 import Sales from './DashboardComponents/Sales/Sales';
 
+
 // brand img
 import brand from '../../assets/img/brand.png';
 
