@@ -27,6 +27,12 @@ const model_schema = mongoose.Schema({
         min: 0,
         max: 99999999,
     },
+    total_clients: {
+        type: Number,
+        default: true,
+        min: 0,
+        max: 99999999,
+    },
     products: [
         {
             _id: {

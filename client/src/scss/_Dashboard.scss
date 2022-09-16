@@ -222,7 +222,15 @@
             .tabsContainer_2 {
                 @include baseDisplay(none, 4vh, 87vw);
                 transition: .2s ease-in-out;
+                display: flex;
+                align-items: center;
+                flex-direction: row;
 
+                .text {
+                    font-family: $--text-font;
+                    margin-left: 2vw;
+                    color: #6e6e6e;
+                }
             }
         }
 
@@ -253,44 +261,170 @@
                     .chart {
                         @include baseDisplay(rgb(152, 45, 240), 18vh, 300px);
                         border-radius: 4px;
+                        position: relative;
+                        // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+
+                        .value-text {
+                            position: absolute;
+                            top: 10%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1.5em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+
+                        .category-text {
+                            position: absolute;
+                            top: 30%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1em;
+                            color: rgb(241, 241, 241);
+                        }
                     }
 
                     .chart-2 {
                         @include baseDisplay(rgb(36, 137, 196), 18vh, 300px);
                         border-radius: 4px;
+                        position: relative;
+                        // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+
+                        .value-text {
+                            position: absolute;
+                            top: 10%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1.5em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+
+                        .category-text {
+                            position: absolute;
+                            top: 30%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1em;
+                            color: rgb(241, 241, 241);
+                        }
                     }
 
                     .chart-3 {
                         @include baseDisplay(rgb(226, 162, 43), 18vh, 300px);
                         border-radius: 4px;
+                        position: relative;
+                        // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+
+                        .value-text {
+                            position: absolute;
+                            top: 10%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1.5em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+
+                        .category-text {
+                            position: absolute;
+                            top: 30%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1em;
+                            color: rgb(241, 241, 241);
+                        }
                     }
 
                     .chart-4 {
                         @include baseDisplay(rgb(243, 50, 43), 18vh, 300px);
                         border-radius: 4px;
+                        position: relative;
+                        // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+
+                        .value-text {
+                            position: absolute;
+                            top: 10%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1.5em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+
+                        .category-text {
+                            position: absolute;
+                            top: 30%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1em;
+                            color: rgb(241, 241, 241);
+                        }
                     }
                 }
 
                 .chartContainer {
-                    @include baseDisplay(white, 50vh, 1280px);
+                    @include baseDisplay(white, 41vh, 1280px);
                     border-radius: 4px;
                     margin-top: 2vh;
                     display: grid;
                     place-items: center;
                     position: relative;
+                    // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+                    padding-bottom: 1vh;
+
+                    .text {
+                        font-family: $--text-font;
+                        position: absolute;
+                        left: 1.5vw;
+                        top: 2vh;
+                        font-size: 1.5em;
+                    }
+
+                    .text-2 {
+                        font-family: $--text-font;
+                        position: absolute;
+                        left: 1.5vw;
+                        top: 5.5vh;
+                        font-size: .8em;
+                        color: gray;
+                    }
 
                     .chart-data {
                         position: absolute;
                         transform: translate(-50%, -50%);
                         top: 50%;
                         left: 47%;
+                        font-size: .9em;
                     }
                 }
 
-                .chartContainer-2 {
-                    @include baseDisplay(purple, 50vh, 1280px);
-                    border-radius: 4px;
+                .activityContainer {
+                    @include baseDisplay(white, 50vh, 1280px);
                     margin-top: 2vh;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+
+                    .titleContainer {
+                        @include baseDisplay($--bg-div-color, 5vh, 1280px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+
+                        .text {
+                            color: #0e6cb9;
+                            margin-left: 1vw;
+                            font-family: $--text-font;
+                            font-weight: bold;
+                        }
+                    }
+
+                    .logContainer {
+                        @include baseDisplay(none, 45vh, 1280px);
+
+                    }
                 }
             }
         }
