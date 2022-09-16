@@ -29,7 +29,7 @@ const Login = () => {
 
         if (account.username && account.password) {
             dispatch(_login(account.username, account.password))
-            navigate('/home')
+            navigate('/dashboard')
         }
 
     }
