@@ -1,6 +1,11 @@
 @import './root.scss';
 @import './mixins.scss';
 
+::-webkit-scrollbar {
+    width: .1px;
+    color: transparent;
+}
+
 .App {
     @include baseDisplay($--bg-color, 100vh, 100vw);
     min-height: 100%;

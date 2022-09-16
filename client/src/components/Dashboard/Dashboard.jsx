@@ -4,8 +4,12 @@ import { useEffect, useRef, useState } from 'react';
 import { FaBars, FaTachometerAlt, FaShoppingCart, FaTable, FaUser, FaTruck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
 
 // Dashboard Components
-import Home from './DashboardComponents/Home/Home';
+import HomeDashboard from './DashboardComponents/Home/HomeDashboard';
 import Sales from './DashboardComponents/Sales/Sales';
+import Products from './DashboardComponents/Products/Product';
+import Customer from './DashboardComponents/Customer/Customer';
+import Supplier from './DashboardComponents/Supplier/Supplier';
+import SalesReport from './DashboardComponents/SalesReport/SalesReport';
 
 
 // brand img
@@ -19,8 +23,9 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     //hooks 
-    const [Component, setComponent] = useState();
+    const [Component, setComponent] = useState(<HomeDashboard />);
     const [tabswitch, setTabswitch] = useState(false);
+    const [nav, setNav] = useState('/ Dashboard');
 
     const _tabs = useRef(null);
     const nav_1 = useRef(null);
@@ -60,8 +65,9 @@ const Dashboard = () => {
                 <div className='navigation'>
                     <button className='category'
                         onClick={() => {
-                            setComponent(<Home />)
-                            navigate('/home')
+                            setComponent(<HomeDashboard />)
+                            setNav('/ Dashboard')
+                            navigate('/dashboard')
                         }}
                     >
                         <FaTachometerAlt className='meter' />
@@ -74,6 +80,7 @@ const Dashboard = () => {
                     }}
                         onClick={() => {
                             setComponent(<Sales />)
+                            setNav('/ Dashboard / Sales')
                             navigate('/dashboard/sales')
                         }}
                     >
@@ -82,25 +89,49 @@ const Dashboard = () => {
                             Sales
                         </span>
                     </button>
-                    <button className='btn-1'>
+                    <button className='btn-1'
+                        onClick={() => {
+                            setComponent(<Products />)
+                            setNav('/ Dashboard / Products')
+                            navigate('/dashboard/products')
+                        }}
+                    >
                         <FaTable className='tableIcon' />
                         <span className='text'>
                             Products
                         </span>
                     </button>
-                    <button className='btn-1'>
+                    <button className='btn-1'
+                        onClick={() => {
+                            setComponent(<Customer />)
+                            setNav('/ Dashboard / Customer')
+                            navigate('/dashboard/customer')
+                        }}
+                    >
                         <FaUser className='personIcon' />
                         <span className='text'>
                             Customer
                         </span>
                     </button>
-                    <button className='btn-1'>
+                    <button className='btn-1'
+                        onClick={() => {
+                            setComponent(<Supplier />)
+                            setNav('/ Dashboard / Supplier')
+                            navigate('/dashboard/supplier')
+                        }}
+                    >
                         <FaTruck className='truckIcon' />
                         <span className='text'>
                             Supplier
                         </span>
                     </button>
-                    <button className='btn-1'>
+                    <button className='btn-1'
+                        onClick={() => {
+                            setComponent(<SalesReport />)
+                            setNav('/ Dashboard / Report')
+                            navigate('/dashboard/report')
+                        }}
+                    >
                         <FaChartBar className='chartIcon' />
                         <span className='text'>
                             Sales report
@@ -126,7 +157,9 @@ const Dashboard = () => {
                         </button>
                     </div>
                     <div className='tabsContainer_2' ref={nav_3}>
-
+                        <span className='text'>
+                            {nav}
+                        </span>
                     </div>
                 </div>
                 <div className='renderComponentContainer' ref={rended_tag}>
