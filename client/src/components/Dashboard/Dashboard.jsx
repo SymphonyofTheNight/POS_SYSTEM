@@ -19,11 +19,26 @@ import '../../scss/_Dashboard.scss';
 
 const Dashboard = () => {
 
+    const [targetSales, setTargetSales] = useState({
+        january: 4000,
+        february: 3500,
+        march: 3500,
+        april: 4800,
+        may: 2800,
+        june: 1200,
+        july: 5500,
+        august: 2030,
+        september: 2200,
+        october: 3200,
+        november: 4200,
+        december: 3100,
+    })
+
     // call to navigate on routes
     const navigate = useNavigate();
 
     //hooks 
-    const [Component, setComponent] = useState(<HomeDashboard />);
+    const [Component, setComponent] = useState(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />);
     const [tabswitch, setTabswitch] = useState(false);
     const [nav, setNav] = useState('/ Dashboard');
 
@@ -154,6 +169,18 @@ const Dashboard = () => {
                             }}
                         >
                             <FaBars className='bars' />
+                        </button>
+                        <button className='DashboardBtn'
+                            onClick={() => {
+                                setComponent(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />)
+                                setNav('/ Dashboard')
+                                navigate('/dashboard')
+                            }}
+                        >
+                            Dashboard
+                        </button>
+                        <button className='SettingsBtn'>
+                            Settings
                         </button>
                     </div>
                     <div className='tabsContainer_2' ref={nav_3}>

@@ -200,11 +200,11 @@
                 border-bottom: .5px solid rgb(146, 146, 146);
 
                 .tabsBtn {
-                    background: white;
-                    height: 6vh;
-                    width: 5vw;
+                    background: rgb(255, 255, 255);
+                    height: 5vh;
+                    width: auto;
                     border: 0px solid transparent;
-                    border-bottom: .5px solid rgb(146, 146, 146);
+                    margin: 0px 1vw 0px 1.5vw;
 
                     .bars {
                         color: rgba($color: #6e6e6e, $alpha: 1.0);
@@ -216,6 +216,32 @@
                     .bars {
                         color: rgba($color: #000000, $alpha: 1.0);
                     }
+                }
+
+                .DashboardBtn {
+                    @include baseDisplay(none, 6vh, auto);
+                    font-family: $--text-font;
+                    padding: 0px 10px;
+                    border: 0px solid transparent;
+                    font-size: .9em;
+                    color: gray;
+                }
+
+                .DashboardBtn:hover {
+                    color: #000000;
+                }
+
+                .SettingsBtn {
+                    @include baseDisplay(none, 6vh, auto);
+                    font-family: $--text-font;
+                    padding: 0px 10px;
+                    border: 0px solid transparent;
+                    font-size: .9em;
+                    color: gray;
+                }
+
+                .SettingsBtn:hover {
+                    color: #000000;
                 }
             }
 
@@ -364,38 +390,91 @@
                 }
 
                 .chartContainer {
-                    @include baseDisplay(white, 41vh, 1280px);
-                    border-radius: 4px;
-                    margin-top: 2vh;
-                    display: grid;
-                    place-items: center;
-                    position: relative;
-                    // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
-                    padding-bottom: 1vh;
+                    @include baseDisplay(green, 50vh, 1280px);
+                    display: flex;
+                    flex-direction: column;
 
-                    .text {
-                        font-family: $--text-font;
-                        position: absolute;
-                        left: 1.5vw;
-                        top: 2vh;
-                        font-size: 1.5em;
+                    .innerchartContainer {
+                        @include baseDisplay(white, 41vh, 1280px);
+                        // border-radius: 4px;
+                        display: grid;
+                        place-items: center;
+                        position: relative;
+                        // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+                        padding-bottom: 1vh;
+
+                        .text {
+                            font-family: $--text-font;
+                            position: absolute;
+                            left: 1.5vw;
+                            top: 2vh;
+                            font-size: 1.5em;
+                        }
+
+                        .text-2 {
+                            font-family: $--text-font;
+                            position: absolute;
+                            left: 1.5vw;
+                            top: 5.5vh;
+                            font-size: .8em;
+                            color: gray;
+                        }
+
+                        .chart-data {
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            top: 50%;
+                            left: 47%;
+                            font-size: .9em;
+                        }
                     }
 
-                    .text-2 {
-                        font-family: $--text-font;
-                        position: absolute;
-                        left: 1.5vw;
-                        top: 5.5vh;
-                        font-size: .8em;
-                        color: gray;
-                    }
+                    .data-meterContainer {
+                        @include baseDisplay(red, 9vh, 1280px);
+                        display: flex;
+                        flex-direction: row;
 
-                    .chart-data {
-                        position: absolute;
-                        transform: translate(-50%, -50%);
-                        top: 50%;
-                        left: 47%;
-                        font-size: .9em;
+                        .salesContainer {
+                            @include baseDisplay(purple, 9vh, 640px);
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+
+                            .progress-line-container {
+                                @include baseDisplay(red, 9vh, 570px);
+                                position: relative;
+
+                                .text {
+                                    font-family: $--text-font;
+                                    font-size: 1.3em;
+                                    position: absolute;
+                                    top: 1%;
+                                    left: 1%;
+                                }
+                            }
+                        }
+
+                        .sales-targetContainer {
+                            @include baseDisplay(rgb(29, 175, 114), 9vh, 640px);
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+
+                            .progress-line-container {
+                                @include baseDisplay(red, 9vh, 570px);
+                                position: relative;
+
+                                .text {
+                                    font-family: $--text-font;
+                                    font-size: 1.3em;
+                                    position: absolute;
+                                    top: 1%;
+                                    left: 1%;
+                                }
+                            }
+                        }
                     }
                 }
 
