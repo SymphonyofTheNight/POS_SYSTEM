@@ -152,16 +152,19 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                             <span className='text'>
                                 Sales
                             </span>
+                            <div className="progress" style={{ height: '10px' }}>
+                                <div className="progress-bar" role="progressbar" style={{ width: '80%' }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" />
+                            </div>
                         </div>
-                        {/* <div className="progress">
-                            <div className="progress-bar" role="progressbar" style={{ width: '80%' }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" />
-                        </div> */}
                     </div>
                     <div className='sales-targetContainer'>
                         <div className='progress-line-container'>
                             <span className='text'>
                                 Target Sales
                             </span>
+                            <div className="progress" style={{ height: '10px' }}>
+                                <div className="progress-bar" role="progressbar" style={{ width: '80%' }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" />
+                            </div>
                         </div>
                     </div>
                 </div>
