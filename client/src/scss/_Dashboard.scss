@@ -178,7 +178,7 @@
     }
 
     .dashboard-container {
-        @include baseDisplay(rgb(202, 202, 202), auto, 87vw);
+        @include baseDisplay($--bg-dashbg, auto, 87vw);
         position: absolute;
         right: 0;
         display: flex;
@@ -261,7 +261,7 @@
         }
 
         .renderComponentContainer {
-            @include baseDisplay(rgb(233, 233, 233), 90vh, 87vw);
+            @include baseDisplay($--bg-dashbg, 90vh, 87vw);
             transition: .2s ease-in-out;
             display: grid;
             place-items: center;
@@ -435,43 +435,53 @@
                         flex-direction: row;
 
                         .salesContainer {
-                            @include baseDisplay(purple, 9vh, 640px);
+                            @include baseDisplay($--bg-div-color, 9vh, 640px);
                             display: flex;
                             flex-direction: row;
                             align-items: center;
                             justify-content: center;
 
                             .progress-line-container {
-                                @include baseDisplay(red, 9vh, 570px);
+                                @include baseDisplay(none, 9vh, 570px);
                                 position: relative;
 
                                 .text {
                                     font-family: $--text-font;
                                     font-size: 1.3em;
                                     position: absolute;
-                                    top: 1%;
-                                    left: 1%;
+                                    top: 12%;
+                                    left: 0%;
+                                    color: #0e6cb9;
+                                }
+
+                                .progress {
+                                    margin-top: 5.5vh;
                                 }
                             }
                         }
 
                         .sales-targetContainer {
-                            @include baseDisplay(rgb(29, 175, 114), 9vh, 640px);
+                            @include baseDisplay($--bg-div-color, 9vh, 640px);
                             display: flex;
                             flex-direction: row;
                             align-items: center;
                             justify-content: center;
 
                             .progress-line-container {
-                                @include baseDisplay(red, 9vh, 570px);
+                                @include baseDisplay(none, 9vh, 570px);
                                 position: relative;
 
                                 .text {
                                     font-family: $--text-font;
                                     font-size: 1.3em;
                                     position: absolute;
-                                    top: 1%;
-                                    left: 1%;
+                                    top: 12%;
+                                    left: 0%;
+                                    color: #0e6cb9;
+                                }
+
+                                .progress {
+                                    margin-top: 5.5vh;
                                 }
                             }
                         }

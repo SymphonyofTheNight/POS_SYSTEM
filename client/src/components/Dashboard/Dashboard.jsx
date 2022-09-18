@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { FaBars, FaTachometerAlt, FaShoppingCart, FaTable, FaUser, FaTruck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
@@ -40,6 +41,7 @@ const Dashboard = () => {
     //hooks 
     const [Component, setComponent] = useState(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />);
     const [tabswitch, setTabswitch] = useState(false);
+    const [time, setTime] = useState();
     const [nav, setNav] = useState('/ Dashboard');
 
     const _tabs = useRef(null);
@@ -71,6 +73,14 @@ const Dashboard = () => {
         }
     }, [tabswitch])
 
+    useEffect(() => {
+        setTime(
+            window.setInterval(() => {
+                moment().format('ddd M/d/y H:mm:ss')
+            }, 1000)
+        )
+    }, [])
+
     return (
         <div className='Dashboard'>
             <nav className='nav-tab' ref={nav_tab}>
@@ -80,7 +90,7 @@ const Dashboard = () => {
                 <div className='navigation'>
                     <button className='category'
                         onClick={() => {
-                            setComponent(<HomeDashboard />)
+                            setComponent(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />)
                             setNav('/ Dashboard')
                             navigate('/dashboard')
                         }}
@@ -182,6 +192,12 @@ const Dashboard = () => {
                         <button className='SettingsBtn'>
                             Settings
                         </button>
+
+                        <span className='time'>
+                            {window.setInterval(() => {
+                                moment().format('MMMM Do YYYY, h:mm:ss a')
+                            }, 1000)}
+                        </span>
                     </div>
                     <div className='tabsContainer_2' ref={nav_3}>
                         <span className='text'>
