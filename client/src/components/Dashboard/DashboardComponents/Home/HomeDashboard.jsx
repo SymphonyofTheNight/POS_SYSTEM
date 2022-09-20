@@ -152,7 +152,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                             <span className='text'>
                                 Sales
                             </span>
-                            <div className="progress" style={{ height: '10px' }}>
+                            <div className="progress" style={{ height: '8px' }}>
                                 <div className="progress-bar" role="progressbar" style={{ width: '80%' }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" />
                             </div>
                         </div>
@@ -162,8 +162,8 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                             <span className='text'>
                                 Target Sales
                             </span>
-                            <div className="progress" style={{ height: '10px' }}>
-                                <div className="progress-bar" role="progressbar" style={{ width: '80%' }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" />
+                            <div className="progress" style={{ height: '8px' }}>
+                                <div className="progress-bar" role="progressbar" style={{ width: '100%' }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" />
                             </div>
                         </div>
                     </div>
