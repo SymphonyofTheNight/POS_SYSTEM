@@ -24,10 +24,16 @@ const Product = () => {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Brand_Name</th>
+                                <th scope="col">Generic_Name</th>
+                                <th scope="col">Category/Description</th>
+                                <th scope="col">Supplier</th>
+                                <th scope="col">Receive_Date</th>
+                                <th scope="col">Expiry_Date</th>
+                                <th scope="col">Original_Price</th>
+                                <th scope="col">Selling_Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Total</th>
                             </tr>
                         </thead>
                         <tbody>
