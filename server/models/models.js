@@ -33,6 +33,40 @@ const model_schema = mongoose.Schema({
         min: 0,
         max: 99999999,
     },
+    sales: [
+        {
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                index: true,
+                required: true,
+                auto: true,
+            },
+            product_name: {
+                type: String,
+                require: true,
+            },
+            generic_name: {
+                type: String,
+                require: true,
+            },
+            description: {
+                type: String,
+                require: true,
+            },
+            qty: {
+                type: Number,
+                require: true,
+            },
+            amount: {
+                type: Number,
+                require: true,
+            },
+            profit: {
+                type: Number,
+                require: true,
+            }
+        }
+    ],
     products: [
         {
             _id: {
@@ -61,10 +95,6 @@ const model_schema = mongoose.Schema({
                 type: String,
                 require: true
             },
-            profit: {
-                type: String,
-                require: true
-            },
             quantity: {
                 type: String,
                 require: true
@@ -78,6 +108,40 @@ const model_schema = mongoose.Schema({
                 require: true
             },
             expiration_date: {
+                type: String,
+                require: true
+            }
+        }
+    ],
+    customer: [
+        {
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                index: true,
+                required: true,
+                auto: true,
+            },
+            address: {
+                type: String,
+                require: true
+            },
+            contact_number: {
+                type: String,
+                require: true
+            },
+            product_number: {
+                type: String,
+                require: true
+            },
+            total: {
+                type: Number,
+                require: true
+            },
+            note: {
+                type: String,
+                require: true
+            },
+            due_date: {
                 type: String,
                 require: true
             }
@@ -113,7 +177,7 @@ const model_schema = mongoose.Schema({
             }
         }
     ],
-    activity: [
+    sales_report: [
         {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,

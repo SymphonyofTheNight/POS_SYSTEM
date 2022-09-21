@@ -24,10 +24,13 @@ const Customer = () => {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Fullname</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Contact_Number</th>
+                                <th scope="col">Product_Name</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Note</th>
+                                <th scope="col">Due_Date</th>
                             </tr>
                         </thead>
                         <tbody>

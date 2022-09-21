@@ -24,10 +24,12 @@ const Supplier = () => {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Supplier</th>
+                                <th scope="col">Contact_Person</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Contact_Number</th>
+                                <th scope="col">Note</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>

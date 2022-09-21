@@ -25,10 +25,13 @@ const Sales = () => {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Product_Name</th>
+                                <th scope="col">Generic_Name</th>
+                                <th scope="col">Category/Description</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Profit</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
