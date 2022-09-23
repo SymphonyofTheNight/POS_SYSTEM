@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { FaBars, FaTachometerAlt, FaShoppingCart, FaTable, FaUser, FaTruck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
 
@@ -19,6 +20,13 @@ import brand from '../../assets/img/brand.png';
 import '../../scss/_Dashboard.scss';
 
 const Dashboard = () => {
+
+    // call actions 
+    // const getStore = useSelector(state => state.reducer.store);
+
+    // console.log({ store: getStore });
+
+    const [open_modal, setOpen_Modal] = useState(false);
 
     const [targetSales, setTargetSales] = useState({
         january: 4000,
@@ -140,7 +148,7 @@ const Dashboard = () => {
                     </button>
                     <button className='btn-1'
                         onClick={() => {
-                            setComponent(<Supplier />)
+                            setComponent(<Supplier setOpen_Modal={setOpen_Modal} />)
                             setNav('/ Dashboard / Supplier')
                             navigate('/dashboard/supplier')
                         }}
@@ -209,6 +217,28 @@ const Dashboard = () => {
                     {Component}
                 </div>
             </div>
+
+            {open_modal ? (
+                <div className='modal-supplies'>
+                    <div className='modal-container'>
+                        <div className='titleContainer'>
+                            <span className='text'>
+                                Add Supplier
+                            </span>
+                        </div>
+                        <div className='form-input-container'>
+
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <>
+
+                </>
+            )}
+
+
+
         </div>
     )
 }
