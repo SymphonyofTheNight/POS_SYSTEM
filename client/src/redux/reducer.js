@@ -8,6 +8,10 @@ const reducer = (state = initialState, action) => {
             ...state,
             store: action.payload
         }
+        case 'ADD_SUPPLIER': return {
+            ...state,
+            store: action.payload
+        }
         default:
             return { ...state };
     }

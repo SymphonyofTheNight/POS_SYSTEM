@@ -265,6 +265,7 @@
             transition: .2s ease-in-out;
             display: grid;
             place-items: center;
+            position: relative;
 
             .Home {
                 @include baseDisplay(none, 90vh, 1280px);
@@ -980,6 +981,49 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    // modal supplies
+    .modal-supplies {
+        background: rgba($color: #000000, $alpha: 0.3);
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: grid;
+        place-items: center;
+
+        .modal-container {
+            background: rgba($color: #ffffff, $alpha: 1.0);
+            height: 70vh;
+            width: 30vw;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            .titleContainer {
+                background: rgba($color: #812b2b, $alpha: 0);
+                height: 7vh;
+                width: 30vw;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-start;
+
+                .text {
+                    font: $--text-font;
+                    margin-left: 1.5vw;
+                    font-size: 2em;
+                }
+            }
+
+            .form-input-container {
+                background: rgba($color: #812424, $alpha: 1.0);
+                height: 63vh;
+                width: 30vw;
             }
         }
     }

@@ -1,6 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
 
-const Supplier = () => {
+const Supplier = ({ setOpen_Modal }) => {
+
+    const HandleAdd_Supplier = (e) => {
+        e.preventDefault();
+
+
+    }
+
     return (
         <div className='Supplier'>
             <div className='innerContainer'>
@@ -11,17 +19,21 @@ const Supplier = () => {
                 </div>
                 <div className='select-container'>
                     <select className="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                        <option defaultValue='Open this select menu'>Open this select menu</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
-                    <button className='addBtn'>
+                    <button className='addBtn'
+                        onClick={() => {
+                            return setOpen_Modal(state => !state)
+                        }}
+                    >
                         Add
                     </button>
                 </div>
                 <div className='table-container'>
-                    <table class="table">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">Supplier</th>
@@ -90,6 +102,7 @@ const Supplier = () => {
                     </button>
                 </div>
             </div>
+
         </div>
     )
 }

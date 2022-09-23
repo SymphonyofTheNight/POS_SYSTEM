@@ -11,3 +11,15 @@ export const login = (admin, password) => base_api.post('/', {
     admin: admin,
     password: password
 })
+
+export const add_supplier = (id, TOKEN, supplier_name, address, contact_person, contact_number, note) => base_api.patch(`/dashboard/supplier/${id}`, {
+    supplier: [
+        {
+            supplier_name: supplier_name,
+            address: address,
+            contact_person: contact_person,
+            contact_number: contact_number,
+            note: note
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${TOKEN}` } })
