@@ -1,7 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Supplier = ({ setOpen_Modal }) => {
+
+    const get_suppliers = useSelector(state => state.reducer.store);
 
     const HandleAdd_Supplier = (e) => {
         e.preventDefault();
@@ -44,7 +46,25 @@ const Supplier = ({ setOpen_Modal }) => {
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {get_suppliers[0] ? Object.keys(get_suppliers[0]?.supplier).map((key, value) => {
+                            return (
+                                <tbody key={get_suppliers[0]?.supplier.map(state => state._id)}>
+                                    <tr>
+                                        <th scope="row">{get_suppliers[0]?.supplier[key].supplier_name}</th>
+                                        <td>{get_suppliers[0]?.supplier[key].contact_person}</td>
+                                        <td>{get_suppliers[0]?.supplier[key].address}</td>
+                                        <td>{get_suppliers[0]?.supplier[key].contact_number}</td>
+                                        <td>{get_suppliers[0]?.supplier[key].note}</td>
+                                        <td>
+                                            <button>
+                                                try
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            )
+                        }) : null}
+                        {/* <tbody>
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Mark</td>
@@ -93,7 +113,7 @@ const Supplier = ({ setOpen_Modal }) => {
                                 <td>the Bird</td>
                                 <td>@twitter</td>
                             </tr>
-                        </tbody>
+                        </tbody> */}
                     </table>
                 </div>
                 <div className='btn-submit-container'>
