@@ -21,11 +21,6 @@ import '../../scss/_Dashboard.scss';
 
 const Dashboard = () => {
 
-    // call actions 
-    // const getStore = useSelector(state => state.reducer.store);
-
-    // console.log({ store: getStore });
-
     const [open_modal, setOpen_Modal] = useState(false);
 
     const [targetSales, setTargetSales] = useState({
@@ -69,7 +64,6 @@ const Dashboard = () => {
             nav_3.current.style.width = '100vw';
             rended_tag.current.style.width = '100vw';
             nav_tab.current.style.transform = 'translateX(-13vw)';
-
         } else {
             _tabs.current.style.width = '87vw';
             nav_1.current.style.width = '87vw';
@@ -77,7 +71,6 @@ const Dashboard = () => {
             nav_3.current.style.width = '87vw';
             rended_tag.current.style.width = '87vw';
             nav_tab.current.style.transform = 'translateX(0vw)';
-
         }
     }, [tabswitch])
 
