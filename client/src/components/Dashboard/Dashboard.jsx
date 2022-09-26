@@ -220,7 +220,24 @@ const Dashboard = () => {
                             </span>
                         </div>
                         <div className='form-input-container'>
+                            <div className='supplier-name-container'>
 
+                            </div>
+                            <div className='address-container'>
+
+                            </div>
+                            <div className='contact-person-container'>
+
+                            </div>
+                            <div className='contact-number-container'>
+
+                            </div>
+                            <div className='note-container'>
+
+                            </div>
+                            <div className='btnContainerSubmit'>
+
+                            </div>
                         </div>
                     </div>
                 </div>

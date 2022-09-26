@@ -998,7 +998,7 @@
 
         .modal-container {
             background: rgba($color: #ffffff, $alpha: 1.0);
-            height: 70vh;
+            height: auto;
             width: 30vw;
             border-radius: 10px;
             display: flex;
@@ -1022,8 +1022,47 @@
 
             .form-input-container {
                 background: rgba($color: #812424, $alpha: 1.0);
-                height: 63vh;
+                height: auto;
                 width: 30vw;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+
+                .supplier-name-container {
+                    background: rgba($color: #8b8019, $alpha: 1.0);
+                    height: 7vh;
+                    width: 30vw;
+                }
+
+                .address-container {
+                    background: rgba($color: #1b198b, $alpha: 1.0);
+                    height: 7vh;
+                    width: 30vw;
+                }
+
+                .contact-person-container {
+                    background: rgba($color: #74198b, $alpha: 1.0);
+                    height: 7vh;
+                    width: 30vw;
+                }
+
+                .contact-number-container {
+                    background: rgba($color: #198b48, $alpha: 1.0);
+                    height: 7vh;
+                    width: 30vw;
+                }
+
+                .note-container {
+                    background: rgba($color: #ad6819, $alpha: 1.0);
+                    height: 20vh;
+                    width: 30vw;
+                }
+
+                .btnContainerSubmit {
+                    background: rgba($color: #198b48, $alpha: 1.0);
+                    height: 10vh;
+                    width: 30vw;
+                }
             }
         }
     }
