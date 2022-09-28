@@ -10,10 +10,13 @@ const reducer = (state = initialState, action) => {
         }
         case 'ADD_SUPPLIER': return {
             ...state,
-            store: action.payload
+            store: {
+                ...state.store,
+                supplier: [...state, action.payload]
+            }
         }
         default:
-            return { ...state };
+            return state;
     }
 }
 
