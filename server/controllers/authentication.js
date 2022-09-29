@@ -11,8 +11,6 @@ export const registration = async (req, res) => {
 
     const { admin, password } = req.body;
 
-    console.log(req.body);
-
     try {
         const check_user_exist = await OwnerModels.findOne({ admin });
 
