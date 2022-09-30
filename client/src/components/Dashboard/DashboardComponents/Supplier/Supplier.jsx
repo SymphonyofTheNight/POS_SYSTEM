@@ -5,9 +5,10 @@ const Supplier = ({ setOpen_Modal }) => {
 
     const get_suppliers = useSelector(state => state.reducer.store);
 
+    console.log(get_suppliers);
+
     const HandleAdd_Supplier = (e) => {
         e.preventDefault();
-
 
     }
 
@@ -48,7 +49,7 @@ const Supplier = ({ setOpen_Modal }) => {
                         </thead>
                         {get_suppliers[0] ? Object.keys(get_suppliers[0]?.supplier).map((key, value) => {
                             return (
-                                <tbody key={get_suppliers[0]?.supplier.map(state => state._id)}>
+                                <tbody key={get_suppliers[0]?.supplier[key]._id}>
                                     <tr>
                                         <th scope="row">{get_suppliers[0]?.supplier[key].supplier_name}</th>
                                         <td>{get_suppliers[0]?.supplier[key].contact_person}</td>

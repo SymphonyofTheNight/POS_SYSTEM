@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// router 
+// router
 import router from './routes/routes.js';
 
 const app = express();
