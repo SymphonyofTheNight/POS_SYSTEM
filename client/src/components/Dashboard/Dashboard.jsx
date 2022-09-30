@@ -58,9 +58,7 @@ const Dashboard = () => {
     });
 
     // redux storage
-    const redux_storage = useSelector(state => state.reducer.store);
-
-    console.log(redux_storage);
+    // const redux_storage = useSelector(state => state.reducer.store);
 
     // localstorage 
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
@@ -102,8 +100,6 @@ const Dashboard = () => {
 
     const add_supplier_onHandleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(Localstorage.result._id, Localstorage.token, supplier.supplier_name, supplier.address, supplier.contact_person, supplier.contact_number, supplier.note);
 
         if (supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
             dispatch(add_supplier(Localstorage.result._id, Localstorage.token, supplier.supplier_name, supplier.address, supplier.contact_person, supplier.contact_number, supplier.note));
