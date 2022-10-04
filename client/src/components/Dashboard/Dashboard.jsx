@@ -52,16 +52,16 @@ const Dashboard = () => {
     const [time, setTime] = useState();
     const [nav, setNav] = useState('/ Dashboard');
 
+    // localstorage 
+    const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
+
     //supplier
     const [supplier, setSupplier] = useState({
-        supplier_name: '', address: '', contact_person: '', contact_number: '', note: ''
+        _id: Localstorage.result._id, token: Localstorage.token, supplier_name: '', address: '', contact_person: '', contact_number: '', note: ''
     });
 
     // redux storage
     // const redux_storage = useSelector(state => state.reducer.store);
-
-    // localstorage 
-    const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
 
     const _tabs = useRef(null);
     const nav_1 = useRef(null);
@@ -90,20 +90,20 @@ const Dashboard = () => {
         }
     }, [tabswitch])
 
-    useEffect(() => {
-        setTime(
-            window.setInterval(() => {
-                moment().format('ddd M/d/y H:mm:ss')
-            }, 1000)
-        )
-    }, [])
+    // useEffect(() => {
+    //     setTime(
+    //         window.setInterval(() => {
+    //             moment().format('ddd M/d/y H:mm:ss')
+    //         }, 1000)
+    //     )
+    // }, [])
 
     const add_supplier_onHandleSubmit = (e) => {
+
         e.preventDefault();
 
-        if (supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
-            dispatch(add_supplier(Localstorage.result._id, Localstorage.token, supplier.supplier_name, supplier.address, supplier.contact_person, supplier.contact_number, supplier.note));
-
+        if (supplier._id && supplier.token && supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
+            dispatch(add_supplier(supplier._id, supplier.token, supplier.supplier_name, supplier.address, supplier.contact_person, supplier.contact_number, supplier.note));
             setOpen_Modal(state => !state)
         }
 
