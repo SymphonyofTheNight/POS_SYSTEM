@@ -57,7 +57,13 @@ const Dashboard = () => {
 
     //supplier
     const [supplier, setSupplier] = useState({
-        _id: Localstorage.result._id, token: Localstorage.token, supplier_name: '', address: '', contact_person: '', contact_number: '', note: ''
+        _id: Localstorage?.result?._id,
+        token: Localstorage?.token,
+        supplier_name: '',
+        address: '',
+        contact_person: '',
+        contact_number: '',
+        note: ''
     });
 
     // redux storage
@@ -103,7 +109,9 @@ const Dashboard = () => {
         e.preventDefault();
 
         if (supplier._id && supplier.token && supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
-            dispatch(add_supplier(supplier._id, supplier.token, supplier.supplier_name, supplier.address, supplier.contact_person, supplier.contact_number, supplier.note));
+            dispatch(add_supplier(supplier)); // fix thunk for api destructure data yeah 
+            // dispatch({ type: 'ADD_SUPPLIER', payload: supplier });
+            dispatch({ type: 'ADD_VALUE', value: 5 });
             setOpen_Modal(state => !state)
         }
 

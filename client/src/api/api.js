@@ -15,7 +15,7 @@ export const login = (admin, password) => base_api.post('/', {
 export const add_supplier = (supplier) => base_api.patch(`/dashboard/supplier/${supplier._id}`, {
     supplier: [
         {
-            supplier_name: supplier.name,
+            supplier_name: supplier.supplier_name,
             address: supplier.address,
             contact_person: supplier.contact_person,
             contact_number: supplier.contact_number,

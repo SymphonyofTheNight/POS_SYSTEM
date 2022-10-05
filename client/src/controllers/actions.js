@@ -18,9 +18,9 @@ export const _login = (admin, password) => async (dispatch) => {
     }
 }
 
-export const add_supplier = (id, TOKEN, supplier_name, address, contact_person, contact_number, note) => async (dispatch) => {
+export const add_supplier = (supplier) => async (dispatch) => {
     try {
-        const { data } = await api.add_supplier(id, TOKEN, supplier_name, address, contact_person, contact_number, note);
+        const { data } = await api.add_supplier(supplier);
         dispatch({ type: 'ADD_SUPPLIER', payload: data });
     } catch (error) {
         console.log({ 'error': error });

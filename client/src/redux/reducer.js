@@ -1,5 +1,6 @@
 const initialState = {
-    store: null
+    store: {},
+    value: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -12,11 +13,17 @@ const reducer = (state = initialState, action) => {
         case 'ADD_SUPPLIER':
             return {
                 ...state,
-                store: [{
-                    ...state.store,
-                    supplier: [...state.store.supplier, action.data]
-                }]
+                store: {
+                    ...state.store[0],
+                    supplier: [...state.store[0].supplier, action.payload]
+                }
             }
+        case 'ADD_VALUE':
+            return {
+                ...state,
+                value: state.value += action.value
+            }
+
         default:
             return state;
     }
