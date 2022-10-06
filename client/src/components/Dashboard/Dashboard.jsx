@@ -14,7 +14,8 @@ import Supplier from './DashboardComponents/Supplier/Supplier';
 import SalesReport from './DashboardComponents/SalesReport/SalesReport';
 
 // action thunk 
-import { add_supplier } from '../../controllers/actions.js';
+// import { add_supplier } from '../../controllers/actions.js';
+import { add_supplier } from '../../api/api.js';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -109,10 +110,14 @@ const Dashboard = () => {
         e.preventDefault();
 
         if (supplier._id && supplier.token && supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
-            dispatch(add_supplier(supplier)); // fix thunk for api destructure data yeah 
-            // dispatch({ type: 'ADD_SUPPLIER', payload: supplier });
-            dispatch({ type: 'ADD_VALUE', value: 5 });
+            // dispatch(add_supplier(supplier)); // fix thunk for api destructure data yeah 
+            add_supplier(supplier);
+            dispatch({ type: 'ADD_SUPPLIER', payload: supplier });
+            // dispatch({ type: 'ADD_VALUE', value: 5 });
             setOpen_Modal(state => !state)
+
+            window.location.reload();
+
         }
 
     }

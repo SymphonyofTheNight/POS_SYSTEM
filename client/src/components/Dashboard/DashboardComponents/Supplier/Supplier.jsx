@@ -1,16 +1,19 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 const Supplier = ({ setOpen_Modal }) => {
 
     const get_suppliers = useSelector(state => state.reducer.store);
 
-    console.log(get_suppliers);
+    // const HandleAdd_Supplier = (e) => {
+    //     e.preventDefault();
 
-    const HandleAdd_Supplier = (e) => {
-        e.preventDefault();
+    // }
 
-    }
+    // useEffect(() => {
+    //     const get_suppliers = useSelector(state => state.reducer.store);
+    // },[])
 
     return (
         <div className='Supplier'>
