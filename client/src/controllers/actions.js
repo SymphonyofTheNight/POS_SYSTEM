@@ -21,7 +21,7 @@ export const _login = (admin, password) => async (dispatch) => {
 export const add_supplier = (supplier) => async (dispatch) => {
     try {
         const { data } = await api.add_supplier(supplier);
-        dispatch({ type: 'ADD_SUPPLIER', payload: data });
+        dispatch({ type: 'ADD_SUPPLIER', payload: data[0] });
     } catch (error) {
         console.log({ 'error': error });
     }
