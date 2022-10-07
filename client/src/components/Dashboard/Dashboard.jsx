@@ -25,6 +25,12 @@ import '../../scss/_Dashboard.scss';
 const Dashboard = () => {
 
     const [open_modal, setOpen_Modal] = useState(false);
+    const [check_if_edit, setCheck_If_Edit] = useState(false);
+    const [check_if_add, setCheck_If_Add] = useState(false);
+    const [getId, setGetId] = useState();
+    const [modaltitle, setModalTitle] = useState('');
+
+    const findSupplier = useSelector(state => getId ? state.reducer.store.map(val => val.supplier.find(sup => sup._id === getId)) : state);
 
     const [targetSales, setTargetSales] = useState({
         january: 4000,
@@ -50,7 +56,7 @@ const Dashboard = () => {
     //hooks 
     const [Component, setComponent] = useState(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />);
     const [tabswitch, setTabswitch] = useState(false);
-    const [time, setTime] = useState();
+    // const [time, setTime] = useState();
     const [nav, setNav] = useState('/ Dashboard');
 
     // localstorage 
@@ -97,13 +103,19 @@ const Dashboard = () => {
         }
     }, [tabswitch])
 
-    // useEffect(() => {
-    //     setTime(
-    //         window.setInterval(() => {
-    //             moment().format('ddd M/d/y H:mm:ss')
-    //         }, 1000)
-    //     )
-    // }, [])
+    useEffect(() => {
+        if (check_if_edit && Localstorage && findSupplier) {
+            setSupplier({
+                _id: Localstorage?.result?._id,
+                token: Localstorage?.token,
+                supplier_name: findSupplier[0].supplier_name,
+                address: findSupplier[0].address,
+                contact_person: findSupplier[0].contact_person,
+                contact_number: findSupplier[0].contact_number,
+                note: findSupplier[0].note
+            })
+        }
+    }, [check_if_edit])
 
     const add_supplier_onHandleSubmit = (e) => {
 
@@ -117,8 +129,12 @@ const Dashboard = () => {
             setOpen_Modal(state => !state)
 
             window.location.reload();
-
         }
+
+    }
+
+    const edit_supplier_onHandleSubmit = (e) => {
+        e.preventDefault();
 
     }
 
@@ -181,7 +197,7 @@ const Dashboard = () => {
                     </button>
                     <button className='btn-1'
                         onClick={() => {
-                            setComponent(<Supplier setOpen_Modal={setOpen_Modal} />)
+                            setComponent(<Supplier setOpen_Modal={setOpen_Modal} setCheck_If_Edit={setCheck_If_Edit} setGetId={setGetId} setModalTitle={setModalTitle} setSupplier={setSupplier} supplier={supplier} />)
                             setNav('/ Dashboard / Supplier')
                             navigate('/dashboard/supplier')
                         }}
@@ -258,43 +274,63 @@ const Dashboard = () => {
 
             {open_modal ? (
                 <div className='modal-supplies'>
-                    <form onSubmit={add_supplier_onHandleSubmit}>
+                    <form onSubmit={check_if_edit ? edit_supplier_onHandleSubmit : add_supplier_onHandleSubmit}>
                         <div className='modal-container'>
                             <div className='titleContainer'>
                                 <span className='text'>
-                                    Add Supplier
+                                    {modaltitle}
                                 </span>
                             </div>
                             <div className='form-input-container'>
                                 <div className='supplier-name-container'>
                                     <span className='text'>Supplier name: </span>
-                                    <input className='supplier-name--form' type='text' placeholder='supplier name' onChange={(e) => {
-                                        return setSupplier({ ...supplier, supplier_name: e.target.value })
-                                    }} />
+                                    <input className='supplier-name--form'
+                                        value={check_if_edit ? supplier.supplier_name : ''}
+                                        type='text'
+                                        placeholder='supplier name'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, supplier_name: e.target.value })
+                                        }} />
                                 </div>
                                 <div className='address-container'>
                                     <span className='text'>Address: </span>
-                                    <input className='address-form' type='text' placeholder='address' onChange={(e) => {
-                                        return setSupplier({ ...supplier, address: e.target.value })
-                                    }} />
+                                    <input className='address-form'
+                                        value={check_if_edit ? supplier.address : ''}
+                                        type='text'
+                                        placeholder='address'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, address: e.target.value })
+                                        }} />
                                 </div>
                                 <div className='contact-person-container'>
                                     <span className='text'>Contact person: </span>
-                                    <input className='contact-person-form' type='text' placeholder='contact person' onChange={(e) => {
-                                        return setSupplier({ ...supplier, contact_person: e.target.value })
-                                    }} />
+                                    <input className='contact-person-form'
+                                        value={check_if_edit ? supplier.contact_person : ''}
+                                        type='text'
+                                        placeholder='contact person'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, contact_person: e.target.value })
+                                        }} />
                                 </div>
                                 <div className='contact-number-container'>
                                     <span className='text'>Contact number: </span>
-                                    <input className='contact-number-form' type='text' placeholder='contact number' onChange={(e) => {
-                                        return setSupplier({ ...supplier, contact_number: e.target.value })
-                                    }} />
+                                    <input className='contact-number-form'
+                                        value={check_if_edit ? supplier.contact_number : ''}
+                                        type='text'
+                                        placeholder='contact number'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, contact_number: e.target.value })
+                                        }} />
                                 </div>
                                 <div className='note-container'>
                                     <span className='text'>Note: </span>
-                                    <textarea className='note-form' type='text' placeholder='note' onChange={(e) => {
-                                        return setSupplier({ ...supplier, note: e.target.value })
-                                    }} />
+                                    <textarea className='note-form'
+                                        value={check_if_edit ? supplier.note : ''}
+                                        type='text'
+                                        placeholder='note'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, note: e.target.value })
+                                        }} />
                                 </div>
                                 <div className='btnContainerSubmit'>
                                     <button className='btnAddSubmit'>

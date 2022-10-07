@@ -1,8 +1,8 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { FaPen, FaTrash } from 'react-icons/fa';
 
-const Supplier = ({ setOpen_Modal }) => {
+const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setGetId, setModalTitle }) => {
 
     const get_suppliers = useSelector(state => state.reducer.store);
 
@@ -32,7 +32,16 @@ const Supplier = ({ setOpen_Modal }) => {
                     </select>
                     <button className='addBtn'
                         onClick={() => {
-                            return setOpen_Modal(state => !state)
+                            setOpen_Modal(state => !state)
+                            setModalTitle('Add Supplier')
+                            // setSupplier({
+                            //     ...supplier,
+                            //     supplier_name: '',
+                            //     address: '',
+                            //     contact_person: '',
+                            //     contact_number: '',
+                            //     note: ''
+                            // });
                         }}
                     >
                         Add
@@ -60,9 +69,46 @@ const Supplier = ({ setOpen_Modal }) => {
                                         <td>{get_suppliers[0]?.supplier[key].contact_number}</td>
                                         <td>{get_suppliers[0]?.supplier[key].note}</td>
                                         <td>
-                                            <button>
-                                                try
-                                            </button>
+                                            <div className='btnContainer'
+                                                style={{
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <button
+                                                    type='submit'
+                                                    className='editBtn'
+                                                    style={{
+                                                        border: '0px solid transparent',
+                                                        width: '2vw',
+                                                        height: 'auto',
+                                                        display: 'grid',
+                                                        placeItems: 'center',
+                                                        background: 'none'
+                                                    }}
+                                                    onClick={() => {
+                                                        setGetId(get_suppliers[0]?.supplier[key]._id)
+                                                        setCheck_If_Edit(state => !state)
+                                                        setOpen_Modal(state => !state)
+                                                        setModalTitle('Edit Supplier')
+                                                    }}
+                                                >
+                                                    <FaPen />
+                                                </button>
+                                                <button
+                                                    type='submit'
+                                                    className='editBtn'
+                                                    style={{
+                                                        border: '0px solid transparent',
+                                                        width: '2vw',
+                                                        height: 'auto',
+                                                        display: 'grid',
+                                                        placeItems: 'center',
+                                                        background: 'none'
+                                                    }}
+                                                >
+                                                    <FaTrash />
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>

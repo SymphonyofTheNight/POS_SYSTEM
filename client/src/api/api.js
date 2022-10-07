@@ -12,7 +12,7 @@ export const login = (admin, password) => base_api.post('/', {
     password: password
 })
 
-export const add_supplier = (supplier) => base_api.patch(`/dashboard/supplier/${supplier._id}`, {
+export const add_supplier = (supplier) => base_api.post(`/dashboard/supplier/${supplier._id}`, {
     supplier: [
         {
             supplier_name: supplier.supplier_name,
@@ -22,4 +22,16 @@ export const add_supplier = (supplier) => base_api.patch(`/dashboard/supplier/${
             note: supplier.note
         }
     ]
-}, { headers: { 'Authorization': `Bearer ${supplier.token}` } })
+}, { headers: { 'Authorization': `Bearer ${supplier.token}` } });
+
+export const edit_supplier = (supplier) => base_api.patch(`/dashboard/supplier/${supplier._id}`, {
+    supplier: [
+        {
+            supplier_name: supplier.supplier_name,
+            address: supplier.address,
+            contact_person: supplier.contact_person,
+            contact_number: supplier.contact_number,
+            note: supplier.note
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${supplier.token}` } });
