@@ -42,3 +42,42 @@ export const add_supplier = async (req, res) => {
     }
 }
 
+export const edit_supplier = async (req, res) => {
+
+    const { id } = req.params;
+
+    console.log(req.body);
+
+    try {
+
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
+
+        const re_submit_supplier = await OwnerModels.findByIdAndUpdate(id, {
+            $set: {
+                "supplier.$[i].supplier_name": req.body.supplier[0].supplier_name,
+                "supplier.$[i].address": req.body.supplier[0].address,
+                "supplier.$[i].contact_person": req.body.supplier[0].contact_person,
+                "supplier.$[i].contact_number": req.body.supplier[0].contact_number,
+                "supplier.$[i].note": req.body.supplier[0].note
+            }
+        }, {
+            arrayFilters: [
+                {
+                    "i.contact_number": req.body.supplier[0].contact_number,
+                }
+            ],
+            returnDocument: 'after',
+            safe: true
+        }, (error, response) => {
+            if (error) return console.log(error);
+            console.log(response);
+        });
+
+        res.json(re_submit_supplier);
+
+    } catch (error) {
+        res.status(404).json(error);
+    }
+
+}
+
