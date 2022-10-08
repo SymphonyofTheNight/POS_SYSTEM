@@ -15,7 +15,7 @@ import SalesReport from './DashboardComponents/SalesReport/SalesReport';
 
 // action thunk 
 // import { add_supplier } from '../../controllers/actions.js';
-import { add_supplier } from '../../api/api.js';
+import { add_supplier, edit_supplier } from '../../api/api.js';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -30,7 +30,7 @@ const Dashboard = () => {
     const [getId, setGetId] = useState();
     const [modaltitle, setModalTitle] = useState('');
 
-    const findSupplier = useSelector(state => state.reducer.store.map(val => val.supplier.find(sup => sup._id === getId)));
+    const findSupplier = useSelector(state => getId ? state.reducer?.store?.map(val => val.supplier.find(sup => sup._id === getId)) : null);
 
     const [targetSales, setTargetSales] = useState({
         january: 4000,
@@ -136,6 +136,13 @@ const Dashboard = () => {
     const edit_supplier_onHandleSubmit = (e) => {
         e.preventDefault();
 
+        if (supplier._id && supplier.token && supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
+            edit_supplier(supplier);
+            setOpen_Modal(state => !state)
+
+            window.location.reload();
+        }
+
     }
 
     return (
@@ -197,7 +204,7 @@ const Dashboard = () => {
                     </button>
                     <button className='btn-1'
                         onClick={() => {
-                            setComponent(<Supplier setOpen_Modal={setOpen_Modal} setCheck_If_Edit={setCheck_If_Edit} setGetId={setGetId} setModalTitle={setModalTitle} setSupplier={setSupplier} supplier={supplier} />)
+                            setComponent(<Supplier setOpen_Modal={setOpen_Modal} setCheck_If_Edit={setCheck_If_Edit} setGetId={setGetId} setModalTitle={setModalTitle} setSupplier={setSupplier} supplier={supplier} getId={getId} />)
                             setNav('/ Dashboard / Supplier')
                             navigate('/dashboard/supplier')
                         }}

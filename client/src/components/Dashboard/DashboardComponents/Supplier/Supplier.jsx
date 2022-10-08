@@ -1,10 +1,28 @@
 import React from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FaPen, FaTrash } from 'react-icons/fa';
+
+// api 
+import { delete_supplier } from '../../../../api/api.js';
 
 const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setGetId, setModalTitle }) => {
 
     const get_suppliers = useSelector(state => state.reducer.store);
+    const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
+    const [get_sup_id, setGet_Sup_Id] = useState();
+
+    const delete_supplier_handler = (e) => {
+
+        e.preventDefault();
+
+        console.log(Localstorage?.result?._id, Localstorage?.token, get_sup_id);
+
+        if (Localstorage && get_sup_id) delete_supplier(Localstorage?.result?._id, Localstorage?.token, get_sup_id);
+
+        window.location.reload();
+
+    }
 
     return (
         <div className='Supplier'>
@@ -86,20 +104,25 @@ const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setG
                                                 >
                                                     <FaPen />
                                                 </button>
-                                                <button
-                                                    type='submit'
-                                                    className='editBtn'
-                                                    style={{
-                                                        border: '0px solid transparent',
-                                                        width: '2vw',
-                                                        height: 'auto',
-                                                        display: 'grid',
-                                                        placeItems: 'center',
-                                                        background: 'none'
-                                                    }}
-                                                >
-                                                    <FaTrash />
-                                                </button>
+                                                <form onSubmit={delete_supplier_handler}>
+                                                    <button
+                                                        type='submit'
+                                                        className='editBtn'
+                                                        style={{
+                                                            border: '0px solid transparent',
+                                                            width: '2vw',
+                                                            height: 'auto',
+                                                            display: 'grid',
+                                                            placeItems: 'center',
+                                                            background: 'none'
+                                                        }}
+                                                        onClick={() => {
+                                                            setGet_Sup_Id(get_suppliers[0]?.supplier[key]._id)
+                                                        }}
+                                                    >
+                                                        <FaTrash />
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
