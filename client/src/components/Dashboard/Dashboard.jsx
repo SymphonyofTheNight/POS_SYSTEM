@@ -30,7 +30,7 @@ const Dashboard = () => {
     const [getId, setGetId] = useState();
     const [modaltitle, setModalTitle] = useState('');
 
-    const findSupplier = useSelector(state => getId ? state.reducer.store.map(val => val.supplier.find(sup => sup._id === getId)) : state);
+    const findSupplier = useSelector(state => state.reducer.store.map(val => val.supplier.find(sup => sup._id === getId)));
 
     const [targetSales, setTargetSales] = useState({
         january: 4000,
@@ -285,7 +285,7 @@ const Dashboard = () => {
                                 <div className='supplier-name-container'>
                                     <span className='text'>Supplier name: </span>
                                     <input className='supplier-name--form'
-                                        value={check_if_edit ? supplier.supplier_name : ''}
+                                        value={check_if_edit ? supplier.supplier_name : supplier.supplier_name}
                                         type='text'
                                         placeholder='supplier name'
                                         onChange={(e) => {
@@ -295,7 +295,7 @@ const Dashboard = () => {
                                 <div className='address-container'>
                                     <span className='text'>Address: </span>
                                     <input className='address-form'
-                                        value={check_if_edit ? supplier.address : ''}
+                                        value={check_if_edit ? supplier.address : supplier.address}
                                         type='text'
                                         placeholder='address'
                                         onChange={(e) => {
@@ -305,7 +305,7 @@ const Dashboard = () => {
                                 <div className='contact-person-container'>
                                     <span className='text'>Contact person: </span>
                                     <input className='contact-person-form'
-                                        value={check_if_edit ? supplier.contact_person : ''}
+                                        value={check_if_edit ? supplier.contact_person : supplier.contact_person}
                                         type='text'
                                         placeholder='contact person'
                                         onChange={(e) => {
@@ -315,7 +315,7 @@ const Dashboard = () => {
                                 <div className='contact-number-container'>
                                     <span className='text'>Contact number: </span>
                                     <input className='contact-number-form'
-                                        value={check_if_edit ? supplier.contact_number : ''}
+                                        value={check_if_edit ? supplier.contact_number : supplier.contact_number}
                                         type='text'
                                         placeholder='contact number'
                                         onChange={(e) => {
@@ -325,7 +325,7 @@ const Dashboard = () => {
                                 <div className='note-container'>
                                     <span className='text'>Note: </span>
                                     <textarea className='note-form'
-                                        value={check_if_edit ? supplier.note : ''}
+                                        value={check_if_edit ? supplier.note : supplier.note}
                                         type='text'
                                         placeholder='note'
                                         onChange={(e) => {
@@ -342,7 +342,8 @@ const Dashboard = () => {
                     </form>
 
                     <button className='btnClose' onClick={() => {
-                        return setOpen_Modal(state => !state)
+                        setOpen_Modal(state => !state)
+                        setCheck_If_Edit(false)
                     }}>
                         <FaTimes className='icon' />
                     </button>
