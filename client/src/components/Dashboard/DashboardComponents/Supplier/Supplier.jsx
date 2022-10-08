@@ -6,15 +6,6 @@ const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setG
 
     const get_suppliers = useSelector(state => state.reducer.store);
 
-    // const HandleAdd_Supplier = (e) => {
-    //     e.preventDefault();
-
-    // }
-
-    // useEffect(() => {
-    //     const get_suppliers = useSelector(state => state.reducer.store);
-    // },[])
-
     return (
         <div className='Supplier'>
             <div className='innerContainer'>
@@ -33,15 +24,16 @@ const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setG
                     <button className='addBtn'
                         onClick={() => {
                             setOpen_Modal(state => !state)
+                            setCheck_If_Edit(false)
                             setModalTitle('Add Supplier')
-                            // setSupplier({
-                            //     ...supplier,
-                            //     supplier_name: '',
-                            //     address: '',
-                            //     contact_person: '',
-                            //     contact_number: '',
-                            //     note: ''
-                            // });
+                            setSupplier({
+                                ...supplier,
+                                supplier_name: '',
+                                address: '',
+                                contact_person: '',
+                                contact_number: '',
+                                note: ''
+                            });
                         }}
                     >
                         Add
@@ -114,56 +106,6 @@ const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setG
                                 </tbody>
                             )
                         }) : null}
-                        {/* <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody> */}
                     </table>
                 </div>
                 <div className='btn-submit-container'>
