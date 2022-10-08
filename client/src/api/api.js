@@ -35,3 +35,11 @@ export const edit_supplier = (supplier) => base_api.patch(`/dashboard/supplier/$
         }
     ]
 }, { headers: { 'Authorization': `Bearer ${supplier.token}` } });
+
+export const delete_supplier = (owner_id, token, supplier_item_id) => base_api.put(`/dashboard/supplier/${owner_id}`, {
+    supplier: [
+        {
+            _id: supplier_item_id
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${token}` } });
