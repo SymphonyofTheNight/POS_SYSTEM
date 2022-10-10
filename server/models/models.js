@@ -121,6 +121,10 @@ const model_schema = mongoose.Schema({
                 required: true,
                 auto: true,
             },
+            fullname: {
+                type: String,
+                require: true
+            },
             address: {
                 type: String,
                 require: true
@@ -129,7 +133,7 @@ const model_schema = mongoose.Schema({
                 type: String,
                 require: true
             },
-            product_number: {
+            product_name: {
                 type: String,
                 require: true
             },

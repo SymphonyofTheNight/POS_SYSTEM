@@ -24,7 +24,7 @@ import '../../scss/_Dashboard.scss';
 
 const Dashboard = () => {
 
-    const [open_modal, setOpen_Modal] = useState(false);
+    const [open_modal_supplier, setOpen_Modal_Supplier] = useState(false);
     const [check_if_edit, setCheck_If_Edit] = useState(false);
     const [check_if_add, setCheck_If_Add] = useState(false);
     const [getId, setGetId] = useState();
@@ -72,6 +72,18 @@ const Dashboard = () => {
         contact_number: '',
         note: ''
     });
+
+    const [customer, setCustomer] = useState({
+        _id: Localstorage?.result?._id,
+        token: Localstorage?.token,
+        fullname: '',
+        address: '',
+        contact_number: '',
+        product_name: '',
+        total: '',
+        note: '',
+        due_date: ''
+    })
 
     // redux storage
     // const redux_storage = useSelector(state => state.reducer.store);
@@ -126,7 +138,7 @@ const Dashboard = () => {
             add_supplier(supplier);
             dispatch({ type: 'ADD_SUPPLIER', payload: supplier });
             // dispatch({ type: 'ADD_VALUE', value: 5 });
-            setOpen_Modal(state => !state)
+            setOpen_Modal_Supplier(state => !state)
 
             window.location.reload();
         }
@@ -138,7 +150,7 @@ const Dashboard = () => {
 
         if (supplier._id && supplier.token && supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
             edit_supplier(supplier);
-            setOpen_Modal(state => !state)
+            setOpen_Modal_Supplier(state => !state)
 
             window.location.reload();
         }
@@ -204,7 +216,15 @@ const Dashboard = () => {
                     </button>
                     <button className='btn-1'
                         onClick={() => {
-                            setComponent(<Supplier setOpen_Modal={setOpen_Modal} setCheck_If_Edit={setCheck_If_Edit} setGetId={setGetId} setModalTitle={setModalTitle} setSupplier={setSupplier} supplier={supplier} getId={getId} />)
+                            setComponent(<Supplier
+                                setOpen_Modal_Supplier={setOpen_Modal_Supplier}
+                                setCheck_If_Edit={setCheck_If_Edit}
+                                setGetId={setGetId}
+                                setModalTitle={setModalTitle}
+                                setSupplier={setSupplier}
+                                supplier={supplier}
+                                getId={getId}
+                            />)
                             setNav('/ Dashboard / Supplier')
                             navigate('/dashboard/supplier')
                         }}
@@ -279,7 +299,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            {open_modal ? (
+            {open_modal_supplier ? (
                 <div className='modal-supplies'>
                     <form onSubmit={check_if_edit ? edit_supplier_onHandleSubmit : add_supplier_onHandleSubmit}>
                         <div className='modal-container'>
@@ -349,7 +369,7 @@ const Dashboard = () => {
                     </form>
 
                     <button className='btnClose' onClick={() => {
-                        setOpen_Modal(state => !state)
+                        setOpen_Modal_Supplier(state => !state)
                         setCheck_If_Edit(false)
                     }}>
                         <FaTimes className='icon' />
@@ -358,9 +378,9 @@ const Dashboard = () => {
                 </div>
             ) : (
                 <>
-
                 </>
             )}
+
 
 
 

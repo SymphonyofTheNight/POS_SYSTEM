@@ -28,7 +28,7 @@ export const registration = async (req, res) => {
             _id: created_user_from_mongoose._id
         },
             process.env.TOKEN,
-            { expiresIn: '1h' });
+            { expiresIn: '5h' });
 
         res.json({ created_user_from_mongoose, token });
     } catch (error) {
