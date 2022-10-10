@@ -6,7 +6,14 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 // api 
 import { delete_supplier } from '../../../../api/api.js';
 
-const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setGetId, setModalTitle }) => {
+const Supplier = ({
+    setOpen_Modal_Supplier,
+    setCheck_If_Edit,
+    setSupplier,
+    supplier,
+    setGetId,
+    setModalTitle,
+}) => {
 
     const get_suppliers = useSelector(state => state.reducer.store);
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
@@ -41,7 +48,7 @@ const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setG
                     </select>
                     <button className='addBtn'
                         onClick={() => {
-                            setOpen_Modal(state => !state)
+                            setOpen_Modal_Supplier(state => !state)
                             setCheck_If_Edit(false)
                             setModalTitle('Add Supplier')
                             setSupplier({
@@ -98,7 +105,7 @@ const Supplier = ({ setOpen_Modal, setCheck_If_Edit, setSupplier, supplier, setG
                                                     onClick={() => {
                                                         setGetId(get_suppliers[0]?.supplier[key]._id)
                                                         setCheck_If_Edit(state => !state)
-                                                        setOpen_Modal(state => !state)
+                                                        setOpen_Modal_Supplier(state => !state)
                                                         setModalTitle('Edit Supplier')
                                                     }}
                                                 >
