@@ -1,8 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { FaPen, FaTrash } from 'react-icons/fa';
 
-const Customer = () => {
+const Customer = ({
+    setOpen_Modal_Customer,
+    setCheck_If_Edit,
+    setGetId,
+    setModalTitle,
+    setCustomer,
+    customer
+}) => {
 
     const get_customer = useSelector(state => state.reducer.store);
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
@@ -25,7 +33,7 @@ const Customer = () => {
                 </div>
                 <div className='select-container'>
                     <select className="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                        <option defaultValue="Open this select menu">Open this select menu</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
@@ -35,7 +43,7 @@ const Customer = () => {
                     </button>
                 </div>
                 <div className='table-container'>
-                    <table class="table">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">Fullname</th>
@@ -45,6 +53,7 @@ const Customer = () => {
                                 <th scope="col">Total</th>
                                 <th scope="col">Note</th>
                                 <th scope="col">Due_Date</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         {get_customer[0] ? Object.keys(get_customer[0]?.customer).map((key, value) => {
@@ -76,13 +85,13 @@ const Customer = () => {
                                                         background: 'none'
                                                     }}
                                                     onClick={() => {
-                                                        // setGetId(get_suppliers[0]?.supplier[key]._id)
-                                                        // setCheck_If_Edit(state => !state)
-                                                        // setOpen_Modal_Supplier(state => !state)
-                                                        // setModalTitle('Edit Supplier')
+                                                        setGetId(get_customer[0]?.customer[key]._id)
+                                                        setCheck_If_Edit(state => !state)
+                                                        setOpen_Modal_Customer(state => !state)
+                                                        setModalTitle('Edit Customer')
                                                     }}
                                                 >
-                                                    {/* <FaPen /> */}
+                                                    <FaPen />
                                                 </button>
                                                 <form onSubmit={delete_customer_handler}>
                                                     <button
@@ -100,7 +109,7 @@ const Customer = () => {
                                                             // setGet_Sup_Id(get_suppliers[0]?.supplier[key]._id)
                                                         }}
                                                     >
-                                                        {/* <FaTrash /> */}
+                                                        <FaTrash />
                                                     </button>
                                                 </form>
                                             </div>

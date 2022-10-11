@@ -12,6 +12,8 @@ export const login = (admin, password) => base_api.post('/', {
     password: password
 })
 
+// supplier api
+
 export const add_supplier = (supplier) => base_api.post(`/dashboard/supplier/${supplier._id}`, {
     supplier: [
         {
@@ -43,3 +45,19 @@ export const delete_supplier = (owner_id, token, supplier_item_id) => base_api.p
         }
     ]
 }, { headers: { 'Authorization': `Bearer ${token}` } });
+
+// customer api
+
+export const add_customer = (customer) => base_api.post(`/dashboard/customer/${customer._id}`, {
+    customer: [
+        {
+            fullname: customer.fullname,
+            address: customer.address,
+            contact_number: customer.contact_number,
+            product_name: customer.product_name,
+            total: customer.total,
+            note: customer.note,
+            due_date: customer.due_date
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${customer.token}` } })

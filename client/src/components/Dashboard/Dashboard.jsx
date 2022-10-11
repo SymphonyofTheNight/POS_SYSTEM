@@ -15,7 +15,7 @@ import SalesReport from './DashboardComponents/SalesReport/SalesReport';
 
 // action thunk 
 // import { add_supplier } from '../../controllers/actions.js';
-import { add_supplier, edit_supplier } from '../../api/api.js';
+import { add_supplier, edit_supplier, add_customer } from '../../api/api.js';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -119,17 +119,19 @@ const Dashboard = () => {
 
     useEffect(() => {
 
-        if (check_if_edit && Localstorage && findSupplier) {
-            setSupplier({
-                _id: Localstorage?.result?._id,
-                token: Localstorage?.token,
-                supplier_name: findSupplier[0].supplier_name,
-                address: findSupplier[0].address,
-                contact_person: findSupplier[0].contact_person,
-                contact_number: findSupplier[0].contact_number,
-                note: findSupplier[0].note
-            })
-        }
+        // if (check_if_edit && Localstorage && findSupplier) {
+        //     setSupplier({
+        //         _id: Localstorage?.result?._id,
+        //         token: Localstorage?.token,
+        //         supplier_name: findSupplier[0].supplier_name,
+        //         address: findSupplier[0].address,
+        //         contact_person: findSupplier[0].contact_person,
+        //         contact_number: findSupplier[0].contact_number,
+        //         note: findSupplier[0].note
+        //     })
+        // }
+
+        //ERROR DETECTING OTHER CONDITIONAL STATEMENT WHEN GOING TO EDIT .. CREATE NEW USEEFFECT TOMMOROW
 
         if (check_if_edit && Localstorage && findCustomer) {
             setCustomer({
@@ -145,7 +147,7 @@ const Dashboard = () => {
             })
         }
 
-    }, [check_if_edit])
+    }, [findCustomer])
 
     const add_supplier_onHandleSubmit = (e) => {
 
@@ -175,6 +177,25 @@ const Dashboard = () => {
 
     }
 
+    const add_customer_onHandleSubmit = (e) => {
+        e.preventDefault();
+
+        if (customer) {
+            add_customer(customer);
+
+            setOpen_Modal_Customer(state => !state)
+
+            window.location.reload();
+        }
+
+    }
+
+    const edit_customer_onHandleSubmit = (e) => {
+        e.preventDefault();
+
+
+    }
+
     return (
         <div className='Dashboard'>
             <nav className='nav-tab' ref={nav_tab}>
@@ -184,7 +205,10 @@ const Dashboard = () => {
                 <div className='navigation'>
                     <button className='category'
                         onClick={() => {
-                            setComponent(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />)
+                            setComponent(<HomeDashboard
+                                targetSales={targetSales}
+                                setTargetSales={setTargetSales}
+                            />)
                             setNav('/ Dashboard')
                             navigate('/dashboard')
                         }}
@@ -225,6 +249,8 @@ const Dashboard = () => {
                             setComponent(<Customer
                                 setOpen_Modal_Customer={setOpen_Modal_Customer}
                                 setCheck_If_Edit={setCheck_If_Edit}
+                                setGetId={setGetId}
+                                setModalTitle={setModalTitle}
                                 setCustomer={setCustomer}
                                 customer={customer}
                             />)
@@ -406,7 +432,7 @@ const Dashboard = () => {
 
             {open_modal_customer ? (
                 <div className='modal-customer'>
-                    <form onSubmit={check_if_edit ? edit_supplier_onHandleSubmit : add_supplier_onHandleSubmit}>
+                    <form onSubmit={check_if_edit ? edit_customer_onHandleSubmit : add_customer_onHandleSubmit}>
                         <div className='modal-container'>
                             <div className='titleContainer'>
                                 <span className='text'>
@@ -415,26 +441,26 @@ const Dashboard = () => {
                             </div>
                             <div className='form-input-container'>
                                 <div className='customer-name-container'>
-                                    <span className='text'>Supplier name: </span>
+                                    <span className='text'>Customer name: </span>
                                     <input className='customer-name--form'
-                                        value={check_if_edit ? supplier.supplier_name : supplier.supplier_name}
+                                        value={check_if_edit ? customer.fullname : customer.fullname}
                                         type='text'
-                                        placeholder='supplier name'
+                                        placeholder='customer name'
                                         onChange={(e) => {
-                                            setSupplier({ ...supplier, supplier_name: e.target.value })
+                                            setCustomer({ ...customer, fullname: e.target.value })
                                         }} />
                                 </div>
                                 <div className='address-container'>
                                     <span className='text'>Address: </span>
                                     <input className='address-form'
-                                        value={check_if_edit ? supplier.address : supplier.address}
+                                        value={check_if_edit ? customer.address : customer.address}
                                         type='text'
                                         placeholder='address'
                                         onChange={(e) => {
-                                            setSupplier({ ...supplier, address: e.target.value })
+                                            setSupplier({ ...customer, address: e.target.value })
                                         }} />
                                 </div>
-                                <div className='contact-person-container'>
+                                {/* <div className='contact-person-container'>
                                     <span className='text'>Contact person: </span>
                                     <input className='contact-person-form'
                                         value={check_if_edit ? supplier.contact_person : supplier.contact_person}
@@ -463,7 +489,7 @@ const Dashboard = () => {
                                         onChange={(e) => {
                                             setSupplier({ ...supplier, note: e.target.value })
                                         }} />
-                                </div>
+                                </div> */}
                                 <div className='btnContainerSubmit'>
                                     <button className='btnAddSubmit'>
                                         Submit
@@ -474,7 +500,7 @@ const Dashboard = () => {
                     </form>
 
                     <button className='btnClose' onClick={() => {
-                        setOpen_Modal_Supplier(state => !state)
+                        setOpen_Modal_Customer(state => !state)
                         setCheck_If_Edit(false)
                     }}>
                         <FaTimes className='icon' />
