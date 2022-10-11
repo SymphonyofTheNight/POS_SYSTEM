@@ -25,12 +25,14 @@ import '../../scss/_Dashboard.scss';
 const Dashboard = () => {
 
     const [open_modal_supplier, setOpen_Modal_Supplier] = useState(false);
+    const [open_modal_customer, setOpen_Modal_Customer] = useState(false);
     const [check_if_edit, setCheck_If_Edit] = useState(false);
-    const [check_if_add, setCheck_If_Add] = useState(false);
-    const [getId, setGetId] = useState();
-    const [modaltitle, setModalTitle] = useState('');
+    // const [check_if_add, setCheck_If_Add] = useState(false);
+    const [getId, setGetId] = useState(); // get id of product
+    const [modaltitle, setModalTitle] = useState(''); // modal title 
 
     const findSupplier = useSelector(state => getId ? state.reducer?.store?.map(val => val.supplier.find(sup => sup._id === getId)) : null);
+    const findCustomer = useSelector(state => getId ? state.reducer?.store?.map(val => val.customer.find(sup => sup._id === getId)) : null);
 
     const [targetSales, setTargetSales] = useState({
         january: 4000,
@@ -116,6 +118,7 @@ const Dashboard = () => {
     }, [tabswitch])
 
     useEffect(() => {
+
         if (check_if_edit && Localstorage && findSupplier) {
             setSupplier({
                 _id: Localstorage?.result?._id,
@@ -127,6 +130,21 @@ const Dashboard = () => {
                 note: findSupplier[0].note
             })
         }
+
+        if (check_if_edit && Localstorage && findCustomer) {
+            setCustomer({
+                _id: Localstorage?.result?._id,
+                token: Localstorage?.token,
+                fullname: findCustomer[0].fullname,
+                address: findCustomer[0].address,
+                contact_number: findCustomer[0].contact_number,
+                product_name: findCustomer[0].product_name,
+                total: findCustomer[0].total,
+                note: findCustomer[0].note,
+                due_date: findCustomer[0].due_date
+            })
+        }
+
     }, [check_if_edit])
 
     const add_supplier_onHandleSubmit = (e) => {
@@ -204,7 +222,12 @@ const Dashboard = () => {
                     </button>
                     <button className='btn-1'
                         onClick={() => {
-                            setComponent(<Customer />)
+                            setComponent(<Customer
+                                setOpen_Modal_Customer={setOpen_Modal_Customer}
+                                setCheck_If_Edit={setCheck_If_Edit}
+                                setCustomer={setCustomer}
+                                customer={customer}
+                            />)
                             setNav('/ Dashboard / Customer')
                             navigate('/dashboard/customer')
                         }}
@@ -375,6 +398,87 @@ const Dashboard = () => {
                         <FaTimes className='icon' />
                     </button>
 
+                </div>
+            ) : (
+                <>
+                </>
+            )}
+
+            {open_modal_customer ? (
+                <div className='modal-customer'>
+                    <form onSubmit={check_if_edit ? edit_supplier_onHandleSubmit : add_supplier_onHandleSubmit}>
+                        <div className='modal-container'>
+                            <div className='titleContainer'>
+                                <span className='text'>
+                                    {modaltitle}
+                                </span>
+                            </div>
+                            <div className='form-input-container'>
+                                <div className='customer-name-container'>
+                                    <span className='text'>Supplier name: </span>
+                                    <input className='customer-name--form'
+                                        value={check_if_edit ? supplier.supplier_name : supplier.supplier_name}
+                                        type='text'
+                                        placeholder='supplier name'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, supplier_name: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='address-container'>
+                                    <span className='text'>Address: </span>
+                                    <input className='address-form'
+                                        value={check_if_edit ? supplier.address : supplier.address}
+                                        type='text'
+                                        placeholder='address'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, address: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='contact-person-container'>
+                                    <span className='text'>Contact person: </span>
+                                    <input className='contact-person-form'
+                                        value={check_if_edit ? supplier.contact_person : supplier.contact_person}
+                                        type='text'
+                                        placeholder='contact person'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, contact_person: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='contact-number-container'>
+                                    <span className='text'>Contact number: </span>
+                                    <input className='contact-number-form'
+                                        value={check_if_edit ? supplier.contact_number : supplier.contact_number}
+                                        type='text'
+                                        placeholder='contact number'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, contact_number: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='note-container'>
+                                    <span className='text'>Note: </span>
+                                    <textarea className='note-form'
+                                        value={check_if_edit ? supplier.note : supplier.note}
+                                        type='text'
+                                        placeholder='note'
+                                        onChange={(e) => {
+                                            setSupplier({ ...supplier, note: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='btnContainerSubmit'>
+                                    <button className='btnAddSubmit'>
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <button className='btnClose' onClick={() => {
+                        setOpen_Modal_Supplier(state => !state)
+                        setCheck_If_Edit(false)
+                    }}>
+                        <FaTimes className='icon' />
+                    </button>
                 </div>
             ) : (
                 <>

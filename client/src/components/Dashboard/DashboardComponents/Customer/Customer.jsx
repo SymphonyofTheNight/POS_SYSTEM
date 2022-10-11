@@ -1,14 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const Customer = () => {
 
-    
+    const get_customer = useSelector(state => state.reducer.store);
+    const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
+    const [get_cus_id, setGet_Cus_Id] = useState();
+
+    const delete_customer_handler = (e) => {
+        e.preventDefault();
 
 
-
-
-
-
+    }
 
 
     return (
@@ -43,56 +47,68 @@ const Customer = () => {
                                 <th scope="col">Due_Date</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
+                        {get_customer[0] ? Object.keys(get_customer[0]?.customer).map((key, value) => {
+                            return (
+                                <tbody key={get_customer[0]?.customer[key]._id}>
+                                    <tr>
+                                        <th scope="row">{get_customer[0]?.customer[key].fullname}</th>
+                                        <td>{get_customer[0]?.customer[key].address}</td>
+                                        <td>{get_customer[0]?.customer[key].contact_number}</td>
+                                        <td>{get_customer[0]?.customer[key].product_name}</td>
+                                        <td>{get_customer[0]?.customer[key].total}</td>
+                                        <td>{get_customer[0]?.customer[key].note}</td>
+                                        <td>{get_customer[0]?.customer[key].due_date}</td>
+                                        <td>
+                                            <div className='btnContainer'
+                                                style={{
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <button
+                                                    type='submit'
+                                                    className='editBtn'
+                                                    style={{
+                                                        border: '0px solid transparent',
+                                                        width: '2vw',
+                                                        height: 'auto',
+                                                        display: 'grid',
+                                                        placeItems: 'center',
+                                                        background: 'none'
+                                                    }}
+                                                    onClick={() => {
+                                                        // setGetId(get_suppliers[0]?.supplier[key]._id)
+                                                        // setCheck_If_Edit(state => !state)
+                                                        // setOpen_Modal_Supplier(state => !state)
+                                                        // setModalTitle('Edit Supplier')
+                                                    }}
+                                                >
+                                                    {/* <FaPen /> */}
+                                                </button>
+                                                <form onSubmit={delete_customer_handler}>
+                                                    <button
+                                                        type='submit'
+                                                        className='editBtn'
+                                                        style={{
+                                                            border: '0px solid transparent',
+                                                            width: '2vw',
+                                                            height: 'auto',
+                                                            display: 'grid',
+                                                            placeItems: 'center',
+                                                            background: 'none'
+                                                        }}
+                                                        onClick={() => {
+                                                            // setGet_Sup_Id(get_suppliers[0]?.supplier[key]._id)
+                                                        }}
+                                                    >
+                                                        {/* <FaTrash /> */}
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            )
+                        }) : null}
                     </table>
                 </div>
                 <div className='btn-submit-container'>
