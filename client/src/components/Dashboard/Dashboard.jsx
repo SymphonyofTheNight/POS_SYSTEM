@@ -117,38 +117,6 @@ const Dashboard = () => {
         }
     }, [tabswitch])
 
-    useEffect(() => {
-
-        // if (check_if_edit && Localstorage && findSupplier) {
-        //     setSupplier({
-        //         _id: Localstorage?.result?._id,
-        //         token: Localstorage?.token,
-        //         supplier_name: findSupplier[0].supplier_name,
-        //         address: findSupplier[0].address,
-        //         contact_person: findSupplier[0].contact_person,
-        //         contact_number: findSupplier[0].contact_number,
-        //         note: findSupplier[0].note
-        //     })
-        // }
-
-        //ERROR DETECTING OTHER CONDITIONAL STATEMENT WHEN GOING TO EDIT .. CREATE NEW USEEFFECT TOMMOROW
-
-        if (check_if_edit && Localstorage && findCustomer) {
-            setCustomer({
-                _id: Localstorage?.result?._id,
-                token: Localstorage?.token,
-                fullname: findCustomer[0].fullname,
-                address: findCustomer[0].address,
-                contact_number: findCustomer[0].contact_number,
-                product_name: findCustomer[0].product_name,
-                total: findCustomer[0].total,
-                note: findCustomer[0].note,
-                due_date: findCustomer[0].due_date
-            })
-        }
-
-    }, [findCustomer])
-
     const add_supplier_onHandleSubmit = (e) => {
 
         e.preventDefault();
@@ -268,7 +236,6 @@ const Dashboard = () => {
                             setComponent(<Supplier
                                 setOpen_Modal_Supplier={setOpen_Modal_Supplier}
                                 setCheck_If_Edit={setCheck_If_Edit}
-                                setGetId={setGetId}
                                 setModalTitle={setModalTitle}
                                 setSupplier={setSupplier}
                                 supplier={supplier}
@@ -510,7 +477,6 @@ const Dashboard = () => {
                 <>
                 </>
             )}
-
 
 
 
