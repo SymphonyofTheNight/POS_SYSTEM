@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FaPen, FaTrash } from 'react-icons/fa';
 
@@ -11,13 +11,14 @@ const Supplier = ({
     setCheck_If_Edit,
     setSupplier,
     supplier,
-    setGetId,
     setModalTitle,
 }) => {
 
     const get_suppliers = useSelector(state => state.reducer.store);
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
     const [get_sup_id, setGet_Sup_Id] = useState();
+
+    const findSupplier = useSelector(state => get_sup_id ? state.reducer?.store?.map(val => val.supplier.find(sup => sup._id === get_sup_id)) : null);
 
     const delete_supplier_handler = (e) => {
 
@@ -30,6 +31,21 @@ const Supplier = ({
         window.location.reload();
 
     }
+
+    useEffect(() => {
+        if (findSupplier) {
+            setSupplier({
+                ...supplier,
+                _id: Localstorage?.result?._id,
+                token: Localstorage?.token,
+                supplier_name: findSupplier[0].supplier_name,
+                address: findSupplier[0].address,
+                contact_person: findSupplier[0].contact_person,
+                contact_number: findSupplier[0].contact_number,
+                note: findSupplier[0].note
+            })
+        }
+    }, [findSupplier])
 
     return (
         <div className='Supplier'>
@@ -103,7 +119,7 @@ const Supplier = ({
                                                         background: 'none'
                                                     }}
                                                     onClick={() => {
-                                                        setGetId(get_suppliers[0]?.supplier[key]._id)
+                                                        setGet_Sup_Id(get_suppliers[0]?.supplier[key]._id)
                                                         setCheck_If_Edit(state => !state)
                                                         setOpen_Modal_Supplier(state => !state)
                                                         setModalTitle('Edit Supplier')
