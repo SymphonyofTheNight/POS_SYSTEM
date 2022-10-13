@@ -141,13 +141,15 @@ export const add_customer = async (req, res) => {
 
 export const edit_customer = async (req, res) => {
 
-    const { id } = req.body;
+    const { id } = req.params;
+
+    console.log(req.body);
 
     try {
 
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
 
-        const edited = await OwnerModels.findByIdAndUpdate(id, {
+        await OwnerModels.findByIdAndUpdate(id, {
             $set: {
                 "customer.$[i].fullname": req.body.customer[0].fullname,
                 "customer.$[i].address": req.body.customer[0].address,
@@ -165,12 +167,7 @@ export const edit_customer = async (req, res) => {
             ],
             returnDocument: 'after',
             safe: true
-        }, (error, response) => {
-            if (error) return console.log(error);
-            console.log(response);
         });
-
-        res.json(edited);
 
     } catch (error) {
         res.status(404).json(error);
