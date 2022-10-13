@@ -29,12 +29,12 @@ const App = () => {
     <div className='App col-lg-12 m-0 p-0'>
       <Switch>
         <Route path='/' element={<><Login /></>} />
-        <Route path='/dashboard' element={<><Dashboard /></>} />
-        <Route path='/dashboard/sales' element={<><Dashboard /></>} />
-        <Route path='/dashboard/products' element={<><Dashboard /></>} />
-        <Route path='/dashboard/customer' element={<><Dashboard /></>} />
-        <Route path='/dashboard/supplier' element={<><Dashboard /></>} />
-        <Route path='/dashboard/report' element={<><Dashboard /></>} />
+        <Route path='/Dashboard' element={<><Dashboard /></>} />
+        <Route path='/Sales' element={<><Dashboard /></>} />
+        <Route path='/Products' element={<><Dashboard /></>} />
+        <Route path='/customer' element={<><Dashboard /></>} />
+        <Route path='/Supplier' element={<><Dashboard /></>} />
+        <Route path='/Report' element={<><Dashboard /></>} />
       </Switch>
     </div>
   )

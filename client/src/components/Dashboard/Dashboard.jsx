@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { FaTimes, FaBars, FaTachometerAlt, FaShoppingCart, FaTable, FaUser, FaTruck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
 
@@ -15,7 +15,7 @@ import SalesReport from './DashboardComponents/SalesReport/SalesReport';
 
 // action thunk 
 // import { add_supplier } from '../../controllers/actions.js';
-import { add_supplier, edit_supplier, add_customer } from '../../api/api.js';
+import { add_supplier, edit_supplier, add_customer, edit_customer } from '../../api/api.js';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -31,8 +31,8 @@ const Dashboard = () => {
     const [getId, setGetId] = useState(); // get id of product
     const [modaltitle, setModalTitle] = useState(''); // modal title 
 
-    const findSupplier = useSelector(state => getId ? state.reducer?.store?.map(val => val.supplier.find(sup => sup._id === getId)) : null);
-    const findCustomer = useSelector(state => getId ? state.reducer?.store?.map(val => val.customer.find(sup => sup._id === getId)) : null);
+    // const findSupplier = useSelector(state => getId ? state.reducer?.store?.map(val => val.supplier.find(sup => sup._id === getId)) : null);
+    // const findCustomer = useSelector(state => getId ? state.reducer?.store?.map(val => val.customer.find(sup => sup._id === getId)) : null);
 
     const [targetSales, setTargetSales] = useState({
         january: 4000,
@@ -128,7 +128,8 @@ const Dashboard = () => {
             // dispatch({ type: 'ADD_VALUE', value: 5 });
             setOpen_Modal_Supplier(state => !state)
 
-            window.location.reload();
+            navigate(0);
+
         }
 
     }
@@ -149,11 +150,14 @@ const Dashboard = () => {
         e.preventDefault();
 
         if (customer) {
+
+            console.log(customer)
+
             add_customer(customer);
 
             setOpen_Modal_Customer(state => !state)
 
-            window.location.reload();
+            navigate(0);
         }
 
     }
@@ -161,6 +165,13 @@ const Dashboard = () => {
     const edit_customer_onHandleSubmit = (e) => {
         e.preventDefault();
 
+        if (customer) {
+
+            console.log(customer);
+
+            // edit_customer(customer);
+            setOpen_Modal_Customer(state => !state)
+        }
 
     }
 
@@ -177,8 +188,8 @@ const Dashboard = () => {
                                 targetSales={targetSales}
                                 setTargetSales={setTargetSales}
                             />)
-                            setNav('/ Dashboard')
-                            navigate('/dashboard')
+                            setNav('/Dashboard')
+                            navigate('/Dashboard')
                         }}
                     >
                         <FaTachometerAlt className='meter' />
@@ -191,8 +202,8 @@ const Dashboard = () => {
                     }}
                         onClick={() => {
                             setComponent(<Sales />)
-                            setNav('/ Dashboard / Sales')
-                            navigate('/dashboard/sales')
+                            setNav('/Sales')
+                            navigate('/Sales')
                         }}
                     >
                         <FaShoppingCart className='cartIcon' />
@@ -203,8 +214,8 @@ const Dashboard = () => {
                     <button className='btn-1'
                         onClick={() => {
                             setComponent(<Products />)
-                            setNav('/ Dashboard / Products')
-                            navigate('/dashboard/products')
+                            setNav('/Products')
+                            navigate('/Products')
                         }}
                     >
                         <FaTable className='tableIcon' />
@@ -222,8 +233,8 @@ const Dashboard = () => {
                                 setCustomer={setCustomer}
                                 customer={customer}
                             />)
-                            setNav('/ Dashboard / Customer')
-                            navigate('/dashboard/customer')
+                            setNav('/Customer')
+                            navigate('/Customer')
                         }}
                     >
                         <FaUser className='personIcon' />
@@ -241,8 +252,8 @@ const Dashboard = () => {
                                 supplier={supplier}
                                 getId={getId}
                             />)
-                            setNav('/ Dashboard / Supplier')
-                            navigate('/dashboard/supplier')
+                            setNav('/Supplier')
+                            navigate('/Supplier')
                         }}
                     >
                         <FaTruck className='truckIcon' />
@@ -253,8 +264,8 @@ const Dashboard = () => {
                     <button className='btn-1'
                         onClick={() => {
                             setComponent(<SalesReport />)
-                            setNav('/ Dashboard / Report')
-                            navigate('/dashboard/report')
+                            setNav('/Report')
+                            navigate('/Report')
                         }}
                     >
                         <FaChartBar className='chartIcon' />
@@ -288,8 +299,8 @@ const Dashboard = () => {
                         <button className='DashboardBtn'
                             onClick={() => {
                                 setComponent(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />)
-                                setNav('/ Dashboard')
-                                navigate('/dashboard')
+                                setNav('/Dashboard')
+                                navigate('/Dashboard')
                             }}
                         >
                             Dashboard
@@ -424,41 +435,63 @@ const Dashboard = () => {
                                         type='text'
                                         placeholder='address'
                                         onChange={(e) => {
-                                            setSupplier({ ...customer, address: e.target.value })
-                                        }} />
-                                </div>
-                                {/* <div className='contact-person-container'>
-                                    <span className='text'>Contact person: </span>
-                                    <input className='contact-person-form'
-                                        value={check_if_edit ? supplier.contact_person : supplier.contact_person}
-                                        type='text'
-                                        placeholder='contact person'
-                                        onChange={(e) => {
-                                            setSupplier({ ...supplier, contact_person: e.target.value })
+                                            setCustomer({ ...customer, address: e.target.value })
                                         }} />
                                 </div>
                                 <div className='contact-number-container'>
                                     <span className='text'>Contact number: </span>
                                     <input className='contact-number-form'
-                                        value={check_if_edit ? supplier.contact_number : supplier.contact_number}
+                                        value={check_if_edit ? customer.contact_number : customer.contact_number}
                                         type='text'
                                         placeholder='contact number'
                                         onChange={(e) => {
-                                            setSupplier({ ...supplier, contact_number: e.target.value })
+                                            setCustomer({ ...customer, contact_number: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='product-name-container'>
+                                    <span className='text'>Product name: </span>
+                                    <input className='product-name-form'
+                                        value={check_if_edit ? customer.product_name : customer.product_name}
+                                        type='text'
+                                        placeholder='product name'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, product_name: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='total-container'>
+                                    <span className='text'>total: </span>
+                                    <input className='total-form'
+                                        value={check_if_edit ? customer.total : customer.total}
+                                        type='text'
+                                        placeholder='total'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, total: e.target.value })
                                         }} />
                                 </div>
                                 <div className='note-container'>
                                     <span className='text'>Note: </span>
                                     <textarea className='note-form'
-                                        value={check_if_edit ? supplier.note : supplier.note}
+                                        value={check_if_edit ? customer.note : customer.note}
                                         type='text'
                                         placeholder='note'
                                         onChange={(e) => {
-                                            setSupplier({ ...supplier, note: e.target.value })
+                                            setCustomer({ ...customer, note: e.target.value })
                                         }} />
-                                </div> */}
+                                </div>
+                                <div className='due_date-container'>
+                                    <span className='text'>Due date: </span>
+                                    <input className='due_date-form'
+                                        value={check_if_edit ? customer.due_date : customer.due_date}
+                                        type='text'
+                                        placeholder='Due date'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, due_date: e.target.value })
+                                        }} />
+                                </div>
                                 <div className='btnContainerSubmit'>
-                                    <button className='btnAddSubmit'>
+                                    <button className='btnAddSubmit'
+                                        type='submit'
+                                    >
                                         Submit
                                     </button>
                                 </div>
