@@ -121,11 +121,11 @@ const Dashboard = () => {
 
         e.preventDefault();
 
+        console.log(supplier)
+
         if (supplier._id && supplier.token && supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
-            // dispatch(add_supplier(supplier)); // fix thunk for api destructure data yeah 
             add_supplier(supplier);
             dispatch({ type: 'ADD_SUPPLIER', payload: supplier });
-            // dispatch({ type: 'ADD_VALUE', value: 5 });
             setOpen_Modal_Supplier(state => !state)
 
             navigate(0);
@@ -167,10 +167,12 @@ const Dashboard = () => {
 
         if (customer) {
 
-            console.log(customer);
+            edit_customer(customer);
 
-            // edit_customer(customer);
             setOpen_Modal_Customer(state => !state)
+
+            window.location.reload();
+
         }
 
     }
