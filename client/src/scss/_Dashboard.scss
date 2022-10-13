@@ -1317,8 +1317,8 @@
                     }
                 }
 
-                .contact-person-container {
-                    background: rgba($color: #74198b, $alpha: 0);
+                .contact-number-container {
+                    background: rgba($color: #198b48, $alpha: 0);
                     height: 7vh;
                     width: 30vw;
                     display: grid;
@@ -1326,7 +1326,7 @@
                     justify-content: flex-start;
                     position: relative;
 
-                    .contact-person-form {
+                    .contact-number-form {
                         margin-left: 1.5vw;
                         height: 4vh;
                         width: 20vw;
@@ -1345,7 +1345,35 @@
                     }
                 }
 
-                .contact-number-container {
+                .product-name-container {
+                    background: rgba($color: #74198b, $alpha: 0);
+                    height: 7vh;
+                    width: 30vw;
+                    display: grid;
+                    align-items: flex-end;
+                    justify-content: flex-start;
+                    position: relative;
+
+                    .product-name-form {
+                        margin-left: 1.5vw;
+                        height: 4vh;
+                        width: 20vw;
+                        outline: none;
+                        padding: 0px 12px;
+                        margin-bottom: 1vh;
+                    }
+
+                    .text {
+                        font-family: $--text-font;
+                        position: absolute;
+                        font-size: .8em;
+                        top: 0;
+                        font-weight: bold;
+                        left: 1.5vw;
+                    }
+                }
+
+                .total-container {
                     background: rgba($color: #198b48, $alpha: 0);
                     height: 7vh;
                     width: 30vw;
@@ -1354,7 +1382,7 @@
                     justify-content: flex-start;
                     position: relative;
 
-                    .contact-number-form {
+                    .total-form {
                         margin-left: 1.5vw;
                         height: 4vh;
                         width: 20vw;
@@ -1385,6 +1413,34 @@
                     .note-form {
                         margin-left: 1.5vw;
                         height: 17vh;
+                        width: 20vw;
+                        outline: none;
+                        padding: 0px 12px;
+                        margin-bottom: 1vh;
+                    }
+
+                    .text {
+                        font-family: $--text-font;
+                        position: absolute;
+                        font-size: .8em;
+                        top: 0;
+                        font-weight: bold;
+                        left: 1.5vw;
+                    }
+                }
+
+                .due_date-container {
+                    background: rgba($color: #198b48, $alpha: 0);
+                    height: 7vh;
+                    width: 30vw;
+                    display: grid;
+                    align-items: flex-end;
+                    justify-content: flex-start;
+                    position: relative;
+
+                    .due_date-form {
+                        margin-left: 1.5vw;
+                        height: 4vh;
                         width: 20vw;
                         outline: none;
                         padding: 0px 12px;

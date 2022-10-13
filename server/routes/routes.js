@@ -6,7 +6,9 @@ import {
     add_supplier,
     edit_supplier,
     delete_supplier,
-    add_customer
+    add_customer,
+    edit_customer,
+    delete_customer
 } from '../controllers/controllers.js';
 
 //middlewares
@@ -20,13 +22,15 @@ const router = express.Router();
 router.get('/', get_db);
 router.post('/register', registration);
 
-
 router.post('/', login_auth);
-router.post('/dashboard/supplier/:id', middleware, add_supplier);
-router.patch('/dashboard/supplier/:id', middleware, edit_supplier);
-router.put('/dashboard/supplier/:id', middleware, delete_supplier);
+router.post('/Supplier/:id', middleware, add_supplier);
+router.patch('/Supplier/:id', middleware, edit_supplier);
+router.put('/Supplier/:id', middleware, delete_supplier);
 
-router.post('/dashboard/customer/:id', add_customer);
+router.post('/Customer/:id', middleware, add_customer);
+router.patch('/Customer/:id', middleware, edit_customer);
+router.put('/Customer/:id', middleware, delete_customer);
+
 
 
 export default router;

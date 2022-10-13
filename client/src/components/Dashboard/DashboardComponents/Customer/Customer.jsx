@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FaPen, FaTrash } from 'react-icons/fa';
 
+// import api 
+import { delete_customer } from '../../../../api/api.js';
+
 const Customer = ({
     setOpen_Modal_Customer,
     setCheck_If_Edit,
@@ -16,11 +19,6 @@ const Customer = ({
     const [get_cus_id, setGet_Cus_Id] = useState();
 
     const findCustomer = useSelector(state => get_cus_id ? state.reducer?.store?.map(val => val.customer.find(sup => sup._id === get_cus_id)) : null);
-
-    const delete_customer_handler = (e) => {
-        e.preventDefault();
-
-    }
 
     useEffect(() => {
         if (findCustomer) {
@@ -39,6 +37,13 @@ const Customer = ({
         }
     }, [findCustomer])
 
+    const delete_customer_handler = (e) => {
+        e.preventDefault();
+
+        if (Localstorage && get_cus_id) delete_customer(Localstorage?.result?._id, Localstorage?.token, get_cus_id)
+
+        window.location.reload();
+    }
 
     return (
         <div className='Customer'>
@@ -59,7 +64,7 @@ const Customer = ({
                         onClick={() => {
                             setOpen_Modal_Customer(state => !state)
                             setCheck_If_Edit(false)
-                            setModalTitle('Add Supplier')
+                            setModalTitle('Add Customer')
                             setCustomer({
                                 ...customer,
                                 fullname: '',
@@ -139,7 +144,7 @@ const Customer = ({
                                                             background: 'none'
                                                         }}
                                                         onClick={() => {
-                                                            // setGet_Sup_Id(get_suppliers[0]?.supplier[key]._id)
+                                                            setGet_Cus_Id(get_customer[0]?.customer[key]._id)
                                                         }}
                                                     >
                                                         <FaTrash />

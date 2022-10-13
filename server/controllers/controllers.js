@@ -143,8 +143,6 @@ export const edit_customer = async (req, res) => {
 
     const { id } = req.body;
 
-    console.log(req.body);
-
     try {
 
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
@@ -191,7 +189,7 @@ export const delete_customer = async (req, res) => {
         await OwnerModels.findByIdAndUpdate(id, {
             $pull: {
                 customer: {
-                    _id: req.body.supplier[0]._id
+                    _id: req.body.customer[0]._id
                 }
             }
         }, {
