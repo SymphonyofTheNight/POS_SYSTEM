@@ -84,6 +84,18 @@ export const delete_customer = (owner_id, token, customer_item_id) => base_api.p
     ]
 }, { headers: { 'Authorization': `Bearer ${token}` } })
 
+// products api
+
+// add products tommorow !!
+// add edit products tommorow !!
+
+export const delete_products = (owner_id, token, products_item_id) => base_api.put(`/Products/${owner_id}`, {
+    products: [
+        {
+            _id: products_item_id
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${token}` } })
 
 
 

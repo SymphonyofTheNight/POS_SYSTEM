@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { mongo } from 'mongoose';
 
 // schema
 import OwnerModels from '../models/models.js';
@@ -198,4 +198,95 @@ export const delete_customer = async (req, res) => {
     }
 
 }
+
+// product controllers
+
+export const add_products = async (req, res) => {
+
+    const { id } = req.params;
+
+    console.log(req.body);
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
+
+        await OwnerModels.findByIdAndUpdate(id, {
+            $push: {
+                products: {
+                    brand_name: req.body.products[0].brand_name,
+                    generic_name: req.body.products[0].generic_name,
+                    category_description: req.body.products[0].category_description,
+                    selling_price: req.body.products[0].selling_price,
+                    original_price: req.body.products[0].original_price,
+                    quantity: req.body.products[0].quantity,
+                    supplier: req.body.products[0].supplier,
+                    added_date: req.body.products[0].added_date,
+                    expiration_date: req.body.products[0].expiration_date,
+                }
+            },
+        }, { new: true });
+
+    } catch (error) {
+        res.status(404).json(error);
+    }
+}
+
+export const edit_product = async (req, res) => {
+
+    const { id } = req.params;
+
+    console.log(req.body);
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
+
+        await OwnerModels.findByIdAndUpdate(id, {
+            $set: {
+                "products.$[i].brand_name": req.body.products[0].brand_name,
+                "products.$[i].generic_name": req.body.products[0].generic_name,
+                "products.$[i].category_description": req.body.products[0].category_description,
+                "products.$[i].selling_price": req.body.add_products[0].selling_price,
+                "products.$[i].original_price": req.body.products[0].original_price,
+                "products.$[i].quantity": req.body.products[0].quantity,
+                "products.$[i].supplier": req.body.products[0].supplier,
+                "products.$[i].added_date": req.body.products[0].added_date,
+                "products.$[i].expiration_date": req.body.products[0].expiration_date,
+            }
+        }, {
+            arrayFilters: [
+                {
+                    "i.brand_name": req.body.products[0].brand_name
+                }
+            ],
+            returnDocument: 'after',
+            safe: true
+        })
+    } catch (error) {
+        res.status(404).json(error);
+    }
+}
+
+export const delete_product = async (req, res) => {
+
+    const { id } = req.params;
+
+    console.log(req.body);
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
+
+        await OwnerModels.findByIdAndUpdate(id, {
+            $pull: {
+                _id: req.body.products[0]._id
+            }
+        }, {
+            new: true
+        })
+
+    } catch (error) {
+        res.status(404).json(error);
+    }
+}
+
+
 

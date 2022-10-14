@@ -1,6 +1,36 @@
-import React from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { FaPen, FaTrash } from 'react-icons/fa';
 
-const Product = () => {
+// import aoi
+import { } from '../../../../api/api.js';
+
+const Product = ({
+    setOpen_Modal_Products,
+    setCheck_If_Edit,
+    setModalTitle,
+    setProducts,
+    products
+}) => {
+
+    const get_products = useSelector(state => state.reducer.store);
+    const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
+    const [get_prod_id, setGet_Prod_Id] = useState();
+
+    const findCustomer = useSelector(state => get_prod_id ? state.reducer?.store?.map(val => val.customer.find(sup => sup._id === get_prod_id)) : null);
+
+
+
+
+    const delete_products_handler = (e) => {
+        e.preventDefault();
+
+        // if (Localstorage && get_prod_id) delete_customer(Localstorage?.result?._id, Localstorage?.token, get_cus_id)
+
+        window.location.reload();
+    }
+
     return (
         <div className='Products'>
             <div className='innerContainer'>
@@ -33,59 +63,73 @@ const Product = () => {
                                 <th scope="col">Original_Price</th>
                                 <th scope="col">Selling_Price</th>
                                 <th scope="col">Qty</th>
-                                <th scope="col">Total</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
+                        {get_products[0] ? Object.keys(get_products[0]?.products).map((key, value) => {
+                            return (
+                                <tbody key={get_products[0]?.products[key]._id}>
+                                    <tr>
+                                        <th scope="row">{get_products[0]?.products[key].brand_name}</th>
+                                        <td>{get_products[0]?.products[key].generic_name}</td>
+                                        <td>{get_products[0]?.products[key].category_description}</td>
+                                        <td>{get_products[0]?.products[key].supplier}</td>
+                                        <td>{get_products[0]?.products[key].added_date}</td>
+                                        <td>{get_products[0]?.products[key].expiration_date}</td>
+                                        <td>{get_products[0]?.products[key].original_price}</td>
+                                        <td>{get_products[0]?.products[key].selling_price}</td>
+                                        <td>{get_products[0]?.products[key].quantity}</td>
+                                        <td>
+                                            <div className='btnContainer'
+                                                style={{
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <button
+                                                    type='submit'
+                                                    className='editBtn'
+                                                    style={{
+                                                        border: '0px solid transparent',
+                                                        width: '2vw',
+                                                        height: 'auto',
+                                                        display: 'grid',
+                                                        placeItems: 'center',
+                                                        background: 'none'
+                                                    }}
+                                                    onClick={() => {
+                                                        setGet_Prod_Id(get_products[0]?.products[key]._id)
+                                                        setCheck_If_Edit(state => !state)
+                                                        setOpen_Modal_Products(state => !state)
+                                                        setModalTitle('Edit Customer')
+                                                    }}
+                                                >
+                                                    <FaPen />
+                                                </button>
+                                                <form onSubmit={delete_products_handler} >
+                                                    <button
+                                                        type='submit'
+                                                        className='editBtn'
+                                                        style={{
+                                                            border: '0px solid transparent',
+                                                            width: '2vw',
+                                                            height: 'auto',
+                                                            display: 'grid',
+                                                            placeItems: 'center',
+                                                            background: 'none'
+                                                        }}
+                                                        onClick={() => {
+                                                            setGet_Prod_Id(get_products[0]?.products[key]._id)
+                                                        }}
+                                                    >
+                                                        <FaTrash />
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            )
+                        }) : null}
                     </table>
                 </div>
                 <div className='btn-submit-container'>
