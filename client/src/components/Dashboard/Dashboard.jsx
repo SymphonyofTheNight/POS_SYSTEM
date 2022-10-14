@@ -26,6 +26,7 @@ const Dashboard = () => {
 
     const [open_modal_supplier, setOpen_Modal_Supplier] = useState(false);
     const [open_modal_customer, setOpen_Modal_Customer] = useState(false);
+    const [open_modal_products, setOpen_Modal_Products] = useState(false);
     const [check_if_edit, setCheck_If_Edit] = useState(false);
     // const [check_if_add, setCheck_If_Add] = useState(false);
     const [getId, setGetId] = useState(); // get id of product
@@ -85,7 +86,25 @@ const Dashboard = () => {
         total: '',
         note: '',
         due_date: ''
+    });
+
+    const [products, setProducts] = useState({
+        _id: Localstorage?.result?._id,
+        token: Localstorage?.token,
+        brand_name: '',
+        generic_name: '',
+        category_description: '',
+        supplier: '',
+        added_date: '',
+        expiration_date: '',
+        original_price: '',
+        selling_price: '',
+        quantity: ''
     })
+
+    const _date_month = new Date().getMonth();
+    const _date_date = new Date().getDate();
+    const _date_year = new Date().getFullYear();
 
     // redux storage
     // const redux_storage = useSelector(state => state.reducer.store);
@@ -115,7 +134,7 @@ const Dashboard = () => {
             rended_tag.current.style.width = '87vw';
             nav_tab.current.style.transform = 'translateX(0vw)';
         }
-    }, [tabswitch])
+    }, [tabswitch]);
 
     const add_supplier_onHandleSubmit = (e) => {
 
@@ -177,6 +196,12 @@ const Dashboard = () => {
 
     }
 
+    const add_product_onHandleSubmit = (e) => {
+        e.preventDefault();
+
+
+    }
+
     return (
         <div className='Dashboard'>
             <nav className='nav-tab' ref={nav_tab}>
@@ -215,7 +240,13 @@ const Dashboard = () => {
                     </button>
                     <button className='btn-1'
                         onClick={() => {
-                            setComponent(<Products />)
+                            setComponent(<Products
+                                setOpen_Modal_Products={setOpen_Modal_Products}
+                                setCheck_If_Edit={setCheck_If_Edit}
+                                setModalTitle={setModalTitle}
+                                setProducts={setProducts}
+                                products={products}
+                            />)
                             setNav('/Products')
                             navigate('/Products')
                         }}
@@ -230,7 +261,6 @@ const Dashboard = () => {
                             setComponent(<Customer
                                 setOpen_Modal_Customer={setOpen_Modal_Customer}
                                 setCheck_If_Edit={setCheck_If_Edit}
-                                setGetId={setGetId}
                                 setModalTitle={setModalTitle}
                                 setCustomer={setCustomer}
                                 customer={customer}
@@ -485,9 +515,9 @@ const Dashboard = () => {
                                     <input className='due_date-form'
                                         value={check_if_edit ? customer.due_date : customer.due_date}
                                         type='text'
-                                        placeholder='Due date'
+                                        placeholder='click any'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, due_date: e.target.value })
+                                            setCustomer({ ...customer, due_date: _date_month + `-` + _date_date + `-` + _date_year })
                                         }} />
                                 </div>
                                 <div className='btnContainerSubmit'>
@@ -513,7 +543,108 @@ const Dashboard = () => {
                 </>
             )}
 
+            {open_modal_products ? (
+                <div className='modal-customer'>
+                    <form onSubmit={check_if_edit ? edit_customer_onHandleSubmit : add_customer_onHandleSubmit}>
+                        <div className='modal-container'>
+                            <div className='titleContainer'>
+                                <span className='text'>
+                                    {modaltitle}
+                                </span>
+                            </div>
+                            <div className='form-input-container'>
+                                <div className='customer-name-container'>
+                                    <span className='text'>Customer name: </span>
+                                    <input className='customer-name--form'
+                                        value={check_if_edit ? customer.fullname : customer.fullname}
+                                        type='text'
+                                        placeholder='customer name'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, fullname: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='address-container'>
+                                    <span className='text'>Address: </span>
+                                    <input className='address-form'
+                                        value={check_if_edit ? customer.address : customer.address}
+                                        type='text'
+                                        placeholder='address'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, address: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='contact-number-container'>
+                                    <span className='text'>Contact number: </span>
+                                    <input className='contact-number-form'
+                                        value={check_if_edit ? customer.contact_number : customer.contact_number}
+                                        type='text'
+                                        placeholder='contact number'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, contact_number: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='product-name-container'>
+                                    <span className='text'>Product name: </span>
+                                    <input className='product-name-form'
+                                        value={check_if_edit ? customer.product_name : customer.product_name}
+                                        type='text'
+                                        placeholder='product name'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, product_name: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='total-container'>
+                                    <span className='text'>total: </span>
+                                    <input className='total-form'
+                                        value={check_if_edit ? customer.total : customer.total}
+                                        type='text'
+                                        placeholder='total'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, total: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='note-container'>
+                                    <span className='text'>Note: </span>
+                                    <textarea className='note-form'
+                                        value={check_if_edit ? customer.note : customer.note}
+                                        type='text'
+                                        placeholder='note'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, note: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='due_date-container'>
+                                    <span className='text'>Due date: </span>
+                                    <input className='due_date-form'
+                                        value={check_if_edit ? customer.due_date : customer.due_date}
+                                        type='text'
+                                        placeholder='click any'
+                                        onChange={(e) => {
+                                            setCustomer({ ...customer, due_date: _date_month + `-` + _date_date + `-` + _date_year })
+                                        }} />
+                                </div>
+                                <div className='btnContainerSubmit'>
+                                    <button className='btnAddSubmit'
+                                        type='submit'
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
+                    <button className='btnClose' onClick={() => {
+                        setOpen_Modal_Customer(state => !state)
+                        setCheck_If_Edit(false)
+                    }}>
+                        <FaTimes className='icon' />
+                    </button>
+                </div>
+            ) : (
+                <>
+                </>
+            )}
 
         </div>
     )

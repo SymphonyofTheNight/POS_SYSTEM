@@ -32,6 +32,8 @@ const Login = () => {
             navigate('/dashboard')
         }
 
+        window.location.reload();
+
     }
 
     return (
