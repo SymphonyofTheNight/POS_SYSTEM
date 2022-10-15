@@ -89,6 +89,38 @@ export const delete_customer = (owner_id, token, customer_item_id) => base_api.p
 // add products tommorow !!
 // add edit products tommorow !!
 
+export const add_products = (products) => base_api.post(`/Products/${products._id}`, {
+    products: [
+        {
+            brand_name: products.brand_name,
+            generic_name: products.generic_name,
+            category_description: products.category_description,
+            supplier: products.supplier,
+            added_date: products.added_date,
+            expiration_date: products.expiration_date,
+            original_price: products.original_price,
+            selling_price: products.selling_price,
+            quantity: products.quantity
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${products.token}` } })
+
+export const edit_products = (products) => base_api.patch(`/Products/${products._id}`, {
+    products: [
+        {
+            brand_name: products.brand_name,
+            generic_name: products.generic_name,
+            category_description: products.category_description,
+            supplier: products.supplier,
+            added_date: products.added_date,
+            expiration_date: products.expiration_date,
+            original_price: products.original_price,
+            selling_price: products.selling_price,
+            quantity: products.quantity
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${products.token}` } })
+
 export const delete_products = (owner_id, token, products_item_id) => base_api.put(`/Products/${owner_id}`, {
     products: [
         {

@@ -40,6 +40,8 @@ export const login_auth = async (req, res) => {
 
     const { admin, password } = req.body;
 
+    console.log(req.body);
+
     try {
         const check_user = await OwnerModels.findOne({ admin });
 

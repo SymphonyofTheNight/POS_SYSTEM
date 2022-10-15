@@ -31,9 +31,6 @@ const Login = () => {
             dispatch(_login(account.username, account.password))
             navigate('/dashboard')
         }
-
-        window.location.reload();
-
     }
 
     return (
