@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { FaPen, FaTrash } from 'react-icons/fa';
 
 // import aoi
-import { } from '../../../../api/api.js';
+import { delete_products } from '../../../../api/api.js';
 
 const Product = ({
     setOpen_Modal_Products,
@@ -18,15 +18,33 @@ const Product = ({
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
     const [get_prod_id, setGet_Prod_Id] = useState();
 
-    const findCustomer = useSelector(state => get_prod_id ? state.reducer?.store?.map(val => val.customer.find(sup => sup._id === get_prod_id)) : null);
+    const findProduct = useSelector(state => get_prod_id ? state.reducer?.store?.map(val => val.products.find(sup => sup._id === get_prod_id)) : null);
 
+    useEffect(() => {
+        if (findProduct) {
+            setProducts({
+                ...products,
+                _id: Localstorage?.result?._id,
+                token: Localstorage?.token,
+                brand_name: findProduct[0].brand_name,
+                generic_name: findProduct[0].generic_name,
+                category_description: findProduct[0].category_description,
+                supplier: findProduct[0].supplier,
+                added_date: findProduct[0].added_date,
+                expiration_date: findProduct[0].expiration_date,
+                original_price: findProduct[0].original_price,
+                selling_price: findProduct[0].selling_price,
+                quantity: findProduct[0].quantity
+            })
+        }
+    }, [findProduct])
 
-
+    console.log(findProduct);
 
     const delete_products_handler = (e) => {
         e.preventDefault();
 
-        // if (Localstorage && get_prod_id) delete_customer(Localstorage?.result?._id, Localstorage?.token, get_cus_id)
+        if (Localstorage && get_prod_id) delete_products(Localstorage?.result?._id, Localstorage?.token, get_prod_id)
 
         window.location.reload();
     }
@@ -41,17 +59,35 @@ const Product = ({
                 </div>
                 <div className='select-container'>
                     <select className="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                        <option defaultValue="Open this select menu">Open this select menu</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
-                    <button className='addBtn'>
+                    <button className='addBtn'
+                        onClick={() => {
+                            setOpen_Modal_Products(state => !state)
+                            setCheck_If_Edit(false)
+                            setModalTitle('Add Product')
+                            setProducts({
+                                ...products,
+                                brand_name: '',
+                                generic_name: '',
+                                category_description: '',
+                                supplier: '',
+                                added_date: '',
+                                expiration_date: '',
+                                original_price: '',
+                                selling_price: '',
+                                quantity: ''
+                            });
+                        }}
+                    >
                         Add
                     </button>
                 </div>
                 <div className='table-container'>
-                    <table class="table">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">Brand_Name</th>

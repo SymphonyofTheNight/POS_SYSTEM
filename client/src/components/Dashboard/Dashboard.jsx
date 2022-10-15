@@ -15,7 +15,7 @@ import SalesReport from './DashboardComponents/SalesReport/SalesReport';
 
 // action thunk 
 // import { add_supplier } from '../../controllers/actions.js';
-import { add_supplier, edit_supplier, add_customer, edit_customer } from '../../api/api.js';
+import { add_supplier, edit_supplier, add_customer, edit_customer, add_products, edit_products } from '../../api/api.js';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -199,6 +199,26 @@ const Dashboard = () => {
     const add_product_onHandleSubmit = (e) => {
         e.preventDefault();
 
+        console.log(products);
+
+        if (products) add_products(products)
+
+        setOpen_Modal_Products(state => !state)
+
+        navigate(0);
+
+    }
+
+    const edit_products_onHandleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(products);
+
+        if (products) edit_products(products);
+
+        setOpen_Modal_Products(state => !state)
+
+        navigate(0);
 
     }
 
@@ -544,8 +564,8 @@ const Dashboard = () => {
             )}
 
             {open_modal_products ? (
-                <div className='modal-customer'>
-                    <form onSubmit={check_if_edit ? edit_customer_onHandleSubmit : add_customer_onHandleSubmit}>
+                <div className='modal-products'>
+                    <form onSubmit={check_if_edit ? edit_products_onHandleSubmit : add_product_onHandleSubmit}>
                         <div className='modal-container'>
                             <div className='titleContainer'>
                                 <span className='text'>
@@ -553,74 +573,94 @@ const Dashboard = () => {
                                 </span>
                             </div>
                             <div className='form-input-container'>
-                                <div className='customer-name-container'>
-                                    <span className='text'>Customer name: </span>
-                                    <input className='customer-name--form'
-                                        value={check_if_edit ? customer.fullname : customer.fullname}
+                                <div className='brand-name-container'>
+                                    <span className='text'>Brand name: </span>
+                                    <input className='brand-name-form'
+                                        value={check_if_edit ? products.brand_name : products.brand_name}
                                         type='text'
-                                        placeholder='customer name'
+                                        placeholder='brand name'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, fullname: e.target.value })
+                                            setProducts({ ...products, brand_name: e.target.value })
                                         }} />
                                 </div>
-                                <div className='address-container'>
-                                    <span className='text'>Address: </span>
-                                    <input className='address-form'
-                                        value={check_if_edit ? customer.address : customer.address}
+                                <div className='generic-name-container'>
+                                    <span className='text'>Generic name: </span>
+                                    <input className='generic-name-form'
+                                        value={check_if_edit ? products.generic_name : products.generic_name}
                                         type='text'
-                                        placeholder='address'
+                                        placeholder='generic name'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, address: e.target.value })
+                                            setProducts({ ...products, generic_name: e.target.value })
                                         }} />
                                 </div>
-                                <div className='contact-number-container'>
-                                    <span className='text'>Contact number: </span>
-                                    <input className='contact-number-form'
-                                        value={check_if_edit ? customer.contact_number : customer.contact_number}
+                                <div className='category-description-container'>
+                                    <span className='text'>Category description: </span>
+                                    <input className='category-description-form'
+                                        value={check_if_edit ? products.category_description : products.category_description}
                                         type='text'
-                                        placeholder='contact number'
+                                        placeholder='category description'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, contact_number: e.target.value })
+                                            setProducts({ ...products, category_description: e.target.value })
                                         }} />
                                 </div>
-                                <div className='product-name-container'>
-                                    <span className='text'>Product name: </span>
-                                    <input className='product-name-form'
-                                        value={check_if_edit ? customer.product_name : customer.product_name}
+                                <div className='supplier-container'>
+                                    <span className='text'>Supplier: </span>
+                                    <input className='supplier-form'
+                                        value={check_if_edit ? products.supplier : products.supplier}
                                         type='text'
-                                        placeholder='product name'
+                                        placeholder='supplier'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, product_name: e.target.value })
+                                            setProducts({ ...products, supplier: e.target.value })
                                         }} />
                                 </div>
-                                <div className='total-container'>
-                                    <span className='text'>total: </span>
-                                    <input className='total-form'
-                                        value={check_if_edit ? customer.total : customer.total}
+                                <div className='receive-date-container'>
+                                    <span className='text'>Receive-date: </span>
+                                    <input className='receive-date-form'
+                                        value={check_if_edit ? products.added_date : products.added_date}
                                         type='text'
-                                        placeholder='total'
+                                        placeholder='receive date'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, total: e.target.value })
+                                            setProducts({ ...products, added_date: e.target.value })
                                         }} />
                                 </div>
-                                <div className='note-container'>
-                                    <span className='text'>Note: </span>
-                                    <textarea className='note-form'
-                                        value={check_if_edit ? customer.note : customer.note}
+                                <div className='expire-date-container'>
+                                    <span className='text'>Expire date: </span>
+                                    <input className='expire-date-form'
+                                        value={check_if_edit ? products.expiration_date : products.expiration_date}
                                         type='text'
-                                        placeholder='note'
+                                        placeholder='expiration date'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, note: e.target.value })
+                                            setProducts({ ...products, expiration_date: e.target.value })
                                         }} />
                                 </div>
-                                <div className='due_date-container'>
-                                    <span className='text'>Due date: </span>
-                                    <input className='due_date-form'
-                                        value={check_if_edit ? customer.due_date : customer.due_date}
+                                <div className='original-price-container'>
+                                    <span className='text'>Original price: </span>
+                                    <input className='original-price-form'
+                                        value={check_if_edit ? products.original_price : products.original_price}
                                         type='text'
-                                        placeholder='click any'
+                                        placeholder='original price'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, due_date: _date_month + `-` + _date_date + `-` + _date_year })
+                                            setProducts({ ...products, original_price: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='selling-price-container'>
+                                    <span className='text'>Selling price: </span>
+                                    <input className='selling-price-form'
+                                        value={check_if_edit ? products.selling_price : products.selling_price}
+                                        type='text'
+                                        placeholder='selling price'
+                                        onChange={(e) => {
+                                            setProducts({ ...products, selling_price: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='quantity-container'>
+                                    <span className='text'>Quantity: </span>
+                                    <input className='quantity-form'
+                                        value={check_if_edit ? products.quantity : products.quantity}
+                                        type='text'
+                                        placeholder='quantity'
+                                        onChange={(e) => {
+                                            setProducts({ ...products, quantity: e.target.value })
                                         }} />
                                 </div>
                                 <div className='btnContainerSubmit'>
@@ -635,7 +675,7 @@ const Dashboard = () => {
                     </form>
 
                     <button className='btnClose' onClick={() => {
-                        setOpen_Modal_Customer(state => !state)
+                        setOpen_Modal_Products(state => !state)
                         setCheck_If_Edit(false)
                     }}>
                         <FaTimes className='icon' />

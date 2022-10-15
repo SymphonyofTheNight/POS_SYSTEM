@@ -245,7 +245,7 @@ export const edit_product = async (req, res) => {
                 "products.$[i].brand_name": req.body.products[0].brand_name,
                 "products.$[i].generic_name": req.body.products[0].generic_name,
                 "products.$[i].category_description": req.body.products[0].category_description,
-                "products.$[i].selling_price": req.body.add_products[0].selling_price,
+                "products.$[i].selling_price": req.body.products[0].selling_price,
                 "products.$[i].original_price": req.body.products[0].original_price,
                 "products.$[i].quantity": req.body.products[0].quantity,
                 "products.$[i].supplier": req.body.products[0].supplier,
@@ -277,7 +277,9 @@ export const delete_product = async (req, res) => {
 
         await OwnerModels.findByIdAndUpdate(id, {
             $pull: {
-                _id: req.body.products[0]._id
+                products: {
+                    _id: req.body.products[0]._id
+                }
             }
         }, {
             new: true
