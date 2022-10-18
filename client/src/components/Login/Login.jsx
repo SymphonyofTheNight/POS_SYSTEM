@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import bcrypt from 'bcryptjs';
 
 // actions
 import { _login } from '../../controllers/actions.js';
@@ -10,6 +11,8 @@ import { _login } from '../../controllers/actions.js';
 import '../../scss/_Login.scss';
 
 const Login = () => {
+
+    const _check_user = useSelector(state => state.reducer.store)
 
     //to navigate on routes
     const navigate = useNavigate();
@@ -24,13 +27,32 @@ const Login = () => {
 
     const [showpass, setShowpass] = useState(false);
 
-    const SubmitHandler = (e) => {
+    const SubmitHandler = async (e) => {
         e.preventDefault();
 
         if (account.username && account.password) {
-            dispatch(_login(account.username, account.password))
-            navigate('/dashboard')
+            console.log(_check_user[0]?.password, account.password);
+
+            const _bcrypt_pass = await bcrypt.compareSync(account.password, _check_user[0]?.password);
+
+            console.log(_bcrypt_pass);
+
+            if (_bcrypt_pass) {
+                dispatch(_login(account.username, account.password))
+                navigate('/dashboard')
+            } else {
+                alert('wrong password')
+            }
+
+        } else {
+
+            alert('invalid user')
+
         }
+        // if (account.username && account.password) {
+        //     dispatch(_login(account.username, account.password))
+        //     navigate('/dashboard')
+        // }
     }
 
     return (
