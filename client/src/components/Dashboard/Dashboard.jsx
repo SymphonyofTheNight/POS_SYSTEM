@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { FaTimes, FaBars, FaTachometerAlt, FaShoppingCart, FaTable, FaUser, FaTruck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
 
@@ -59,6 +59,11 @@ const Dashboard = () => {
     //hooks 
     const [Component, setComponent] = useState(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />);
     const [tabswitch, setTabswitch] = useState(false);
+
+    // get supplier for select 
+    const get_suppliers = useSelector(state => state.reducer.store);
+
+    // console.log(get_suppliers[0]);
     // const [time, setTime] = useState();
     const [nav, setNav] = useState('/ Dashboard');
 
@@ -605,13 +610,38 @@ const Dashboard = () => {
                                 </div>
                                 <div className='supplier-container'>
                                     <span className='text'>Supplier: </span>
-                                    <input className='supplier-form'
+                                    <select className='supplier-form' aria-label="Default select example"
+                                        onChange={() => {
+                                            setProducts({
+                                                ...products,
+                                                supplier: 'asdasd'
+                                            })
+                                        }}
+                                    >
+                                        <option defaultValue="Open this select menu">Open this select menu</option>
+                                        {get_suppliers[0] && Object.keys(get_suppliers[0]?.supplier).map((value, key) => {
+                                            return (
+                                                <option
+                                                    value={get_suppliers[0]?.supplier[value]?.supplier_name}
+                                                    key={get_suppliers[0]?.supplier[value]?._id}>
+                                                    {get_suppliers[0]?.supplier[value]?.supplier_name}
+                                                </option>
+                                            )
+                                        })}
+                                    </select>
+                                    {/* <select className='supplier-form' aria-label="Default select example">
+                                        <option defaultValue="Open this select menu">Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select> */}
+                                    {/* <input className='supplier-form'
                                         value={check_if_edit ? products.supplier : products.supplier}
                                         type='text'
                                         placeholder='supplier'
                                         onChange={(e) => {
                                             setProducts({ ...products, supplier: e.target.value })
-                                        }} />
+                                        }} /> */}
                                 </div>
                                 <div className='receive-date-container'>
                                     <span className='text'>Receive-date: </span>
