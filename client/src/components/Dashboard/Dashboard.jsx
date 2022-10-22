@@ -611,10 +611,10 @@ const Dashboard = () => {
                                 <div className='supplier-container'>
                                     <span className='text'>Supplier: </span>
                                     <select className='supplier-form' aria-label="Default select example"
-                                        onChange={() => {
+                                        onChange={(e) => {
                                             setProducts({
                                                 ...products,
-                                                supplier: 'asdasd'
+                                                supplier: e.target.value
                                             })
                                         }}
                                     >
@@ -648,9 +648,9 @@ const Dashboard = () => {
                                     <input className='receive-date-form'
                                         value={check_if_edit ? products.added_date : products.added_date}
                                         type='text'
-                                        placeholder='receive date'
+                                        placeholder={_date_month + '-' + _date_date + '-' + _date_year}
                                         onChange={(e) => {
-                                            setProducts({ ...products, added_date: e.target.value })
+                                            setProducts({ ...products, added_date: _date_month + '-' + _date_date + '-' + _date_year })
                                         }} />
                                 </div>
                                 <div className='expire-date-container'>
@@ -658,7 +658,7 @@ const Dashboard = () => {
                                     <input className='expire-date-form'
                                         value={check_if_edit ? products.expiration_date : products.expiration_date}
                                         type='text'
-                                        placeholder='expiration date'
+                                        placeholder='mm-dd-yyyy'
                                         onChange={(e) => {
                                             setProducts({ ...products, expiration_date: e.target.value })
                                         }} />
