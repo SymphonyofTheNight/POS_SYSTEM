@@ -129,7 +129,20 @@ export const delete_products = (owner_id, token, products_item_id) => base_api.p
     ]
 }, { headers: { 'Authorization': `Bearer ${token}` } })
 
+// sales api
 
+export const add_sales = (owner_id, token, product_name, generic_name, description, qty, amount, profit) => base_api.post(`Sales/${owner_id}`, {
+    sales: [
+        {
+            product_name: product_name,
+            generic_name: generic_name,
+            description: description,
+            qty: qty,
+            amount: amount,
+            profit: profit
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${token}` } })
 
 
 

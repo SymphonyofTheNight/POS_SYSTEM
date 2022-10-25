@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { mongo } from 'mongoose';
 
 // schema
 import OwnerModels from '../models/models.js';
@@ -279,6 +279,37 @@ export const delete_product = async (req, res) => {
             $pull: {
                 products: {
                     _id: req.body.products[0]._id
+                }
+            }
+        }, {
+            new: true
+        })
+
+    } catch (error) {
+        res.status(404).json(error);
+    }
+}
+
+// sales controlers
+
+export const add_sales = async (req, res) => {
+
+    const { id } = req.params;
+
+    console.log(req.body);
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
+
+        await OwnerModels.findByIdAndUpdate(id, {
+            $push: {
+                sales: {
+                    product_name: req.body.sales[0].product_name,
+                    generic_name: req.body.sales[0].generic_name,
+                    description: req.body.sales[0].description,
+                    qty: req.body.sales[0].qty,
+                    amount: req.body.sales[0].amount,
+                    profit: req.body.sales[0].profit
                 }
             }
         }, {

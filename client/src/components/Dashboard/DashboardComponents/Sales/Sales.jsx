@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
+// import api 
+import { add_sales } from '../../../../api/api.js';
 
 const Sales = () => {
 
@@ -11,42 +13,42 @@ const Sales = () => {
 
     //hooks
     const [_get_product_id, set_Get_Product_ID] = useState();
-    const [counter, setCounter] = useState(0);
+    const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator'))); // admin local
+    const [counter, setCounter] = useState(0); // quantity done
 
     //check if found ID
     const check_id = useSelector(state => _get_product_id ? state.reducer.store.map(res => res.products.find(val => val._id === _get_product_id)) : state);
 
-    console.log(check_id[0]?.quantity);
-
-    const [prod_constructor, setProd_Constructor] = useState({
-        product_name: '',
-        generic_name: '',
-        description: '',
-        quantity: 0,
-        amount: '',
-        profit: '',
-    });
-
-    const [sales_container, setSales_Container] = useState([]);
-
-    // useEffect(() => {
-    //     if (check_id) {
-    //         setProd_Constructor({
-    //             ...prod_constructor,
-    //             product_name: check_id.brand_name,
-    //             generic_name: check_id.generic_name,
-    //             description: check_id.category_description,
-    //             quantity: check_id.quantity,
-    //             amount: check_id.original_price,
-    //             profit: check_id.selling_price
-    //         })
-    //     }
-    // }, [check_id])
+    // const [prod_constructor, setProd_Constructor] = useState({
+    //     product_name: '',
+    //     generic_name: '',
+    //     description: '',
+    //     quantity: 0,
+    //     amount: '',
+    //     profit: '',
+    // });
 
     const add_sales_onHandlerSubmit = (e) => {
         e.preventDefault();
 
-        setSales_Container([...sales_container, prod_constructor]);
+        const quantity_multiplier = check_id[0]?.selling_price * counter;
+        const multiply_original_price = check_id[0]?.original_price * counter;
+        const get_total_profit = quantity_multiplier - multiply_original_price;
+
+        console.log(quantity_multiplier, multiply_original_price);
+
+        if (check_id) {
+            add_sales(
+                Localstorage?.result?._id,
+                Localstorage?.token,
+                check_id[0]?.brand_name,
+                check_id[0]?.generic_name,
+                check_id[0]?.category_description,
+                counter,
+                quantity_multiplier,
+                get_total_profit,
+            )
+        }
 
     }
 
@@ -74,27 +76,20 @@ const Sales = () => {
                                 <option value={_get_products[0]?.products[value]?._id} key={_get_products[0]?.products[value]?._id}>{_get_products[0]?.products[value]?.brand_name}</option>
                             )
                         })}
-                        {/* <option defaultValue="Open this select menu">Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option> */}
                     </select>
-                    {/* <input className='number' type='number' value='0' /> */}
                     <div className='counter-form-container'>
                         <button className='decrement-btn'
                             onClick={() => {
                                 if (counter <= check_id[0]?.quantity) {
                                     setCounter(state => state - 1)
-                                } else if (counter <= 0) {
-                                    setCounter(state => state - 1)
+                                    if (counter <= 0) {
+                                        setCounter(0)
+                                    }
                                 }
                             }}
                         >
                             <FaMinus />
                         </button>
-
-                        {/* need to fix counter minus btn = 0 */}
-
                         <div className='count-container'>
                             {counter}
                         </div>
@@ -102,7 +97,8 @@ const Sales = () => {
                             onClick={() => {
                                 if (counter >= check_id[0]?.quantity) {
                                     setCounter(check_id[0]?.quantity)
-                                } else {
+                                }
+                                else if (counter <= check_id[0]?.quantity) {
                                     setCounter(state => state + 1)
                                 }
                             }}
