@@ -571,6 +571,32 @@
                             font-family: $--text-font;
                         }
 
+                        .counter-form-container {
+                            @include baseDisplay(rgb(9, 16, 27), 4vh, auto);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: .5vw;
+
+                            .decrement-btn {
+                                height: 4vh;
+                                width: 2vw;
+                            }
+
+                            .increment-btn {
+                                height: 4vh;
+                                width: 2vw;
+                            }
+
+                            .count-container {
+                                height: 4vh;
+                                width: 2vw;
+                                display: grid;
+                                place-items: center;
+                                color: white;
+                            }
+                        }
+
                         .addBtn {
                             height: 4vh;
                             width: 6vw;

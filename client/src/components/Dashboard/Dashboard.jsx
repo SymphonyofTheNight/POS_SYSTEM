@@ -649,7 +649,7 @@ const Dashboard = () => {
                                         value={check_if_edit ? products.added_date : products.added_date}
                                         type='text'
                                         placeholder={_date_month + '-' + _date_date + '-' + _date_year}
-                                        onChange={(e) => {
+                                        onChange={() => {
                                             setProducts({ ...products, added_date: _date_month + '-' + _date_date + '-' + _date_year })
                                         }} />
                                 </div>
