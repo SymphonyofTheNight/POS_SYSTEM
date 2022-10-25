@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaPlus, FaMinus } from 'react-icons/fa';
+
 
 const Sales = () => {
 
@@ -9,9 +11,12 @@ const Sales = () => {
 
     //hooks
     const [_get_product_id, set_Get_Product_ID] = useState();
+    const [counter, setCounter] = useState(0);
 
     //check if found ID
     const check_id = useSelector(state => _get_product_id ? state.reducer.store.map(res => res.products.find(val => val._id === _get_product_id)) : state);
+
+    console.log(check_id[0]?.quantity);
 
     const [prod_constructor, setProd_Constructor] = useState({
         product_name: '',
@@ -24,19 +29,19 @@ const Sales = () => {
 
     const [sales_container, setSales_Container] = useState([]);
 
-    useEffect(() => {
-        if (check_id) {
-            setProd_Constructor({
-                ...prod_constructor,
-                product_name: check_id.brand_name,
-                generic_name: check_id.generic_name,
-                description: check_id.category_description,
-                quantity: check_id.quantity,
-                amount: check_id.original_price,
-                profit: check_id.selling_price
-            })
-        }
-    }, [check_id])
+    // useEffect(() => {
+    //     if (check_id) {
+    //         setProd_Constructor({
+    //             ...prod_constructor,
+    //             product_name: check_id.brand_name,
+    //             generic_name: check_id.generic_name,
+    //             description: check_id.category_description,
+    //             quantity: check_id.quantity,
+    //             amount: check_id.original_price,
+    //             profit: check_id.selling_price
+    //         })
+    //     }
+    // }, [check_id])
 
     const add_sales_onHandlerSubmit = (e) => {
         e.preventDefault();
@@ -44,8 +49,6 @@ const Sales = () => {
         setSales_Container([...sales_container, prod_constructor]);
 
     }
-
-    console.log(sales_container);
 
     // fix tommorow add object into use state array 
 
@@ -76,7 +79,38 @@ const Sales = () => {
                         <option value="2">Two</option>
                         <option value="3">Three</option> */}
                     </select>
-                    <input className='number' type='number' value='0' />
+                    {/* <input className='number' type='number' value='0' /> */}
+                    <div className='counter-form-container'>
+                        <button className='decrement-btn'
+                            onClick={() => {
+                                if (counter <= check_id[0]?.quantity) {
+                                    setCounter(state => state - 1)
+                                } else if (counter <= 0) {
+                                    setCounter(state => state - 1)
+                                }
+                            }}
+                        >
+                            <FaMinus />
+                        </button>
+
+                        {/* need to fix counter minus btn = 0 */}
+
+                        <div className='count-container'>
+                            {counter}
+                        </div>
+                        <button className='increment-btn'
+                            onClick={() => {
+                                if (counter >= check_id[0]?.quantity) {
+                                    setCounter(check_id[0]?.quantity)
+                                } else {
+                                    setCounter(state => state + 1)
+                                }
+                            }}
+                        >
+                            <FaPlus />
+                        </button>
+                    </div>
+
                     <form onSubmit={add_sales_onHandlerSubmit}>
                         <button className='addBtn'
                             type='submit'
