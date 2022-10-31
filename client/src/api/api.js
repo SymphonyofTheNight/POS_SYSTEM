@@ -144,5 +144,12 @@ export const add_sales = (owner_id, token, product_name, generic_name, descripti
     ]
 }, { headers: { 'Authorization': `Bearer ${token}` } })
 
+export const delete_sales = (owner_id, token, sales_id) => base_api.put(`/Sales/${owner_id}`, {
+    sales: [
+        {
+            _id: sales_id
+        }
+    ]
+}, { headers: { 'Authorization': `Bearer ${token}` } })
 
 

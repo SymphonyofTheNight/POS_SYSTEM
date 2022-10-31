@@ -624,6 +624,7 @@
                         align-items: center;
                         justify-content: flex-end;
                         margin-top: 0vh;
+                        position: relative;
 
                         .btnSubmit {
                             height: 5vh;
@@ -634,7 +635,23 @@
                             background: #0e6cb9;
                             color: white;
                         }
+
+                        .total-text {
+                            color: #000000;
+                            font-family: $--text-font;
+                            margin-right: 1vw;
+                        }
+
+                        .profit-text {
+                            color: #000000;
+                            font-family: $--text-font;
+                            margin-right: 1vw;
+                        }
+
                     }
+
+
+
                 }
             }
 

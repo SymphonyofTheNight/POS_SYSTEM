@@ -4,29 +4,23 @@ import { useSelector } from 'react-redux';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
 // import api 
-import { add_sales } from '../../../../api/api.js';
+import { add_sales, delete_sales } from '../../../../api/api.js';
 
 const Sales = () => {
 
     // get products brandname,genericname,description/category,originalprice,sellingprice and multiply both origina
     const _get_products = useSelector(state => state.reducer.store);
+    const _get_sales = useSelector(state => state.reducer.store);
 
     //hooks
     const [_get_product_id, set_Get_Product_ID] = useState();
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator'))); // admin local
     const [counter, setCounter] = useState(0); // quantity done
+    const [get_total_profit, setGet_Total_Profit] = useState(0);
+    const [get_total_amount, setGet_Total_Amount] = useState(0);
 
     //check if found ID
     const check_id = useSelector(state => _get_product_id ? state.reducer.store.map(res => res.products.find(val => val._id === _get_product_id)) : state);
-
-    // const [prod_constructor, setProd_Constructor] = useState({
-    //     product_name: '',
-    //     generic_name: '',
-    //     description: '',
-    //     quantity: 0,
-    //     amount: '',
-    //     profit: '',
-    // });
 
     const add_sales_onHandlerSubmit = (e) => {
         e.preventDefault();
@@ -48,9 +42,39 @@ const Sales = () => {
                 quantity_multiplier,
                 get_total_profit,
             )
+
+            window.location.reload();
+
         }
 
     }
+
+    // console.log(_get_sales[0]?.sales.flatMap(state => {
+
+    // }))
+
+    useEffect(() => {
+        if (_get_sales) {
+            const profit = _get_sales[0]?.sales?.map(state => {
+                return state.profit
+            })
+
+            const amount = _get_sales[0]?.sales?.map(state => {
+                return state.amount
+            })
+
+            if (profit && amount) {
+                let total_profit = profit?.reduce((cur, prev) => cur + prev, 0);
+                setGet_Total_Profit(total_profit)
+
+                let total_amount = amount?.reduce((cur, prev) => cur + prev, 0);
+                setGet_Total_Amount(total_amount)
+            }
+
+        }
+    }, [_get_sales])
+
+    console.log(get_total_profit)
 
     // fix tommorow add object into use state array 
 
@@ -129,60 +153,47 @@ const Sales = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            {_get_sales && Object.keys(_get_sales[0].sales).map((key, value) => {
+                                return (
+                                    <tr>
+                                        <td>{_get_sales[0].sales[key].product_name}</td>
+                                        <td>{_get_sales[0].sales[key].generic_name}</td>
+                                        <td>{_get_sales[0].sales[key].description}</td>
+                                        <td>{_get_sales[0].sales[key].qty}</td>
+                                        <td>{_get_sales[0].sales[key].amount}</td>
+                                        <td>{_get_sales[0].sales[key].profit}</td>
+                                        <div className='btn-container'>
+                                            <button
+                                                onClick={() => {
+                                                    delete_sales(
+                                                        Localstorage?.result?._id,
+                                                        Localstorage?.token,
+                                                        _get_sales[0].sales[key]._id)
+
+                                                    window.location.reload();
+
+                                                }}
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
                 </div>
                 <div className='btn-submit-container'>
+
+                    <span className='total-text'>
+                        Total: {get_total_amount}
+                    </span>
+                    <span className='profit-text'>
+                        Profit: {get_total_profit}
+                    </span>
+
                     <button className='btnSubmit'>
-                        Submit
+                        Checkout
                     </button>
                 </div>
             </div>
@@ -191,3 +202,5 @@ const Sales = () => {
 }
 
 export default Sales;
+
+//mamaya need to finish checkout with invoice using easyinvoice
