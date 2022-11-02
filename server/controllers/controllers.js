@@ -321,5 +321,24 @@ export const add_sales = async (req, res) => {
     }
 }
 
+export const delete_sales = async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        await OwnerModels.findByIdAndUpdate(id, {
+            $pull: {
+                sales: {
+                    _id: req.body.sales[0]._id
+                }
+            }
+        }, {
+            new: true
+        })
+    } catch (error) {
+        res.status(404).json(error);
+    }
+}
+
 
 

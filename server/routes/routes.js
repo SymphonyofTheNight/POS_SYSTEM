@@ -12,7 +12,8 @@ import {
     add_products,
     edit_product,
     delete_product,
-    add_sales
+    add_sales,
+    delete_sales
 } from '../controllers/controllers.js';
 
 //middlewares
@@ -40,5 +41,6 @@ router.patch('/Products/:id', middleware, edit_product);
 router.put('/Products/:id', middleware, delete_product);
 
 router.post('/Sales/:id', middleware, add_sales);
+router.put('/Sales/:id', middleware, delete_sales);
 
 export default router;
