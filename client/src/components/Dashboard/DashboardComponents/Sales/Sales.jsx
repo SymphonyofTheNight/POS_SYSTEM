@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
@@ -7,6 +8,8 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import { add_sales, delete_sales } from '../../../../api/api.js';
 
 const Sales = () => {
+
+    const navigate = useNavigate();
 
     // get products brandname,genericname,description/category,originalprice,sellingprice and multiply both origina
     const _get_products = useSelector(state => state.reducer.store);
@@ -192,7 +195,11 @@ const Sales = () => {
                         Profit: {get_total_profit}
                     </span>
 
-                    <button className='btnSubmit'>
+                    <button className='btnSubmit'
+                        onClick={() => {
+                            navigate('/Checkout')
+                        }}
+                    >
                         Checkout
                     </button>
                 </div>

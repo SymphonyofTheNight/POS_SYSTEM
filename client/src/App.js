@@ -10,6 +10,9 @@ import { get_db_from_api } from './controllers/actions.js';
 import Login from './components/Login/Login.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 
+//checkout component
+import Checkout from './components/Dashboard/DashboardComponents/Checkout/Checkout.jsx';
+
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -35,6 +38,7 @@ const App = () => {
         <Route path='/customer' element={<><Dashboard /></>} />
         <Route path='/Supplier' element={<><Dashboard /></>} />
         <Route path='/Report' element={<><Dashboard /></>} />
+        <Route path='/Checkout' element={<><Checkout /></>} />
       </Switch>
     </div>
   )

@@ -1,0 +1,111 @@
+@import './root.scss';
+@import './mixins.scss';
+
+.Checkout {
+    @include baseDisplay(rgb(0, 0, 0), 100vh, 100vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .innerContainer {
+        @include baseDisplay(rgb(255, 255, 255), 100vh, 100vw);
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .logoContainerDiv {
+            @include baseDisplay(none, 13vh, 100vw);
+            margin-top: 5vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            display: relative;
+
+            .logo {
+                margin-left: 4vw;
+                height: 10vh;
+            }
+
+            .text {
+                position: absolute;
+                right: 0;
+                margin-right: 10vw;
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+
+        .branchdetailsContainer {
+            @include baseDisplay(none, 10vh, 100vw);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+
+            .innerContainer-1 {
+                @include baseDisplay(none, 10vh, 30vw);
+                position: absolute;
+                left: 0;
+                margin-left: 10vw;
+                text-align: left;
+
+                .Text {
+                    font-size: .8em;
+                }
+            }
+
+            .innerContainer-2 {
+                @include baseDisplay(none, 10vh, 30vw);
+                margin: 10vw;
+                text-align: right;
+
+                .Text {
+                    font-size: .8em;
+                }
+            }
+        }
+
+        .productContainerLabels {
+            @include baseDisplay(none, 3vh, 80vw);
+            display: flex;
+            margin-top: 7vh;
+            position: relative;
+            align-items: center;
+
+            .text-1 {
+                position: absolute;
+                left: 0%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+            }
+
+            .text-2 {
+                position: absolute;
+                left: 55%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+            }
+
+            .text-3 {
+                position: absolute;
+                left: 75%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+            }
+
+            .text-4 {
+                position: absolute;
+                left: 95%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+            }
+        }
+
+        .line {
+            height: .4vh;
+            width: 80vw;
+            background: none;
+            border-top: 2px solid black;
+        }
+    }
+}
