@@ -107,5 +107,136 @@
             background: none;
             border-top: 2px solid black;
         }
+
+        .productsContainer {
+            @include baseDisplay(none, auto, 80vw);
+            display: flex;
+            flex-direction: column;
+            margin-top: 1vh;
+            position: relative;
+            align-items: center;
+
+
+            .products {
+                @include baseDisplay(none, 4vh, 80vw);
+                // border: 1px solid black;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                position: relative;
+
+                .text-1 {
+                    position: absolute;
+                    left: 0%;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: .8em;
+                }
+
+                .text-2 {
+                    position: absolute;
+                    left: 56.5%;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: .8em;
+                }
+
+                .text-3 {
+                    position: absolute;
+                    left: 75%;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: .8em;
+                }
+
+                .text-4 {
+                    position: absolute;
+                    left: 95%;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: .8em;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .line-2 {
+            height: .4vh;
+            width: 80vw;
+            background: none;
+            border-top: 2px solid black;
+        }
+
+        .SubtotalContainerLabels {
+            @include baseDisplay(red, 4vh, 80vw);
+            display: flex;
+            margin-top: 3vh;
+            position: relative;
+            align-items: center;
+
+
+
+            // .text-1 {
+            //     position: absolute;
+            //     left: 0%;
+            //     font-family: 'Poppins', sans-serif;
+            //     font-size: .8em;
+            // }
+
+            // .text-2 {
+            //     position: absolute;
+            //     left: 55%;
+            //     font-family: 'Poppins', sans-serif;
+            //     font-size: .8em;
+            // }
+
+            .text-3 {
+                position: absolute;
+                left: 75%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+            }
+
+            .text-4 {
+                position: absolute;
+                left: 95%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+            }
+        }
+
+        .VatContainerLabels {
+            @include baseDisplay(rgb(68, 162, 165), 4vh, 80vw);
+            display: flex;
+            // margin-top: 3vh;
+            position: relative;
+            align-items: center;
+
+
+
+            // .text-1 {
+            //     position: absolute;
+            //     left: 0%;
+            //     font-family: 'Poppins', sans-serif;
+            //     font-size: .8em;
+            // }
+
+            // .text-2 {
+            //     position: absolute;
+            //     left: 55%;
+            //     font-family: 'Poppins', sans-serif;
+            //     font-size: .8em;
+            // }
+
+            .text-3 {
+                position: absolute;
+                left: 75%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+            }
+
+            .text-4 {
+                position: absolute;
+                left: 95%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+            }
+        }
     }
 }
