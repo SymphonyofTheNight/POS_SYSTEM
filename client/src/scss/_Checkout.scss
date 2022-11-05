@@ -22,9 +22,14 @@
             justify-content: flex-start;
             display: relative;
 
-            .logo {
-                margin-left: 4vw;
-                height: 10vh;
+            .logoBtnPrint {
+                background: transparent;
+                border: 0px solid transparent;
+
+                .logo {
+                    margin-left: 4vw;
+                    height: 10vh;
+                }
             }
 
             .text {
@@ -164,7 +169,7 @@
         }
 
         .SubtotalContainerLabels {
-            @include baseDisplay(red, 4vh, 80vw);
+            @include baseDisplay(none, 4vh, 80vw);
             display: flex;
             margin-top: 3vh;
             position: relative;
@@ -202,7 +207,7 @@
         }
 
         .VatContainerLabels {
-            @include baseDisplay(rgb(68, 162, 165), 4vh, 80vw);
+            @include baseDisplay(none, 4vh, 80vw);
             display: flex;
             // margin-top: 3vh;
             position: relative;
@@ -236,6 +241,46 @@
                 left: 95%;
                 font-family: 'Poppins', sans-serif;
                 font-size: .8em;
+            }
+        }
+
+        .TotalContainerLabels {
+            @include baseDisplay(none, 4vh, 80vw);
+            display: flex;
+            // margin-top: 3vh;
+            position: relative;
+            align-items: center;
+
+
+
+            // .text-1 {
+            //     position: absolute;
+            //     left: 0%;
+            //     font-family: 'Poppins', sans-serif;
+            //     font-size: .8em;
+            // }
+
+            // .text-2 {
+            //     position: absolute;
+            //     left: 55%;
+            //     font-family: 'Poppins', sans-serif;
+            //     font-size: .8em;
+            // }
+
+            .text-3 {
+                position: absolute;
+                left: 75%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+                font-weight: bold;
+            }
+
+            .text-4 {
+                position: absolute;
+                left: 95%;
+                font-family: 'Poppins', sans-serif;
+                font-size: .8em;
+                font-weight: bold;
             }
         }
     }
