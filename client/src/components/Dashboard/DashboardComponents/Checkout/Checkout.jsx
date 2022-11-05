@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import '../../../../scss/_Checkout.scss';
 
@@ -13,14 +13,43 @@ const Checkout = () => {
     const _get_month = new Date().getMonth();
     const _get_year = new Date().getFullYear();
 
-    console.log(getSales[0].sales);
+    const [totalAmount, setTotalAmount] = useState();
+    const [get_vat, setGet_Vat] = useState();
+    const [get_total, setGet_Total] = useState();
+
+    useEffect(() => {
+        const total = getSales[0]?.sales.map(state => {
+            return state.amount
+        })
+
+        const reduce_total = total.reduce((prev, curr) => prev + curr, 0);
+
+        const get_total_vat = reduce_total * 0.06;
+
+        if (reduce_total && get_total_vat) {
+            setTotalAmount(reduce_total)
+            setGet_Vat(get_total_vat)
+
+            const total_to_pay = reduce_total + get_total_vat;
+
+            setGet_Total(total_to_pay);
+        }
+
+    }, [getSales])
 
     return (
         <div className='Checkout'>
             <div className='innerContainer'>
 
                 <div className='logoContainerDiv'>
-                    <img src={brandcopy} className='logo' alt='brand' />
+                    <button
+                        className='logoBtnPrint'
+                        onClick={() => {
+                            window.print()
+                        }}
+                    >
+                        <img src={brandcopy} className='logo' alt='brand' />
+                    </button>
                     <h1 className='text'>
                         INVOICE
                     </h1>
@@ -72,18 +101,22 @@ const Checkout = () => {
                 <div className='line-2' />
                 <div className='SubtotalContainerLabels'>
                     <span className='text-3'>Subtotal</span>
-                    <span className='text-4'>99999</span>
+                    <span className='text-4'>{totalAmount}</span>
                 </div>
                 <div className='VatContainerLabels'>
                     <span className='text-3'>Vat 6%</span>
-                    <span className='text-4'>99999</span>
+                    <span className='text-4'>{get_vat}</span>
                 </div>
-                <button
+                <div className='TotalContainerLabels'>
+                    <span className='text-3'>Total</span>
+                    <span className='text-4'>{get_total}</span>
+                </div>
+                {/* <button
                     onClick={() => {
                         window.print()
                     }}>
                     print
-                </button>
+                </button> */}
             </div>
         </div>
     )
