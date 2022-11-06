@@ -224,7 +224,6 @@ const Dashboard = () => {
         setOpen_Modal_Products(state => !state)
 
         navigate(0);
-
     }
 
     return (

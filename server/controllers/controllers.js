@@ -340,5 +340,25 @@ export const delete_sales = async (req, res) => {
     }
 }
 
+// sales report 
+
+export const sales_report = async (req, res) => {
+
+    const { id } = req.params;
+
+    console.log(req.body);
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
+
+        for (let i = 0; i < req.body.sales.lenght; i++) {
+            
+        }
+    } catch (error) {
+        res.status(404).json(error);
+    }
+
+}
+
 
 

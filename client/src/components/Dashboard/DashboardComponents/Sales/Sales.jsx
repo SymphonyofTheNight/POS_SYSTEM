@@ -59,11 +59,11 @@ const Sales = () => {
     useEffect(() => {
         if (_get_sales) {
             const profit = _get_sales[0]?.sales?.map(state => {
-                return state.profit
+                return state.profit * state.qty
             })
 
             const amount = _get_sales[0]?.sales?.map(state => {
-                return state.amount
+                return state.amount * state.qty
             })
 
             if (profit && amount) {
@@ -164,7 +164,7 @@ const Sales = () => {
                                         <td>{_get_sales[0].sales[key].description}</td>
                                         <td>{_get_sales[0].sales[key].qty}</td>
                                         <td>{_get_sales[0].sales[key].amount}</td>
-                                        <td>{_get_sales[0].sales[key].profit}</td>
+                                        <td>{_get_sales[0].sales[key].profit * _get_sales[0].sales[key].qty}</td>
                                         <div className='btn-container'>
                                             <button
                                                 onClick={() => {
