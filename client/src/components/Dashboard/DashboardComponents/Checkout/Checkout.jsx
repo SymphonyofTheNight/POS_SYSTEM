@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import '../../../../scss/_Checkout.scss';
 
-//logo
+// api 
+import { sales_report } from '../../../../api/api.js';
+
+// logo 
 import brandcopy from '../../../../assets/img/brandcopy.png';
 
 const Checkout = () => {
+
+    const navigate = useNavigate();
 
     const getSales = useSelector(state => state.reducer.store);
 
@@ -17,9 +23,13 @@ const Checkout = () => {
     const [get_vat, setGet_Vat] = useState();
     const [get_total, setGet_Total] = useState();
 
+    const [data, setData] = useState();
+    const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
+
     useEffect(() => {
+
         const total = getSales[0]?.sales.map(state => {
-            return state.amount
+            return state.amount * state.qty
         })
 
         const reduce_total = total.reduce((prev, curr) => prev + curr, 0);
@@ -27,6 +37,9 @@ const Checkout = () => {
         const get_total_vat = reduce_total * 0.06;
 
         if (reduce_total && get_total_vat) {
+
+            setData(getSales[0].sales)
+
             setTotalAmount(reduce_total)
             setGet_Vat(get_total_vat)
 
@@ -37,22 +50,34 @@ const Checkout = () => {
 
     }, [getSales])
 
+    const Checkout_HandleSubmit = (e) => {
+        e.preventDefault();
+        console.log(Localstorage?.result?._id, Localstorage?.token, data)
+        sales_report(Localstorage?.result?._id, Localstorage?.token, data);
+    }
+
     return (
         <div className='Checkout'>
             <div className='innerContainer'>
 
                 <div className='logoContainerDiv'>
-                    <button
-                        className='logoBtnPrint'
+                    <form onSubmit={Checkout_HandleSubmit}>
+                        <button
+                            className='logoBtnPrint'
+                            onClick={() => {
+                                window.print()
+                            }}
+                        >
+                            <img src={brandcopy} className='logo' alt='brand' />
+                        </button>
+                    </form>
+                    <button className='text'
                         onClick={() => {
-                            window.print()
+                            navigate('/dashboard')
                         }}
                     >
-                        <img src={brandcopy} className='logo' alt='brand' />
-                    </button>
-                    <h1 className='text'>
                         INVOICE
-                    </h1>
+                    </button>
                 </div>
 
                 <div className='branchdetailsContainer'>

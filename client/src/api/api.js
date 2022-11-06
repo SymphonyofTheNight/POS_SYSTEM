@@ -152,4 +152,8 @@ export const delete_sales = (owner_id, token, sales_id) => base_api.put(`/Sales/
     ]
 }, { headers: { 'Authorization': `Bearer ${token}` } })
 
+// sales report 
 
+export const sales_report = (owner_id, token, data) => base_api.post(`/Checkout/${owner_id}`, {
+    sales_report: [data]
+}, { headers: { 'Authorization': `Bearer ${token}` } })
