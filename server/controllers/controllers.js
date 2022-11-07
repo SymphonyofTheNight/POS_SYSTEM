@@ -342,17 +342,16 @@ export const delete_sales = async (req, res) => {
 
 // sales report 
 
-export const sales_reports = async (req, res) => {
+export const report_of_sales = async (req, res) => {
 
     const { id } = req.params;
-
-    console.log(req.params);
-    console.log(req.body.sales_report);
 
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
 
-        for (let i = 0; i < req.body.sales_report.lenght; i++) {
+        let i;
+
+        for (i = 0; i < req.body.sales_report.length; i++) {
             await OwnerModels.findByIdAndUpdate(id, {
                 $addToSet: {
                     sales_report: {
@@ -368,14 +367,11 @@ export const sales_reports = async (req, res) => {
                         ]
                     }
                 }
-            }, {
-                new: true, upsert: true
-            })
+            }, { new: true, upsert: true })
         }
     } catch (error) {
         res.status(404).json(error);
     }
-
 }
 
 

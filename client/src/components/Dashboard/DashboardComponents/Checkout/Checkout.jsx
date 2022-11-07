@@ -23,7 +23,7 @@ const Checkout = () => {
     const [get_vat, setGet_Vat] = useState();
     const [get_total, setGet_Total] = useState();
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState();
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
 
     useEffect(() => {

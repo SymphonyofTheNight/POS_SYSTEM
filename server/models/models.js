@@ -183,6 +183,12 @@ const model_schema = mongoose.Schema({
     ],
     sales_report: [
         {
+            _id: {
+                type: mongoose.Schema.Types.ObjectId,
+                index: true,
+                required: true,
+                auto: true,
+            },
             product_name: {
                 type: String,
                 require: true,
