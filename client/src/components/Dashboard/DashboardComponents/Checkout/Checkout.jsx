@@ -23,7 +23,7 @@ const Checkout = () => {
     const [get_vat, setGet_Vat] = useState();
     const [get_total, setGet_Total] = useState();
 
-    const [data, setData] = useState();
+    const [data, setData] = useState({});
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const Checkout = () => {
 
         if (reduce_total && get_total_vat) {
 
-            setData(getSales[0].sales)
+            setData(getSales[0]?.sales);
 
             setTotalAmount(reduce_total)
             setGet_Vat(get_total_vat)
@@ -46,6 +46,8 @@ const Checkout = () => {
             const total_to_pay = reduce_total + get_total_vat;
 
             setGet_Total(total_to_pay);
+
+            console.log(data)
         }
 
     }, [getSales])
@@ -112,7 +114,7 @@ const Checkout = () => {
 
                 <div className='productsContainer'>
                     {getSales && Object.keys(getSales[0]?.sales).map((key, value) => {
-                        console.log(getSales[0]?.sales[key])
+                        // console.log(getSales[0]?.sales[key])
                         return (
                             <div className='products'>
                                 <span className='text-1'>{getSales[0]?.sales[key]?.product_name}</span>
