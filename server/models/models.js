@@ -183,27 +183,29 @@ const model_schema = mongoose.Schema({
     ],
     sales_report: [
         {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            brand_name: {
+            product_name: {
                 type: String,
-                require: true
+                require: true,
             },
-            quantity: {
+            generic_name: {
                 type: String,
-                require: true
+                require: true,
             },
-            total_amount: {
+            description: {
                 type: String,
-                require: true
+                require: true,
             },
-            date: {
-                type: String,
-                require: true
+            qty: {
+                type: Number,
+                require: true,
+            },
+            amount: {
+                type: Number,
+                require: true,
+            },
+            profit: {
+                type: Number,
+                require: true,
             }
         }
     ]
