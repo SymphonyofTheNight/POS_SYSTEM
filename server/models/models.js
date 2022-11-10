@@ -33,6 +33,250 @@ const model_schema = mongoose.Schema({
         min: 0,
         max: 99999999,
     },
+    months: [
+        {
+            january: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            february: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            march: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            april: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            may: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            june: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            july: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            august: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            september: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            october: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            november: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            },
+            december: {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    index: true,
+                    required: true,
+                    auto: true,
+                },
+                month_digit: {
+                    type: String,
+                    require: true,
+                },
+                targetsales: {
+                    type: Number,
+                    require: true
+                },
+                sales: {
+                    type: Number,
+                    require: true
+                },
+            }
+        }
+    ],
     sales: [
         {
             _id: {
@@ -40,6 +284,10 @@ const model_schema = mongoose.Schema({
                 index: true,
                 required: true,
                 auto: true,
+            },
+            identifier: {
+                type: String,
+                require: true
             },
             product_name: {
                 type: String,
@@ -74,6 +322,10 @@ const model_schema = mongoose.Schema({
                 index: true,
                 required: true,
                 auto: true,
+            },
+            identifier: {
+                type: String,
+                require: true
             },
             brand_name: {
                 type: String,
@@ -121,6 +373,10 @@ const model_schema = mongoose.Schema({
                 required: true,
                 auto: true,
             },
+            identifier: {
+                type: String,
+                require: true
+            },
             fullname: {
                 type: String,
                 require: true
@@ -158,6 +414,10 @@ const model_schema = mongoose.Schema({
                 index: true,
                 required: true,
                 auto: true,
+            },
+            identifier: {
+                type: String,
+                require: true
             },
             supplier_name: {
                 type: String,

@@ -17,6 +17,7 @@ export const login = (admin, password) => base_api.post('/', {
 export const add_supplier = (supplier) => base_api.post(`/Supplier/${supplier._id}`, {
     supplier: [
         {
+            identifier: supplier.identifier,
             supplier_name: supplier.supplier_name,
             address: supplier.address,
             contact_person: supplier.contact_person,
@@ -29,6 +30,7 @@ export const add_supplier = (supplier) => base_api.post(`/Supplier/${supplier._i
 export const edit_supplier = (supplier) => base_api.patch(`/Supplier/${supplier._id}`, {
     supplier: [
         {
+            identifier: supplier.identifier,
             supplier_name: supplier.supplier_name,
             address: supplier.address,
             contact_person: supplier.contact_person,
@@ -51,6 +53,7 @@ export const delete_supplier = (owner_id, token, supplier_item_id) => base_api.p
 export const add_customer = (customer) => base_api.post(`/Customer/${customer._id}`, {
     customer: [
         {
+            identifier: customer.identifier,
             fullname: customer.fullname,
             address: customer.address,
             contact_number: customer.contact_number,
@@ -65,6 +68,7 @@ export const add_customer = (customer) => base_api.post(`/Customer/${customer._i
 export const edit_customer = (customer) => base_api.patch(`/Customer/${customer._id}`, {
     customer: [
         {
+            identifier: customer.identifier,
             fullname: customer.fullname,
             address: customer.address,
             contact_number: customer.contact_number,
@@ -92,6 +96,7 @@ export const delete_customer = (owner_id, token, customer_item_id) => base_api.p
 export const add_products = (products) => base_api.post(`/Products/${products._id}`, {
     products: [
         {
+            identifier: products.identifier,
             brand_name: products.brand_name,
             generic_name: products.generic_name,
             category_description: products.category_description,
@@ -108,6 +113,7 @@ export const add_products = (products) => base_api.post(`/Products/${products._i
 export const edit_products = (products) => base_api.patch(`/Products/${products._id}`, {
     products: [
         {
+            identifier: products.identifier,
             brand_name: products.brand_name,
             generic_name: products.generic_name,
             category_description: products.category_description,
@@ -131,9 +137,10 @@ export const delete_products = (owner_id, token, products_item_id) => base_api.p
 
 // sales api
 
-export const add_sales = (owner_id, token, product_name, generic_name, description, qty, amount, profit) => base_api.post(`Sales/${owner_id}`, {
+export const add_sales = (owner_id, token, identifier, product_name, generic_name, description, qty, amount, profit) => base_api.post(`Sales/${owner_id}`, {
     sales: [
         {
+            identifier: identifier,
             product_name: product_name,
             generic_name: generic_name,
             description: description,
