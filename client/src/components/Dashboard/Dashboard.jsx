@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
@@ -74,6 +75,7 @@ const Dashboard = () => {
     const [supplier, setSupplier] = useState({
         _id: Localstorage?.result?._id,
         token: Localstorage?.token,
+        identifier: uuidv4().split('-')[0],
         supplier_name: '',
         address: '',
         contact_person: '',
@@ -84,6 +86,7 @@ const Dashboard = () => {
     const [customer, setCustomer] = useState({
         _id: Localstorage?.result?._id,
         token: Localstorage?.token,
+        identifier: uuidv4().split('-')[0],
         fullname: '',
         address: '',
         contact_number: '',
@@ -96,6 +99,7 @@ const Dashboard = () => {
     const [products, setProducts] = useState({
         _id: Localstorage?.result?._id,
         token: Localstorage?.token,
+        identifier: uuidv4().split('-')[0],
         brand_name: '',
         generic_name: '',
         category_description: '',
@@ -161,7 +165,9 @@ const Dashboard = () => {
     const edit_supplier_onHandleSubmit = (e) => {
         e.preventDefault();
 
-        if (supplier._id && supplier.token && supplier.supplier_name && supplier.address && supplier.contact_number && supplier.contact_person && supplier.note) {
+        console.log(supplier);
+
+        if (supplier) {
             edit_supplier(supplier);
             setOpen_Modal_Supplier(state => !state)
 

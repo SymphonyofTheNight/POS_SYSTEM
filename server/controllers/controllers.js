@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 
 // schema
 import OwnerModels from '../models/models.js';
@@ -28,6 +28,7 @@ export const add_supplier = async (req, res) => {
             $push: {
                 supplier:
                 {
+                    identifier: req.body.supplier[0].identifier,
                     supplier_name: req.body.supplier[0].supplier_name,
                     address: req.body.supplier[0].address,
                     contact_person: req.body.supplier[0].contact_person,
@@ -56,6 +57,7 @@ export const edit_supplier = async (req, res) => {
 
         const re_submit_supplier = await OwnerModels.findByIdAndUpdate(id, {
             $set: {
+                "supplier.$[i].identifier": req.body.supplier[0].identifier,
                 "supplier.$[i].supplier_name": req.body.supplier[0].supplier_name,
                 "supplier.$[i].address": req.body.supplier[0].address,
                 "supplier.$[i].contact_person": req.body.supplier[0].contact_person,
@@ -65,7 +67,7 @@ export const edit_supplier = async (req, res) => {
         }, {
             arrayFilters: [
                 {
-                    "i.contact_number": req.body.supplier[0].contact_number,
+                    "i.identifier": req.body.supplier[0].identifier,
                 }
             ],
             returnDocument: 'after',
@@ -121,6 +123,7 @@ export const add_customer = async (req, res) => {
         await OwnerModels.findByIdAndUpdate(id, {
             $push: {
                 customer: {
+                    identifier: req.body.customer[0].identifier,
                     fullname: req.body.customer[0].fullname,
                     address: req.body.customer[0].address,
                     contact_number: req.body.customer[0].contact_number,
@@ -151,6 +154,7 @@ export const edit_customer = async (req, res) => {
 
         await OwnerModels.findByIdAndUpdate(id, {
             $set: {
+                "customer.$[i].identifier": req.body.customer[0].identifier,
                 "customer.$[i].fullname": req.body.customer[0].fullname,
                 "customer.$[i].address": req.body.customer[0].address,
                 "customer.$[i].contact_number": req.body.customer[0].contact_number,
@@ -162,7 +166,7 @@ export const edit_customer = async (req, res) => {
         }, {
             arrayFilters: [
                 {
-                    "i.contact_number": req.body.customer[0].contact_number
+                    "i.identifier": req.body.customer[0].identifier
                 }
             ],
             returnDocument: 'after',
@@ -213,6 +217,7 @@ export const add_products = async (req, res) => {
         await OwnerModels.findByIdAndUpdate(id, {
             $push: {
                 products: {
+                    identifier: req.body.products[0].identifier,
                     brand_name: req.body.products[0].brand_name,
                     generic_name: req.body.products[0].generic_name,
                     category_description: req.body.products[0].category_description,
@@ -242,6 +247,7 @@ export const edit_product = async (req, res) => {
 
         await OwnerModels.findByIdAndUpdate(id, {
             $set: {
+                "products.$[i].identifier": req.body.products[0].identifier,
                 "products.$[i].brand_name": req.body.products[0].brand_name,
                 "products.$[i].generic_name": req.body.products[0].generic_name,
                 "products.$[i].category_description": req.body.products[0].category_description,
@@ -255,7 +261,7 @@ export const edit_product = async (req, res) => {
         }, {
             arrayFilters: [
                 {
-                    "i.brand_name": req.body.products[0].brand_name
+                    "i.identifier": req.body.products[0].identifier
                 }
             ],
             returnDocument: 'after',
@@ -304,6 +310,7 @@ export const add_sales = async (req, res) => {
         await OwnerModels.findByIdAndUpdate(id, {
             $push: {
                 sales: {
+                    identifier: req.body.sales[0].identifier,
                     product_name: req.body.sales[0].product_name,
                     generic_name: req.body.sales[0].generic_name,
                     description: req.body.sales[0].description,
@@ -357,6 +364,7 @@ export const report_of_sales = async (req, res) => {
                     sales_report: {
                         $each: [
                             {
+                                identifier: req.body.sales_report[i].identifier,
                                 product_name: req.body.sales_report[i].product_name,
                                 generic_name: req.body.sales_report[i].generic_name,
                                 description: req.body.sales_report[i].description,

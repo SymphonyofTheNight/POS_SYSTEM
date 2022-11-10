@@ -38,6 +38,7 @@ const Supplier = ({
                 ...supplier,
                 _id: Localstorage?.result?._id,
                 token: Localstorage?.token,
+                identifier: findSupplier[0].identifier,
                 supplier_name: findSupplier[0].supplier_name,
                 address: findSupplier[0].address,
                 contact_person: findSupplier[0].contact_person,

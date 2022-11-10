@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FaPen, FaTrash } from 'react-icons/fa';
+import { v4 as uuidv4 } from 'uuid';
 
 // import aoi
 import { delete_products } from '../../../../api/api.js';
@@ -26,6 +27,7 @@ const Product = ({
                 ...products,
                 _id: Localstorage?.result?._id,
                 token: Localstorage?.token,
+                identifier: findProduct[0].identifier,
                 brand_name: findProduct[0].brand_name,
                 generic_name: findProduct[0].generic_name,
                 category_description: findProduct[0].category_description,

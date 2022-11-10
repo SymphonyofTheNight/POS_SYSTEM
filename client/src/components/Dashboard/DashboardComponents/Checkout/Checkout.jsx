@@ -69,6 +69,7 @@ const Checkout = () => {
                             onClick={() => {
                                 window.print()
                             }}
+                            type='submit'
                         >
                             <img src={brandcopy} className='logo' alt='brand' />
                         </button>
