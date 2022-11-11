@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line } from 'recharts';
 
 const HomeDashboard = ({ targetSales, setTargetSales }) => {
+
+    const get_months_db = useSelector(state => state.reducer.store);
+
+    console.log(get_months_db[0].months?.january.sales)
 
     const saletargets = [targetSales.january, targetSales.february, targetSales.march, targetSales.april, targetSales.may, targetSales.june, targetSales.july, targetSales.august, targetSales.september, targetSales.october, targetSales.november, targetSales.december]
 
@@ -11,73 +16,73 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
         {
             "name": "January",
             "targetsales": targetSales.january,
-            "sales": 2400,
+            "sales": get_months_db[0].months?.january?.sales,
             "amt": 2400
         },
         {
             "name": "February",
             "targetsales": targetSales.february,
-            "sales": 1398,
+            "sales": get_months_db[0].months?.february?.sales,
             "amt": 2210
         },
         {
             "name": "March",
             "targetsales": targetSales.march,
-            "sales": 9800,
+            "sales": get_months_db[0].months?.march?.sales,
             "amt": 2290
         },
         {
             "name": "April",
             "targetsales": targetSales.april,
-            "sales": 3908,
+            "sales": get_months_db[0].months?.april?.sales,
             "amt": 2000
         },
         {
             "name": "May",
             "targetsales": targetSales.may,
-            "sales": 4800,
+            "sales": get_months_db[0].months?.may?.sales,
             "amt": 2181
         },
         {
             "name": "June",
             "targetsales": targetSales.june,
-            "sales": 3800,
+            "sales": get_months_db[0].months?.june?.sales,
             "amt": 2500
         },
         {
             "name": "July",
             "targetsales": targetSales.july,
-            "sales": 4300,
+            "sales": get_months_db[0].months?.july?.sales,
             "amt": 2100
         },
         {
             "name": "August",
             "targetsales": targetSales.august,
-            "sales": 4300,
+            "sales": get_months_db[0].months?.august?.sales,
             "amt": 2100
         },
         {
             "name": "September",
             "targetsales": targetSales.september,
-            "sales": 4300,
+            "sales": get_months_db[0].months?.september?.sales,
             "amt": 2100
         },
         {
             "name": "October",
             "targetsales": targetSales.october,
-            "sales": 4300,
+            "sales": get_months_db[0].months?.october?.sales,
             "amt": 2100
         },
         {
             "name": "November",
             "targetsales": targetSales.november,
-            "sales": 4300,
+            "sales": get_months_db[0].months?.november?.sales,
             "amt": 2100
         },
         {
             "name": "December",
             "targetsales": targetSales.december,
-            "sales": 4300,
+            "sales": get_months_db[0].months?.december?.sales,
             "amt": 2100
         },
     ]
