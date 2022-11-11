@@ -26,6 +26,7 @@ const Customer = ({
                 ...customer,
                 _id: Localstorage?.result?._id,
                 token: Localstorage?.token,
+                identifier: findCustomer[0].identifier,
                 fullname: findCustomer[0].fullname,
                 address: findCustomer[0].address,
                 contact_number: findCustomer[0].contact_number,
