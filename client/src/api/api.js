@@ -7,6 +7,7 @@ export const register = (admin, password) => base_api.post('/register', {
     admin: admin,
     password: password
 })
+
 export const login = (admin, password) => base_api.post('/', {
     admin: admin,
     password: password
@@ -159,9 +160,31 @@ export const delete_sales = (owner_id, token, sales_id) => base_api.put(`/Sales/
     ]
 }, { headers: { 'Authorization': `Bearer ${token}` } })
 
-// sales report 
+// sales report
 
-export const sales_report = (owner_id, token, data) => base_api.patch(`/Checkout/${owner_id}`,
-    {
-        sales_report: data // array of objects
-    }, { headers: { 'Authorization': `Bearer ${token}` } })
+export const sales_report = (
+    owner_id,
+    token,
+    total_client,
+    total_products_sold,
+    sales_revenue,
+    month_digit,
+    targetsales,
+    sales,
+    data) => base_api.patch(`/Checkout/${owner_id}`,
+        {
+            total_client: total_client,
+            total_products_sold: total_products_sold,
+            sales_revenue: sales_revenue,
+            months: [
+                {
+                    month_digit: month_digit,
+                    targetsales: targetsales,
+                    sales: sales
+                }
+            ],
+            sales_report: data // array of objects
+        }, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    }
+    )

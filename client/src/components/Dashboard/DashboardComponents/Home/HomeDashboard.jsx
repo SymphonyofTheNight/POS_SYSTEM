@@ -6,8 +6,6 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
 
     const get_months_db = useSelector(state => state.reducer.store);
 
-    console.log(get_months_db[0].months?.january.sales)
-
     const saletargets = [targetSales.january, targetSales.february, targetSales.march, targetSales.april, targetSales.may, targetSales.june, targetSales.july, targetSales.august, targetSales.september, targetSales.october, targetSales.november, targetSales.december]
 
     const [totalSales, setTotalSales] = useState();
@@ -16,73 +14,73 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
         {
             "name": "January",
             "targetsales": targetSales.january,
-            "sales": get_months_db[0].months?.january?.sales,
+            "sales": get_months_db[0]?.months?.january?.sales,
             "amt": 2400
         },
         {
             "name": "February",
             "targetsales": targetSales.february,
-            "sales": get_months_db[0].months?.february?.sales,
+            "sales": get_months_db[0]?.months?.february?.sales,
             "amt": 2210
         },
         {
             "name": "March",
             "targetsales": targetSales.march,
-            "sales": get_months_db[0].months?.march?.sales,
+            "sales": get_months_db[0]?.months?.march?.sales,
             "amt": 2290
         },
         {
             "name": "April",
             "targetsales": targetSales.april,
-            "sales": get_months_db[0].months?.april?.sales,
+            "sales": get_months_db[0]?.months?.april?.sales,
             "amt": 2000
         },
         {
             "name": "May",
             "targetsales": targetSales.may,
-            "sales": get_months_db[0].months?.may?.sales,
+            "sales": get_months_db[0]?.months?.may?.sales,
             "amt": 2181
         },
         {
             "name": "June",
             "targetsales": targetSales.june,
-            "sales": get_months_db[0].months?.june?.sales,
+            "sales": get_months_db[0]?.months?.june?.sales,
             "amt": 2500
         },
         {
             "name": "July",
             "targetsales": targetSales.july,
-            "sales": get_months_db[0].months?.july?.sales,
+            "sales": get_months_db[0]?.months?.july?.sales,
             "amt": 2100
         },
         {
             "name": "August",
             "targetsales": targetSales.august,
-            "sales": get_months_db[0].months?.august?.sales,
+            "sales": get_months_db[0]?.months?.august?.sales,
             "amt": 2100
         },
         {
             "name": "September",
             "targetsales": targetSales.september,
-            "sales": get_months_db[0].months?.september?.sales,
+            "sales": get_months_db[0]?.months?.september?.sales,
             "amt": 2100
         },
         {
             "name": "October",
             "targetsales": targetSales.october,
-            "sales": get_months_db[0].months?.october?.sales,
+            "sales": get_months_db[0]?.months?.october?.sales,
             "amt": 2100
         },
         {
             "name": "November",
             "targetsales": targetSales.november,
-            "sales": get_months_db[0].months?.november?.sales,
+            "sales": get_months_db[0]?.months?.november?.sales,
             "amt": 2100
         },
         {
             "name": "December",
             "targetsales": targetSales.december,
-            "sales": get_months_db[0].months?.december?.sales,
+            "sales": get_months_db[0]?.months?.december?.sales,
             "amt": 2100
         },
     ]
