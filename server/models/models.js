@@ -35,7 +35,7 @@ const model_schema = mongoose.Schema({
     },
     months:
     {
-        january: {
+        0: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -58,7 +58,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        february: {
+        1: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -81,7 +81,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        march: {
+        2: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -104,7 +104,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        april: {
+        3: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -127,7 +127,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        may: {
+        4: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -150,7 +150,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        june: {
+        5: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -173,7 +173,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        july: {
+        6: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -196,7 +196,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        august: {
+        7: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -219,7 +219,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        september: {
+        8: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -242,7 +242,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        october: {
+        9: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -265,7 +265,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        november: {
+        10: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,
@@ -288,7 +288,7 @@ const model_schema = mongoose.Schema({
                 default: 0
             },
         },
-        december: {
+        11: {
             _id: {
                 type: mongoose.Schema.Types.ObjectId,
                 index: true,

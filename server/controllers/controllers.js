@@ -353,6 +353,8 @@ export const report_of_sales = async (req, res) => {
 
     const { id } = req.params;
 
+    console.log(req.body);
+
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
 
@@ -360,6 +362,19 @@ export const report_of_sales = async (req, res) => {
 
         for (i = 0; i < req.body.sales_report.length; i++) {
             await OwnerModels.findByIdAndUpdate(id, {
+
+                $inc: {
+                    total_clients: + 1,
+                    total_product_sold: req.body.sales_report[i].qty,
+                    sales_revenue: req.body.sales_report[i].amount
+                },
+
+                $set: {
+                    "months.$[s].month_digit": req.body.months[i].month_digit,
+                    "months.$[s].targetsales": req.body.months[i].targetsales,
+                    "months.$[s].sales": req.body.months[i].sales,
+                },
+
                 $addToSet: {
                     sales_report: {
                         $each: [
@@ -375,6 +390,15 @@ export const report_of_sales = async (req, res) => {
                         ]
                     }
                 }
+
+            }, {
+                arrayFilters: [
+                    {
+                        "s.month_digit": req.body.months[i].month_digit
+                    }
+                ],
+                returnDocument: 'after',
+                safe: true,
             }, { new: true, upsert: true })
         }
     } catch (error) {
