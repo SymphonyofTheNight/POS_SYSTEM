@@ -10,77 +10,79 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
 
     const [totalSales, setTotalSales] = useState();
 
+    console.log(get_months_db)
+
     const data = [
         {
             "name": "January",
-            "targetsales": targetSales.january,
-            "sales": get_months_db[0]?.months?.january?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.january,
             "amt": 2400
         },
         {
             "name": "February",
-            "targetsales": targetSales.february,
-            "sales": get_months_db[0]?.months?.february?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.february,
             "amt": 2210
         },
         {
             "name": "March",
-            "targetsales": targetSales.march,
-            "sales": get_months_db[0]?.months?.march?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.march,
             "amt": 2290
         },
         {
             "name": "April",
-            "targetsales": targetSales.april,
-            "sales": get_months_db[0]?.months?.april?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.april,
             "amt": 2000
         },
         {
             "name": "May",
-            "targetsales": targetSales.may,
-            "sales": get_months_db[0]?.months?.may?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.may,
             "amt": 2181
         },
         {
             "name": "June",
-            "targetsales": targetSales.june,
-            "sales": get_months_db[0]?.months?.june?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.june,
             "amt": 2500
         },
         {
             "name": "July",
-            "targetsales": targetSales.july,
-            "sales": get_months_db[0]?.months?.july?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.july,
             "amt": 2100
         },
         {
             "name": "August",
-            "targetsales": targetSales.august,
-            "sales": get_months_db[0]?.months?.august?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.august,
             "amt": 2100
         },
         {
             "name": "September",
-            "targetsales": targetSales.september,
-            "sales": get_months_db[0]?.months?.september?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.september,
             "amt": 2100
         },
         {
             "name": "October",
-            "targetsales": targetSales.october,
-            "sales": get_months_db[0]?.months?.october?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.october,
             "amt": 2100
         },
         {
             "name": "November",
-            "targetsales": targetSales.november,
-            "sales": get_months_db[0]?.months?.november?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.november,
             "amt": 2100
         },
         {
             "name": "December",
-            "targetsales": targetSales.december,
-            "sales": get_months_db[0]?.months?.december?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.december,
             "amt": 2100
         },
     ]
