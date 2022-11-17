@@ -11,308 +11,92 @@ const model_schema = mongoose.Schema({
     },
     total_profit: {
         type: Number,
-        default: true,
+        require: true,
+        default: 0,
         min: 0,
         max: 99999999,
     },
     sales_revenue: {
         type: Number,
-        default: true,
+        require: true,
+        default: 0,
         min: 0,
         max: 99999999,
     },
     total_product_sold: {
         type: Number,
-        default: true,
+        require: true,
+        default: 0,
         min: 0,
         max: 99999999,
     },
     total_clients: {
         type: Number,
-        default: true,
+        require: true,
+        default: 0,
         min: 0,
         max: 99999999,
     },
-    months:
-    {
-        0: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        1: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 1
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        2: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 2
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        3: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 3
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        4: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 4
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        5: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 5
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        6: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 6
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        7: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 7
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        8: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 8
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        9: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 9
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        10: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 10
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        },
-        11: {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                index: true,
-                required: true,
-                auto: true,
-            },
-            month_digit: {
-                type: Number,
-                require: true,
-                default: 11
-            },
-            targetsales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-            sales: {
-                type: Number,
-                require: true,
-                default: 0
-            },
-        }
-    }
-    ,
+    january: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    february: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    march: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    april: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    may: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    june: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    july: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    august: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    september: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    october: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    november: {
+        type: Number,
+        require: true,
+        default: 0
+    },
+    december: {
+        type: Number,
+        require: true,
+        default: 0
+    },
     sales: [
         {
             _id: {

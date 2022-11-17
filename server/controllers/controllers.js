@@ -353,6 +353,8 @@ export const report_of_sales = async (req, res) => {
 
     const { id } = req.params;
 
+    // const target_month = req.body.months;
+
     console.log(req.body);
 
     try {
@@ -360,46 +362,73 @@ export const report_of_sales = async (req, res) => {
 
         let i;
 
+        const months_string = [
+            "january",
+            "february",
+            "march",
+            "april",
+            "may",
+            "june",
+            "july",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december"
+        ]
+
         for (i = 0; i < req.body.sales_report.length; i++) {
-            await OwnerModels.findByIdAndUpdate(id, {
 
-                $inc: {
-                    total_clients: + 1,
-                    total_product_sold: req.body.sales_report[i].qty,
-                    sales_revenue: req.body.sales_report[i].amount
-                },
+            const _month = new Date().getMonth();
 
-                $set: {
-                    "months.$[s].month_digit": req.body.months[i].month_digit,
-                    "months.$[s].targetsales": req.body.months[i].targetsales,
-                    "months.$[s].sales": req.body.months[i].sales,
-                },
+            var db_month = months_string[_month];
 
-                $addToSet: {
-                    sales_report: {
-                        $each: [
-                            {
-                                identifier: req.body.sales_report[i].identifier,
-                                product_name: req.body.sales_report[i].product_name,
-                                generic_name: req.body.sales_report[i].generic_name,
-                                description: req.body.sales_report[i].description,
-                                qty: req.body.sales_report[i].qty,
-                                amount: req.body.sales_report[i].amount,
-                                profit: req.body.sales_report[i].profit
-                            }
-                        ]
+            await OwnerModels.findByIdAndUpdate(id,
+                {
+
+                    $inc: {
+                        total_clients: 1,
+                        total_product_sold: req.body.sales_report[i].qty,
+                        sales_revenue: req.body.sales_report[i].amount,
+                        [db_month]: req.body.sales_report[i].amount * req.body.sales_report[i].qty
+                        // [db_month]: {
+                        //     sales: req.body.sales_report[i].amount * req.body.sales_report[i].qty
+                        // }
+                    },
+
+                    // $set: {
+                    //     "months.$[s].month_digit": req.body.months[i].month_digit,
+                    //     "months.$[s].targetsales": req.body.months[i].targetsales,
+                    //     "months.$[s].sales": req.body.months[i].sales,
+                    // },
+
+                    $addToSet: {
+                        sales_report: {
+                            $each: [
+                                {
+                                    identifier: req.body.sales_report[i].identifier,
+                                    product_name: req.body.sales_report[i].product_name,
+                                    generic_name: req.body.sales_report[i].generic_name,
+                                    description: req.body.sales_report[i].description,
+                                    qty: req.body.sales_report[i].qty,
+                                    amount: req.body.sales_report[i].amount,
+                                    profit: req.body.sales_report[i].profit
+                                }
+                            ]
+                        }
                     }
-                }
 
-            }, {
-                arrayFilters: [
-                    {
-                        "s.month_digit": req.body.months[i].month_digit
-                    }
-                ],
-                returnDocument: 'after',
-                safe: true,
-            }, { new: true, upsert: true })
+                },
+                // {
+                //     arrayFilters: [
+                //         {
+                //             "s.month_digit": req.body.months[i].month_digit
+                //         }
+                //     ],
+                //     returnDocument: 'after',
+                //     safe: true,
+                // }, 
+                { new: true, upsert: true })
         }
     } catch (error) {
         res.status(404).json(error);
