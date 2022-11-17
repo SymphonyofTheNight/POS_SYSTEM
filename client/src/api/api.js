@@ -165,24 +165,18 @@ export const delete_sales = (owner_id, token, sales_id) => base_api.put(`/Sales/
 export const sales_report = (
     owner_id,
     token,
-    total_client,
-    total_products_sold,
-    sales_revenue,
-    month_digit,
-    targetsales,
-    sales,
+    // month_digit,
+    // targetsales,
+    // sales,
     data) => base_api.patch(`/Checkout/${owner_id}`,
         {
-            total_client: total_client,
-            total_products_sold: total_products_sold,
-            sales_revenue: sales_revenue,
-            months: [
-                {
-                    month_digit: month_digit,
-                    targetsales: targetsales,
-                    sales: sales
-                }
-            ],
+            // months: [
+            //     {
+            //         month_digit: month_digit,
+            //         targetsales: targetsales,
+            //         sales: sales
+            //     }
+            // ],
             sales_report: data // array of objects
         }, {
         headers: { 'Authorization': `Bearer ${token}` }

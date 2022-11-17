@@ -71,23 +71,17 @@ const Checkout = () => {
 
         console.log(Localstorage?.result?._id,
             Localstorage?.token,
-            1,
-            get_total_qty,
-            get_revenue,
-            _get_month,
-            75000,
-            get_revenue,
+            // _get_month,
+            // 75000,
+            // get_revenue,
             data);
 
         sales_report(
             Localstorage?.result?._id,
             Localstorage?.token,
-            1,
-            get_total_qty,
-            get_revenue,
-            _get_month,
-            75000,
-            get_revenue,
+            // _get_month,
+            // 75000,
+            // get_revenue,
             data);
 
     }
