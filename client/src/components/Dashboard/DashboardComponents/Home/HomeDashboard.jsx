@@ -5,6 +5,7 @@ import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line } from 'r
 const HomeDashboard = ({ targetSales, setTargetSales }) => {
 
     const get_months_db = useSelector(state => state.reducer.store);
+    const get_records = useSelector(state => state.reducer.store);
 
     const saletargets = [targetSales.january, targetSales.february, targetSales.march, targetSales.april, targetSales.may, targetSales.june, targetSales.july, targetSales.august, targetSales.september, targetSales.october, targetSales.november, targetSales.december]
 
@@ -13,74 +14,74 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
     const data = [
         {
             "name": "January",
-            "targetsales": targetSales.january,
-            "sales": get_months_db[0]?.months?.january?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.january,
             "amt": 2400
         },
         {
             "name": "February",
-            "targetsales": targetSales.february,
-            "sales": get_months_db[0]?.months?.february?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.february,
             "amt": 2210
         },
         {
             "name": "March",
-            "targetsales": targetSales.march,
-            "sales": get_months_db[0]?.months?.march?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.march,
             "amt": 2290
         },
         {
             "name": "April",
-            "targetsales": targetSales.april,
-            "sales": get_months_db[0]?.months?.april?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.april,
             "amt": 2000
         },
         {
             "name": "May",
-            "targetsales": targetSales.may,
-            "sales": get_months_db[0]?.months?.may?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.may,
             "amt": 2181
         },
         {
             "name": "June",
-            "targetsales": targetSales.june,
-            "sales": get_months_db[0]?.months?.june?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.june,
             "amt": 2500
         },
         {
             "name": "July",
-            "targetsales": targetSales.july,
-            "sales": get_months_db[0]?.months?.july?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.july,
             "amt": 2100
         },
         {
             "name": "August",
-            "targetsales": targetSales.august,
-            "sales": get_months_db[0]?.months?.august?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.august,
             "amt": 2100
         },
         {
             "name": "September",
-            "targetsales": targetSales.september,
-            "sales": get_months_db[0]?.months?.september?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.september,
             "amt": 2100
         },
         {
             "name": "October",
-            "targetsales": targetSales.october,
-            "sales": get_months_db[0]?.months?.october?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.october,
             "amt": 2100
         },
         {
             "name": "November",
-            "targetsales": targetSales.november,
-            "sales": get_months_db[0]?.months?.november?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.november,
             "amt": 2100
         },
         {
             "name": "December",
-            "targetsales": targetSales.december,
-            "sales": get_months_db[0]?.months?.december?.sales,
+            "targetsales": 0,
+            "sales": get_months_db[0]?.december,
             "amt": 2100
         },
     ]
@@ -99,7 +100,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
             <div className='data-statistics-container'>
                 <div className='chart'>
                     <span className='value-text'>
-                        PHP 5000
+                        {get_records[0]?.total_profit}
                     </span>
                     <span className='category-text'>
                         Total Profit
@@ -107,7 +108,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                 </div>
                 <div className='chart-2'>
                     <span className='value-text'>
-                        PHP 5000
+                        {get_records[0]?.sales_revenue}
                     </span>
                     <span className='category-text'>
                         Sales Revenue
@@ -115,7 +116,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                 </div>
                 <div className='chart-3'>
                     <span className='value-text'>
-                        PCs 5000
+                        {get_records[0]?.total_product_sold}
                     </span>
                     <span className='category-text'>
                         Total Products Sold
@@ -123,7 +124,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                 </div>
                 <div className='chart-4'>
                     <span className='value-text'>
-                        Customer 5000
+                        {get_records[0]?.customer?.length}
                     </span>
                     <span className='category-text'>
                         Total Customer

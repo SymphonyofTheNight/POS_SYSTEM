@@ -182,3 +182,5 @@ export const sales_report = (
         headers: { 'Authorization': `Bearer ${token}` }
     }
     )
+
+export const empty_sales = (owner_id) => base_api.put(`/Checkout/${owner_id}`, { sales: [] });

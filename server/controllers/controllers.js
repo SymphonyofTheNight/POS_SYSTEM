@@ -308,6 +308,7 @@ export const add_sales = async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
 
         await OwnerModels.findByIdAndUpdate(id, {
+
             $push: {
                 sales: {
                     identifier: req.body.sales[0].identifier,
@@ -318,10 +319,24 @@ export const add_sales = async (req, res) => {
                     amount: req.body.sales[0].amount,
                     profit: req.body.sales[0].profit
                 }
-            }
-        }, {
-            new: true
-        })
+            },
+
+            // $set: {
+            //     "products.$[i].identifier": req.body.products[0].identifier,
+            //     "products.$[i].quantity": req.body.products[0].quantity
+            // },
+
+        },
+            // {
+            //     arrayFilters: [
+            //         {
+            //             "i.identifier": req.body.products[0].identifier
+            //         }
+            //     ]
+            // }, 
+            {
+                new: true
+            })
 
     } catch (error) {
         res.status(404).json(error);
@@ -387,9 +402,9 @@ export const report_of_sales = async (req, res) => {
                 {
 
                     $inc: {
-                        total_clients: 1,
                         total_product_sold: req.body.sales_report[i].qty,
                         sales_revenue: req.body.sales_report[i].amount,
+                        total_profit: req.body.sales_report[i].profit * req.body.sales_report[i].qty,
                         [db_month]: req.body.sales_report[i].amount * req.body.sales_report[i].qty
                         // [db_month]: {
                         //     sales: req.body.sales_report[i].amount * req.body.sales_report[i].qty
@@ -432,6 +447,27 @@ export const report_of_sales = async (req, res) => {
         }
     } catch (error) {
         res.status(404).json(error);
+    }
+}
+
+export const empty_sales = async (req, res) => {
+
+    const { id } = req.params;
+
+    console.log(req.body)
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
+
+        await OwnerModels.findByIdAndUpdate(id, {
+            $set: {
+                sales: []
+            }
+        }
+            , { new: true })
+
+    } catch (error) {
+        res.status(404).json(error)
     }
 }
 

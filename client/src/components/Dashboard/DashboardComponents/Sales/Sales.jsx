@@ -74,7 +74,7 @@ const Sales = () => {
         }
     }, [_get_sales])
 
-    console.log(get_total_profit)
+    console.log({ message: get_total_profit })
 
     // fix tommorow add object into use state array 
 
