@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../../../scss/_Checkout.scss';
 
 // api 
-import { sales_report } from '../../../../api/api.js';
+import { sales_report, empty_sales } from '../../../../api/api.js';
 
 // logo 
 import brandcopy from '../../../../assets/img/brandcopy.png';
@@ -104,8 +104,12 @@ const Checkout = () => {
                     </form>
                     <button className='text'
                         onClick={() => {
+                            empty_sales(Localstorage?.result?._id)
                             navigate('/dashboard')
+                            window.location.reload();
+                            // create request to empty the sales
                         }}
+                        type='submit'
                     >
                         INVOICE
                     </button>

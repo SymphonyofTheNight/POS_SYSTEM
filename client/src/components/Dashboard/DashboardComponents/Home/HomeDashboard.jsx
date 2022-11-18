@@ -5,12 +5,11 @@ import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line } from 'r
 const HomeDashboard = ({ targetSales, setTargetSales }) => {
 
     const get_months_db = useSelector(state => state.reducer.store);
+    const get_records = useSelector(state => state.reducer.store);
 
     const saletargets = [targetSales.january, targetSales.february, targetSales.march, targetSales.april, targetSales.may, targetSales.june, targetSales.july, targetSales.august, targetSales.september, targetSales.october, targetSales.november, targetSales.december]
 
     const [totalSales, setTotalSales] = useState();
-
-    console.log(get_months_db)
 
     const data = [
         {
@@ -101,7 +100,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
             <div className='data-statistics-container'>
                 <div className='chart'>
                     <span className='value-text'>
-                        PHP 5000
+                        {get_records[0]?.total_profit}
                     </span>
                     <span className='category-text'>
                         Total Profit
@@ -109,7 +108,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                 </div>
                 <div className='chart-2'>
                     <span className='value-text'>
-                        PHP 5000
+                        {get_records[0]?.sales_revenue}
                     </span>
                     <span className='category-text'>
                         Sales Revenue
@@ -117,7 +116,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                 </div>
                 <div className='chart-3'>
                     <span className='value-text'>
-                        PCs 5000
+                        {get_records[0]?.total_product_sold}
                     </span>
                     <span className='category-text'>
                         Total Products Sold
@@ -125,7 +124,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                 </div>
                 <div className='chart-4'>
                     <span className='value-text'>
-                        Customer 5000
+                        {get_records[0]?.customer?.length}
                     </span>
                     <span className='category-text'>
                         Total Customer
