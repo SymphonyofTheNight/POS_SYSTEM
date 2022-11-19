@@ -56,31 +56,17 @@ const Supplier = ({
                         Supplier
                     </span>
                 </div>
-                <div className='select-container'>
+                {/* <div className='select-container'>
                     <select className="form-select" aria-label="Default select example">
                         <option defaultValue='Open this select menu'>Open this select menu</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
-                    <button className='addBtn'
-                        onClick={() => {
-                            setOpen_Modal_Supplier(state => !state)
-                            setCheck_If_Edit(false)
-                            setModalTitle('Add Supplier')
-                            setSupplier({
-                                ...supplier,
-                                supplier_name: '',
-                                address: '',
-                                contact_person: '',
-                                contact_number: '',
-                                note: ''
-                            });
-                        }}
-                    >
+                    <button className='addBtn'>
                         Add
                     </button>
-                </div>
+                </div> */}
                 <div className='table-container'>
                     <table className="table">
                         <thead>
@@ -156,8 +142,22 @@ const Supplier = ({
                     </table>
                 </div>
                 <div className='btn-submit-container'>
-                    <button className='btnSubmit'>
-                        Submit
+                    <button className='btnSubmit'
+                        onClick={() => {
+                            setOpen_Modal_Supplier(state => !state)
+                            setCheck_If_Edit(false)
+                            setModalTitle('Add Supplier')
+                            setSupplier({
+                                ...supplier,
+                                supplier_name: '',
+                                address: '',
+                                contact_person: '',
+                                contact_number: '',
+                                note: ''
+                            });
+                        }}
+                    >
+                        Add
                     </button>
                 </div>
             </div>
