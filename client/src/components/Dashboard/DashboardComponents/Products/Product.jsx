@@ -59,7 +59,7 @@ const Product = ({
                         Products
                     </span>
                 </div>
-                <div className='select-container'>
+                {/* <div className='select-container'>
                     <select className="form-select" aria-label="Default select example">
                         <option defaultValue="Open this select menu">Open this select menu</option>
                         <option value="1">One</option>
@@ -67,27 +67,11 @@ const Product = ({
                         <option value="3">Three</option>
                     </select>
                     <button className='addBtn'
-                        onClick={() => {
-                            setOpen_Modal_Products(state => !state)
-                            setCheck_If_Edit(false)
-                            setModalTitle('Add Product')
-                            setProducts({
-                                ...products,
-                                brand_name: '',
-                                generic_name: '',
-                                category_description: '',
-                                supplier: '',
-                                added_date: '',
-                                expiration_date: '',
-                                original_price: '',
-                                selling_price: '',
-                                quantity: ''
-                            });
-                        }}
+                       
                     >
                         Add
                     </button>
-                </div>
+                </div> */}
                 <div className='table-container'>
                     <table className="table">
                         <thead>
@@ -171,8 +155,26 @@ const Product = ({
                     </table>
                 </div>
                 <div className='btn-submit-container'>
-                    <button className='btnSubmit'>
-                        Submit
+                    <button className='btnSubmit'
+                        onClick={() => {
+                            setOpen_Modal_Products(state => !state)
+                            setCheck_If_Edit(false)
+                            setModalTitle('Add Product')
+                            setProducts({
+                                ...products,
+                                brand_name: '',
+                                generic_name: '',
+                                category_description: '',
+                                supplier: '',
+                                added_date: '',
+                                expiration_date: '',
+                                original_price: '',
+                                selling_price: '',
+                                quantity: ''
+                            });
+                        }}
+                    >
+                        Add
                     </button>
                 </div>
             </div>
