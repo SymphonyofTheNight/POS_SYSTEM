@@ -224,6 +224,11 @@ const model_schema = mongoose.Schema({
             due_date: {
                 type: String,
                 require: true
+            },
+            points: {
+                type: Number,
+                require: true,
+                default: 0
             }
         }
     ],

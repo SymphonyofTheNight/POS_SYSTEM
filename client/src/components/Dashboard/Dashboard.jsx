@@ -4,7 +4,18 @@ import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
-import { FaTimes, FaBars, FaTachometerAlt, FaShoppingCart, FaTable, FaUser, FaTruck, FaChartBar, FaSignOutAlt } from 'react-icons/fa';
+import {
+    FaTimes,
+    FaBars,
+    FaTachometerAlt,
+    FaShoppingCart,
+    FaTable,
+    FaUser,
+    FaTruck,
+    FaChartBar,
+    FaSignOutAlt,
+    FaChartLine
+} from 'react-icons/fa';
 
 // Dashboard Components
 import HomeDashboard from './DashboardComponents/Home/HomeDashboard';
@@ -13,6 +24,9 @@ import Products from './DashboardComponents/Products/Product';
 import Customer from './DashboardComponents/Customer/Customer';
 import Supplier from './DashboardComponents/Supplier/Supplier';
 import SalesReport from './DashboardComponents/SalesReport/SalesReport';
+
+// admin settings component
+import AdminSettings from './DashboardComponents/AdminSettings/AdminSettings';
 
 // action thunk 
 // import { add_supplier } from '../../controllers/actions.js';
@@ -25,12 +39,14 @@ import '../../scss/_Dashboard.scss';
 
 const Dashboard = () => {
 
+    const [open_modal_admin_settings, setOpen_Modal_Admin_Settings] = useState(false);
     const [open_modal_supplier, setOpen_Modal_Supplier] = useState(false);
     const [open_modal_customer, setOpen_Modal_Customer] = useState(false);
     const [open_modal_products, setOpen_Modal_Products] = useState(false);
     const [check_if_edit, setCheck_If_Edit] = useState(false);
     // const [check_if_add, setCheck_If_Add] = useState(false);
-    const [getId, setGetId] = useState(); // get id of product
+    const [getId] = useState(); // get id of product
+    const [increment, setIncrement] = useState(0); // increment point system
     const [modaltitle, setModalTitle] = useState(''); // modal title 
 
     // const findSupplier = useSelector(state => getId ? state.reducer?.store?.map(val => val.supplier.find(sup => sup._id === getId)) : null);
@@ -335,6 +351,18 @@ const Dashboard = () => {
                             Sales report
                         </span>
                     </button>
+                    <button className='btn-1'
+                        onClick={() => {
+                            setComponent(<SalesReport />)
+                            setNav('/Report')
+                            navigate('/Report')
+                        }}
+                    >
+                        <FaChartLine className='chartIcon' />
+                        <span className='text'>
+                            Activity Log
+                        </span>
+                    </button>
                 </div>
                 <button className='btnLogout'
                     onClick={() => {
@@ -367,7 +395,12 @@ const Dashboard = () => {
                         >
                             Dashboard
                         </button>
-                        <button className='SettingsBtn'>
+                        <button className='SettingsBtn'
+                            onClick={() => {
+                                navigate('/Settings')
+                                setComponent(<AdminSettings />)
+                            }}
+                        >
                             Settings
                         </button>
 
@@ -540,6 +573,22 @@ const Dashboard = () => {
                                             setCustomer({ ...customer, note: e.target.value })
                                         }} />
                                 </div>
+                                {check_if_edit ? (
+                                    <div className='due_date-container'>
+                                        <span className='text'>Points: </span>
+                                        <input className='due_date-form'
+                                            value={check_if_edit ? increment : increment}
+                                            type='number'
+                                            placeholder='click any'
+                                            onChange={(e) => {
+                                                setIncrement(e.target.value)
+                                            }} />
+                                    </div>
+                                ) : (
+                                    <>
+
+                                    </>
+                                )}
                                 <div className='due_date-container'>
                                     <span className='text'>Due date: </span>
                                     <input className='due_date-form'

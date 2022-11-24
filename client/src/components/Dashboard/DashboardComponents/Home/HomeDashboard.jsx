@@ -99,21 +99,27 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
         <div className='Home'>
             <div className='data-statistics-container'>
                 <div className='chart'>
-                    <span className='value-text'>
-                        {get_records[0]?.total_profit}
+                    <span className='product-label'>
+                        Lowest Product Quantity 
                     </span>
-                    <span className='category-text'>
-                        Total Profit
+                    <span className='product-lowest-title-text'>
+                        {/* {get_records[0]?.total_profit} */}
+                    </span>
+                    <span className='product-count-text'>
+                        {/* Total Profit */}
+                    </span>
+                    <span>
+
                     </span>
                 </div>
-                <div className='chart-2'>
+                {/* <div className='chart-2'>
                     <span className='value-text'>
                         {get_records[0]?.sales_revenue}
                     </span>
                     <span className='category-text'>
                         Sales Revenue
                     </span>
-                </div>
+                </div> */}
                 <div className='chart-3'>
                     <span className='value-text'>
                         {get_records[0]?.total_product_sold}

@@ -286,14 +286,24 @@
                     margin-top: 3vh;
 
                     .chart {
-                        @include baseDisplay(rgb(152, 45, 240), 18vh, 300px);
+                        @include baseDisplay(rgb(152, 45, 240), 18vh, 660px);
                         border-radius: 4px;
                         position: relative;
                         // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
 
-                        .value-text {
+                        .product-label {
                             position: absolute;
                             top: 10%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: .9em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+
+                        .product-lowest-title-text {
+                            position: absolute;
+                            top: 18%;
                             left: 1vw;
                             font-family: $--text-font;
                             font-size: 1.5em;
@@ -301,9 +311,9 @@
                             color: rgb(241, 241, 241);
                         }
 
-                        .category-text {
+                        .product-count-text {
                             position: absolute;
-                            top: 30%;
+                            top: 60%;
                             left: 1vw;
                             font-family: $--text-font;
                             font-size: 1em;
@@ -311,31 +321,31 @@
                         }
                     }
 
-                    .chart-2 {
-                        @include baseDisplay(rgb(36, 137, 196), 18vh, 300px);
-                        border-radius: 4px;
-                        position: relative;
-                        // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+                    // .chart-2 {
+                    //     @include baseDisplay(rgb(36, 137, 196), 18vh, 300px);
+                    //     border-radius: 4px;
+                    //     position: relative;
+                    //     // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
 
-                        .value-text {
-                            position: absolute;
-                            top: 10%;
-                            left: 1vw;
-                            font-family: $--text-font;
-                            font-size: 1.5em;
-                            font-weight: bold;
-                            color: rgb(241, 241, 241);
-                        }
+                    //     .value-text {
+                    //         position: absolute;
+                    //         top: 10%;
+                    //         left: 1vw;
+                    //         font-family: $--text-font;
+                    //         font-size: 1.5em;
+                    //         font-weight: bold;
+                    //         color: rgb(241, 241, 241);
+                    //     }
 
-                        .category-text {
-                            position: absolute;
-                            top: 30%;
-                            left: 1vw;
-                            font-family: $--text-font;
-                            font-size: 1em;
-                            color: rgb(241, 241, 241);
-                        }
-                    }
+                    //     .category-text {
+                    //         position: absolute;
+                    //         top: 30%;
+                    //         left: 1vw;
+                    //         font-family: $--text-font;
+                    //         font-size: 1em;
+                    //         color: rgb(241, 241, 241);
+                    //     }
+                    // }
 
                     .chart-3 {
                         @include baseDisplay(rgb(226, 162, 43), 18vh, 300px);
@@ -1048,6 +1058,79 @@
                     }
                 }
             }
+
+            .AdminSettings-Container {
+                @include baseDisplay(none, 75vh, 1280px);
+                display: flex;
+                // align-items: flex-start;
+                flex-direction: row;
+                // flex-wrap: wrap;
+                // overflow-y: scroll;
+
+                .innerContainer {
+                    @include baseDisplay(rgb(255, 255, 255), 40vh, 1280px);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 0vh;
+                    position: relative;
+
+                    .page-title-container {
+                        @include baseDisplay($--bg-div-color, 8vh, 1280px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        position: absolute;
+                        top: 0;
+
+                        .text {
+                            font-family: $--text-font;
+                            font-size: 1.5em;
+                            margin-left: 1vw;
+                            color: #0e6cb9;
+                        }
+                    }
+
+                    .edit-form-container {
+                        @include baseDisplay(red, 14vh, 1280px);
+                        margin-top: 5vh;
+                        display: flex;
+                        flex-direction: row;
+
+                        .username-form {
+                            background: rgba($color: #8ba126, $alpha: 1.0);
+                            height: 17vh;
+                            width: 640px;
+                            position: relative;
+
+                            .text-label {
+                                font-family: 'Poppins', sans-serif;
+                                font-size: 1em;
+                                position: absolute;
+                                margin-left: 1.5vw;
+                                top: 5%;
+                            }
+
+                        }
+
+                        .password-form {
+                            background: rgba($color: #179b68, $alpha: 1.0);
+                            height: 17vh;
+                            width: 640px;
+                            position: relative;
+
+                            .text-label {
+                                font-family: 'Poppins', sans-serif;
+                                font-size: 1em;
+                                position: absolute;
+                                margin-left: 1.5vw;
+                                top: 5%;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -1467,8 +1550,8 @@
                 }
 
                 .note-container {
-                    background: rgba($color: #ad6819, $alpha: 0);
-                    height: 20vh;
+                    background: rgba($color: #ad6819, $alpha: 1);
+                    height: 10vh;
                     width: 30vw;
                     display: grid;
                     align-items: flex-end;
@@ -1477,7 +1560,7 @@
 
                     .note-form {
                         margin-left: 1.5vw;
-                        height: 17vh;
+                        height: 7vh;
                         width: 20vw;
                         outline: none;
                         padding: 0px 12px;
