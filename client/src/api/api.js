@@ -51,7 +51,7 @@ export const delete_supplier = (owner_id, token, supplier_item_id) => base_api.p
 
 // customer api
 
-export const add_customer = (customer) => base_api.post(`/Customer/${customer._id}`, {
+export const add_customer = (customer, points) => base_api.post(`/Customer/${customer._id}`, {
     customer: [
         {
             identifier: customer.identifier,
@@ -61,12 +61,13 @@ export const add_customer = (customer) => base_api.post(`/Customer/${customer._i
             product_name: customer.product_name,
             total: customer.total,
             note: customer.note,
-            due_date: customer.due_date
+            due_date: customer.due_date,
+            points: points
         }
     ]
 }, { headers: { 'Authorization': `Bearer ${customer.token}` } });
 
-export const edit_customer = (customer) => base_api.patch(`/Customer/${customer._id}`, {
+export const edit_customer = (customer, points) => base_api.patch(`/Customer/${customer._id}`, {
     customer: [
         {
             identifier: customer.identifier,
@@ -76,7 +77,8 @@ export const edit_customer = (customer) => base_api.patch(`/Customer/${customer.
             product_name: customer.product_name,
             total: customer.total,
             note: customer.note,
-            due_date: customer.due_date
+            due_date: customer.due_date,
+            points: points
         }
     ]
 }, { headers: { 'Authorization': `Bearer ${customer.token}` } })
