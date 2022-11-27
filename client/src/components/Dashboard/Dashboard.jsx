@@ -39,7 +39,8 @@ import '../../scss/_Dashboard.scss';
 
 const Dashboard = () => {
 
-    const [open_modal_admin_settings, setOpen_Modal_Admin_Settings] = useState(false);
+    const [open_modal_admin_setting, setOpen_Modal_Admin_Setting] = useState(false);
+    const [open_modal_admin_setting_2, setOpen_Modal_Admin_Setting_2] = useState(false);
     const [open_modal_supplier, setOpen_Modal_Supplier] = useState(false);
     const [open_modal_customer, setOpen_Modal_Customer] = useState(false);
     const [open_modal_products, setOpen_Modal_Products] = useState(false);
@@ -125,6 +126,18 @@ const Dashboard = () => {
         original_price: '',
         selling_price: '',
         quantity: ''
+    })
+
+    const [changeuser, setChangeuser] = useState({
+        username: '',
+        password: '',
+        newusername: ''
+    })
+
+    const [changepass, setChangepass] = useState({
+        password: '',
+        newpassword: '',
+        repeatpassword: ''
     })
 
     const _date_month = new Date().getMonth();
@@ -398,7 +411,7 @@ const Dashboard = () => {
                         <button className='SettingsBtn'
                             onClick={() => {
                                 navigate('/Settings')
-                                setComponent(<AdminSettings />)
+                                setComponent(<AdminSettings setOpen_Modal_Admin_Setting={setOpen_Modal_Admin_Setting} setOpen_Modal_Admin_Setting_2={setOpen_Modal_Admin_Setting_2} />)
                             }}
                         >
                             Settings
@@ -760,6 +773,132 @@ const Dashboard = () => {
 
                     <button className='btnClose' onClick={() => {
                         setOpen_Modal_Products(state => !state)
+                        setCheck_If_Edit(false)
+                    }}>
+                        <FaTimes className='icon' />
+                    </button>
+                </div>
+            ) : (
+                <>
+                </>
+            )}
+
+            {open_modal_admin_setting ? (
+                <div className='modal-admin'>
+                    <form onSubmit={check_if_edit ? edit_products_onHandleSubmit : add_product_onHandleSubmit}>
+                        <div className='modal-container'>
+                            <div className='titleContainer'>
+                                <span className='text'>
+                                    Edit username
+                                </span>
+                            </div>
+                            <div className='form-input-container'>
+                                <div className='username-container'>
+                                    <span className='text'>username: </span>
+                                    <input className='brand-name-form'
+                                        value={check_if_edit ? changeuser.username : changeuser.username}
+                                        type='text'
+                                        placeholder='username'
+                                        onChange={(e) => {
+                                            setChangeuser({ ...changeuser, username: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='password-container'>
+                                    <span className='text'>password: </span>
+                                    <input className='generic-name-form'
+                                        value={check_if_edit ? changeuser.password : changeuser.password}
+                                        type='text'
+                                        placeholder='password'
+                                        onChange={(e) => {
+                                            setChangeuser({ ...changeuser, password: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='newusername-container'>
+                                    <span className='text'>new username: </span>
+                                    <input className='category-description-form'
+                                        value={check_if_edit ? changeuser.newusername : changeuser.newusername}
+                                        type='text'
+                                        placeholder='new username'
+                                        onChange={(e) => {
+                                            setChangeuser({ ...changeuser, newusername: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='btnContainerSubmit'>
+                                    <button className='btnAddSubmit'
+                                        type='submit'
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <button className='btnClose' onClick={() => {
+                        setOpen_Modal_Admin_Setting(state => !state)
+                        setCheck_If_Edit(false)
+                    }}>
+                        <FaTimes className='icon' />
+                    </button>
+                </div>
+            ) : (
+                <>
+                </>
+            )}
+
+            {open_modal_admin_setting_2 ? (
+                <div className='modal-admin-2'>
+                    <form onSubmit={check_if_edit ? edit_products_onHandleSubmit : add_product_onHandleSubmit}>
+                        <div className='modal-container'>
+                            <div className='titleContainer'>
+                                <span className='text'>
+                                    Edit password
+                                </span>
+                            </div>
+                            <div className='form-input-container'>
+                                <div className='password-container'>
+                                    <span className='text'>password: </span>
+                                    <input className='brand-name-form'
+                                        value={check_if_edit ? changepass.password : changepass.password}
+                                        type='text'
+                                        placeholder='password'
+                                        onChange={(e) => {
+                                            setChangepass({ ...changepass, password: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='old-password-container'>
+                                    <span className='text'>old password: </span>
+                                    <input className='generic-name-form'
+                                        value={check_if_edit ? changepass.newpassword : changepass.newpassword}
+                                        type='text'
+                                        placeholder='new password'
+                                        onChange={(e) => {
+                                            setChangepass({ ...changepass, newpassword: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='repeat-password-container'>
+                                    <span className='text'>repeat password: </span>
+                                    <input className='category-description-form'
+                                        value={check_if_edit ? changepass.repeatpassword : changepass.repeatpassword}
+                                        type='text'
+                                        placeholder='repeat username'
+                                        onChange={(e) => {
+                                            setChangepass({ ...changepass, repeatpassword: e.target.value })
+                                        }} />
+                                </div>
+                                <div className='btnContainerSubmit'>
+                                    <button className='btnAddSubmit'
+                                        type='submit'
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <button className='btnClose' onClick={() => {
+                        setOpen_Modal_Admin_Setting_2(state => !state)
                         setCheck_If_Edit(false)
                     }}>
                         <FaTimes className='icon' />
