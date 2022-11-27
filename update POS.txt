@@ -1,0 +1,22 @@
+good pm po, eto po ung recording naminkanina kasama po yung adviser namin. Bale sa dashboard aalisin daw po ung total sales at total revenue, bale nakalagay lang daw don is ung notification ng low stock na products at soon to expire tsaka po total number of products. 
+
+Tas po magdadagdag ng tab para po sa notifications kung san po mabbrowse ung low stock at maeexpire na
+
+Tas daw po dapat may activity log 
+
+Tas po sa sales report dapat daw po mafilter ng daily, weekly monthly o kaya po may spec
+Tas po sa sales report dapat daw po mafilter ng daily, weekly monthly o kaya po may specific date
+
+Tas daw po pede irpint ung activity log, sales report, at ung product
+
+Tas daw po sa sales tab pede gawen cart unh name tas po mahahati sya, sa left side list of products tas sa right side po cart na parang shopee. May add tocart po tas pede magset ng quantity ng lalagay sa cart, tas po sa cart pede mag edit add or bawas ng quantity at magalis sa cart. Tas sa cart pede po magproceed to checkout tas
+Anton Obispo21:11
+Tas sa cart pede po magproceed to checkout tas dun po lalabas ung resibo
+
+Tas sa resibo po dapat maiinput ung ibabayad ni customer, kunware po 1200 ung binili nya tas po 1500 binayad ni customer dapat daw po lalabas ung resibo nga, tas po may date den tsaka po header and footer
+
+Size po ng resibo dapat po di masyado malapad, liitan na lang po cguro ung size
+
+Tas po iupdate ung login credentials ng account nung staff
+
+Tas po ung notification nung sa inventory ng maeexpire at low stock na product

@@ -167,18 +167,8 @@ export const delete_sales = (owner_id, token, sales_id) => base_api.put(`/Sales/
 export const sales_report = (
     owner_id,
     token,
-    // month_digit,
-    // targetsales,
-    // sales,
     data) => base_api.patch(`/Checkout/${owner_id}`,
         {
-            // months: [
-            //     {
-            //         month_digit: month_digit,
-            //         targetsales: targetsales,
-            //         sales: sales
-            //     }
-            // ],
             sales_report: data // array of objects
         }, {
         headers: { 'Authorization': `Bearer ${token}` }
@@ -186,3 +176,17 @@ export const sales_report = (
     )
 
 export const empty_sales = (owner_id) => base_api.put(`/Checkout/${owner_id}`, { sales: [] });
+
+// admin edit
+
+export const admin_username = (adminID, token, username, password, newusername) => base_api.patch(`/Settings/${adminID}`, {
+    admin: username,
+    newusername: newusername,
+    password: password
+}, { headers: { 'Authorization': `Bearer ${token}` } });
+
+export const admin_password = (adminID, token, username, password, newpassword) => base_api.put(`/Settings/${adminID}`, {
+    admin: username,
+    password: password,
+    newpassword: newpassword
+}, { headers: { 'Authorization': `Bearer ${token}` } });

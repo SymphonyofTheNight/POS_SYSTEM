@@ -1,0 +1,16 @@
+new tab activity log (can print)
+sales report (can print)
+setting admin account 
+admin account with staff (when staff login hide sales report and activity log)
+notification tab
+remove total revenue and sales change total products and shows the lowest product count 
+sales tab (2 windows first windows list of products and second window to edit the product)
+print windows show modal to input cash and show result. (include staff or seller oin print on date) 
+
+product sales pagination ( delete product pop up ) close btn inside of modal
+if request is empty no request using if statement
+sales change name to cart 
+
+
+
+

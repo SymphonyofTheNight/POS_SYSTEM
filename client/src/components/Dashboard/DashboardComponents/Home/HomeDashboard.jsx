@@ -4,12 +4,14 @@ import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line } from 'r
 
 const HomeDashboard = ({ targetSales, setTargetSales }) => {
 
+    const get_products = useSelector(state => state.reducer.store);
     const get_months_db = useSelector(state => state.reducer.store);
     const get_records = useSelector(state => state.reducer.store);
 
     const saletargets = [targetSales.january, targetSales.february, targetSales.march, targetSales.april, targetSales.may, targetSales.june, targetSales.july, targetSales.august, targetSales.september, targetSales.october, targetSales.november, targetSales.december]
 
     const [totalSales, setTotalSales] = useState();
+    const [sortedprod, setSortedProd] = useState();
 
     const data = [
         {
@@ -86,13 +88,18 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
         },
     ]
 
-    const percentage = (totalSales, targetSales) => {
-        return (totalSales / targetSales) * 100
-    }
+    // const percentage = (totalSales, targetSales) => {
+    //     return (totalSales / targetSales) * 100
+    // }
 
     useEffect(() => {
+
         const result = () => saletargets.reduce((oldvalue, newvalue) => oldvalue + newvalue, 0);
         setTotalSales(result());
+
+        const sorted_products = () => get_products[0]?.products?.sort((a, b) => a?.quantity > b?.quantity ? 1 : -1)
+        setSortedProd(sorted_products());
+
     }, [totalSales])
 
     return (
@@ -100,16 +107,16 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
             <div className='data-statistics-container'>
                 <div className='chart'>
                     <span className='product-label'>
-                        Lowest Product Quantity 
+                        Lowest Product Quantity
                     </span>
                     <span className='product-lowest-title-text'>
-                        {/* {get_records[0]?.total_profit} */}
+                        {sortedprod && sortedprod[0]?.brand_name}
+                    </span>
+                    <span className='product-count-text-label'>
+                        Total quantity count:
                     </span>
                     <span className='product-count-text'>
-                        {/* Total Profit */}
-                    </span>
-                    <span>
-
+                        {sortedprod && sortedprod[0]?.quantity}
                     </span>
                 </div>
                 {/* <div className='chart-2'>

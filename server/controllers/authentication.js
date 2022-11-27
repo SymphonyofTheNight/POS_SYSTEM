@@ -58,3 +58,48 @@ export const login_auth = async (req, res) => {
         res.status(404).json({ message: 'error occured:', error });
     }
 }
+
+export const change_username = async (req, res) => {
+
+    const { username, password, newusername } = req.body;
+    const { id } = req.params;
+
+    try {
+        const check_if_user_exist = await OwnerModels.findOne({ username })
+        if (!check_if_user_exist) return res.status(404).json({ message: 'Invalid Username' });
+
+        const check_pass = await bcrypt.compare(password, check_if_user_exist.password);
+        if (!check_pass) return res.status(404).json({ message: 'Invalid Credentials' });
+
+        await OwnerModels.findByIdAndUpdate(id, {
+            admin: newusername
+        }, { new: true })
+
+    } catch (error) {
+        res.status(404).json({ message: error })
+    }
+}
+
+export const change_password = async (req, res) => {
+
+    const { username, password, newpassword } = req.body;
+    const { id } = req.params;
+
+    try {
+        const check_if_user_exist = await OwnerModels.findOne({ username });
+        if (!check_if_user_exist) return res.status(404).json({ message: 'Invalid Username' });
+
+        const check_pass = await bcrypt.compare(password, check_if_user_exist.password);
+        if (!check_pass) return res.status(404).json({ message: 'Invalid Password' });
+
+        const new_pass = await bcrypt.hash(newpassword, 12);
+
+        await OwnerModels.findByIdAndUpdate(id, {
+            password: new_pass
+        }, { new: true });
+
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+
+}
