@@ -153,6 +153,11 @@ export const edit_customer = async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
 
         await OwnerModels.findByIdAndUpdate(id, {
+
+            $inc: {
+                "customer.$[i].points": req.body.customer[0].points
+            },
+
             $set: {
                 "customer.$[i].identifier": req.body.customer[0].identifier,
                 "customer.$[i].fullname": req.body.customer[0].fullname,

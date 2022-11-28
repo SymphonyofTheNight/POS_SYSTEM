@@ -78,6 +78,9 @@ const Dashboard = () => {
     const [Component, setComponent] = useState(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />);
     const [tabswitch, setTabswitch] = useState(false);
 
+    // get custormer 
+    const get_customer = useSelector(state => state.reducer.store);
+
     // get supplier for select 
     const get_suppliers = useSelector(state => state.reducer.store);
 
@@ -228,7 +231,19 @@ const Dashboard = () => {
 
         if (customer) {
 
-            edit_customer(customer);
+            edit_customer(
+                customer._id,
+                customer.token,
+                customer.identifier,
+                customer.fullname,
+                customer.address,
+                customer.contact_number,
+                customer.product_name,
+                customer.total,
+                customer.note,
+                customer.due_date,
+                increment
+            );
 
             setOpen_Modal_Customer(state => !state)
 
@@ -349,6 +364,7 @@ const Dashboard = () => {
                                 setModalTitle={setModalTitle}
                                 setCustomer={setCustomer}
                                 customer={customer}
+                                setIncrement={setIncrement}
                             />)
                             setNav('/Customer')
                             navigate('/Customer')
@@ -623,7 +639,7 @@ const Dashboard = () => {
                                     <div className='due_date-container'>
                                         <span className='text'>Points: </span>
                                         <input className='due_date-form'
-                                            value={check_if_edit ? increment : increment}
+                                            value={increment}
                                             type='number'
                                             placeholder='click any'
                                             onChange={(e) => {
@@ -642,7 +658,7 @@ const Dashboard = () => {
                                         type='text'
                                         placeholder='click any'
                                         onChange={(e) => {
-                                            setCustomer({ ...customer, due_date: _date_month + `-` + _date_date + `-` + _date_year })
+                                            setCustomer({ ...customer, due_date: _date_month + 1 + `-` + _date_date + `-` + _date_year })
                                         }} />
                                 </div>
                                 <div className='btnContainerSubmit'>
