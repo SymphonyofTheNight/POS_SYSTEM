@@ -36,7 +36,7 @@ const Customer = ({
                 note: findCustomer[0].note,
                 due_date: findCustomer[0].due_date
             })
-            setIncrement(findCustomer[0].points)
+            setIncrement(0)
         }
     }, [findCustomer])
 
@@ -79,6 +79,7 @@ const Customer = ({
                                 <th scope="col">Product_Name</th>
                                 <th scope="col">Total</th>
                                 <th scope="col">Note</th>
+                                <th scope="col">Points</th>
                                 <th scope="col">Due_Date</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -93,6 +94,7 @@ const Customer = ({
                                         <td>{get_customer[0]?.customer[key].product_name}</td>
                                         <td>{get_customer[0]?.customer[key].total}</td>
                                         <td>{get_customer[0]?.customer[key].note}</td>
+                                        <td>{get_customer[0]?.customer[key]?.points}</td>
                                         <td>{get_customer[0]?.customer[key].due_date}</td>
                                         <td>
                                             <div className='btnContainer'

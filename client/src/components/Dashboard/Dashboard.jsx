@@ -48,6 +48,7 @@ const Dashboard = () => {
     // const [check_if_add, setCheck_If_Add] = useState(false);
     const [getId] = useState(); // get id of product
     const [increment, setIncrement] = useState(0); // increment point system
+    const [dummy_increment, setDummy_increment] = useState(0);
     const [modaltitle, setModalTitle] = useState(''); // modal title 
 
     // const findSupplier = useSelector(state => getId ? state.reducer?.store?.map(val => val.supplier.find(sup => sup._id === getId)) : null);
