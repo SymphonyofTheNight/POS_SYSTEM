@@ -22,7 +22,7 @@ import {
 import middleware from '../middleware/middleware.js';
 
 // auth 
-import { registration, login_auth } from '../controllers/authentication.js';
+import { registration, login_auth, change_username, change_password } from '../controllers/authentication.js';
 
 const router = express.Router();
 
@@ -47,6 +47,9 @@ router.put('/Sales/:id', middleware, delete_sales);
 
 router.patch('/Checkout/:id', middleware, report_of_sales);
 router.put('/Checkout/:id', empty_sales);
+
+router.patch('/Settings/:id', middleware, change_username);
+router.put('/Settings/:id', middleware, change_password);
 // router.patch('/Checkout/:id', middleware, );
 
 export default router;

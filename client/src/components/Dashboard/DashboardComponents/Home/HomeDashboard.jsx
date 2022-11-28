@@ -119,14 +119,6 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                         {sortedprod && sortedprod[0]?.quantity}
                     </span>
                 </div>
-                {/* <div className='chart-2'>
-                    <span className='value-text'>
-                        {get_records[0]?.sales_revenue}
-                    </span>
-                    <span className='category-text'>
-                        Sales Revenue
-                    </span>
-                </div> */}
                 <div className='chart-3'>
                     <span className='value-text'>
                         {get_records[0]?.total_product_sold}

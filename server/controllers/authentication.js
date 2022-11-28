@@ -85,6 +85,8 @@ export const change_password = async (req, res) => {
     const { username, password, newpassword } = req.body;
     const { id } = req.params;
 
+    console.log(req.body);
+
     try {
         const check_if_user_exist = await OwnerModels.findOne({ username });
         if (!check_if_user_exist) return res.status(404).json({ message: 'Invalid Username' });
