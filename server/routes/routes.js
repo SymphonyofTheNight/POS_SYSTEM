@@ -49,7 +49,7 @@ router.patch('/Checkout/:id', middleware, report_of_sales);
 router.put('/Checkout/:id', empty_sales);
 
 router.patch('/Settings/:id', middleware, change_username);
-router.put('/Settings/:id', middleware, change_password);
+router.put('/Settings/:id', middleware, change_password); // conflict
 // router.patch('/Checkout/:id', middleware, );
 
 export default router;
