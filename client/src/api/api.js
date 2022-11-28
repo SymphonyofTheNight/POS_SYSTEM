@@ -181,8 +181,8 @@ export const empty_sales = (owner_id) => base_api.put(`/Checkout/${owner_id}`, {
 
 export const admin_username = (adminID, token, username, password, newusername) => base_api.patch(`/Settings/${adminID}`, {
     admin: username,
-    newusername: newusername,
-    password: password
+    password: password,
+    newusername: newusername
 }, { headers: { 'Authorization': `Bearer ${token}` } });
 
 export const admin_password = (adminID, token, password, newpassword, repeatpassword) => base_api.put(`/Settings/${adminID}`, {
