@@ -30,7 +30,7 @@ import AdminSettings from './DashboardComponents/AdminSettings/AdminSettings';
 
 // action thunk 
 // import { add_supplier } from '../../controllers/actions.js';
-import { add_supplier, edit_supplier, add_customer, edit_customer, add_products, edit_products } from '../../api/api.js';
+import { add_supplier, edit_supplier, add_customer, edit_customer, add_products, edit_products, admin_username, admin_password } from '../../api/api.js';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -259,6 +259,24 @@ const Dashboard = () => {
         setOpen_Modal_Products(state => !state)
 
         navigate(0);
+    }
+
+    const admin_username_onHandleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(changeuser)
+        if (changeuser) {
+            admin_username(Localstorage.result._id, Localstorage.token, changeuser.username, changeuser.password, changeuser.newusername);
+        }
+    }
+
+    const admin_password_onHandleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(changepass)
+        if (changepass) {
+            admin_password(Localstorage.result._id, Localstorage.token, changepass.password, changepass.newpassword, changepass.repeatpassword);
+        }
     }
 
     return (
@@ -785,7 +803,7 @@ const Dashboard = () => {
 
             {open_modal_admin_setting ? (
                 <div className='modal-admin'>
-                    <form onSubmit={check_if_edit ? edit_products_onHandleSubmit : add_product_onHandleSubmit}>
+                    <form onSubmit={admin_username_onHandleSubmit}>
                         <div className='modal-container'>
                             <div className='titleContainer'>
                                 <span className='text'>
@@ -826,6 +844,10 @@ const Dashboard = () => {
                                 <div className='btnContainerSubmit'>
                                     <button className='btnAddSubmit'
                                         type='submit'
+                                        onClick={() => {
+                                            setOpen_Modal_Admin_Setting(state => !state)
+                                            window.location.reload()
+                                        }}
                                     >
                                         Submit
                                     </button>
@@ -848,54 +870,62 @@ const Dashboard = () => {
 
             {open_modal_admin_setting_2 ? (
                 <div className='modal-admin-2'>
-                    <form onSubmit={check_if_edit ? edit_products_onHandleSubmit : add_product_onHandleSubmit}>
-                        <div className='modal-container'>
-                            <div className='titleContainer'>
-                                <span className='text'>
-                                    Edit password
-                                </span>
+                    <div className='modal-container'>
+                        <div className='titleContainer'>
+                            <span className='text'>
+                                Edit password
+                            </span>
+                        </div>
+                        <div className='form-input-container'>
+                            <div className='password-container'>
+                                <span className='text'>old password: </span>
+                                <input className='brand-name-form'
+                                    value={check_if_edit ? changepass.password : changepass.password}
+                                    type='text'
+                                    placeholder='password'
+                                    onChange={(e) => {
+                                        setChangepass({ ...changepass, password: e.target.value })
+                                    }} />
                             </div>
-                            <div className='form-input-container'>
-                                <div className='password-container'>
-                                    <span className='text'>password: </span>
-                                    <input className='brand-name-form'
-                                        value={check_if_edit ? changepass.password : changepass.password}
-                                        type='text'
-                                        placeholder='password'
-                                        onChange={(e) => {
-                                            setChangepass({ ...changepass, password: e.target.value })
-                                        }} />
-                                </div>
-                                <div className='old-password-container'>
-                                    <span className='text'>old password: </span>
-                                    <input className='generic-name-form'
-                                        value={check_if_edit ? changepass.newpassword : changepass.newpassword}
-                                        type='text'
-                                        placeholder='new password'
-                                        onChange={(e) => {
-                                            setChangepass({ ...changepass, newpassword: e.target.value })
-                                        }} />
-                                </div>
-                                <div className='repeat-password-container'>
-                                    <span className='text'>repeat password: </span>
-                                    <input className='category-description-form'
-                                        value={check_if_edit ? changepass.repeatpassword : changepass.repeatpassword}
-                                        type='text'
-                                        placeholder='repeat username'
-                                        onChange={(e) => {
-                                            setChangepass({ ...changepass, repeatpassword: e.target.value })
-                                        }} />
-                                </div>
-                                <div className='btnContainerSubmit'>
-                                    <button className='btnAddSubmit'
-                                        type='submit'
-                                    >
-                                        Submit
-                                    </button>
-                                </div>
+                            <div className='old-password-container'>
+                                <span className='text'>new password: </span>
+                                <input className='generic-name-form'
+                                    value={check_if_edit ? changepass.newpassword : changepass.newpassword}
+                                    type='text'
+                                    placeholder='new password'
+                                    onChange={(e) => {
+                                        setChangepass({ ...changepass, newpassword: e.target.value })
+                                    }} />
+                            </div>
+                            <div className='repeat-password-container'>
+                                <span className='text'>repeat password: </span>
+                                <input className='category-description-form'
+                                    value={check_if_edit ? changepass.repeatpassword : changepass.repeatpassword}
+                                    type='text'
+                                    placeholder='repeat username'
+                                    onChange={(e) => {
+                                        setChangepass({ ...changepass, repeatpassword: e.target.value })
+                                    }} />
+                            </div>
+                            <div className='btnContainerSubmit'>
+                                <button className='btnAddSubmit'
+                                    type='submit'
+                                    onClick={() => {
+                                        if (changepass.newpassword === changepass.repeatpassword) {
+                                            console.log(Localstorage.result._id, Localstorage.token, changepass)
+                                            admin_password(Localstorage.result._id, Localstorage.token, changepass.password, changepass.newpassword, changepass.repeatpassword);
+                                            setOpen_Modal_Admin_Setting_2(state => !state);
+                                            window.location.reload();
+                                        } else {
+                                            alert("repeat the same password");
+                                        }
+                                    }}
+                                >
+                                    Submit
+                                </button>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
                     <button className='btnClose' onClick={() => {
                         setOpen_Modal_Admin_Setting_2(state => !state)

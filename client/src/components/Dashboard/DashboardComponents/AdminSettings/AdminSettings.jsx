@@ -1,7 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 
 const AdminSettings = ({ setOpen_Modal_Admin_Setting, setOpen_Modal_Admin_Setting_2 }) => {
+
+    const admin_info = useSelector(state => state.reducer.store);
+
+    console.log(admin_info[0].admin)
 
     return (
         <div className='AdminSettings-Container'>
@@ -16,7 +21,7 @@ const AdminSettings = ({ setOpen_Modal_Admin_Setting, setOpen_Modal_Admin_Settin
                         <span className='text-label'>
                             Username
                         </span>
-                        <input className='input-form' />
+                        <input className='input-form' type='text' value={admin_info[0].admin} />
                         <button className='btnEdit'
                             onClick={() => {
                                 setOpen_Modal_Admin_Setting(state => !state)
@@ -29,7 +34,7 @@ const AdminSettings = ({ setOpen_Modal_Admin_Setting, setOpen_Modal_Admin_Settin
                         <span className='text-label'>
                             Password
                         </span>
-                        <input className='input-form' />
+                        <input className='input-form' type='password' value={admin_info[0].password} />
                         <button className='btnEdit'
                             onClick={() => {
                                 setOpen_Modal_Admin_Setting_2(state => !state)

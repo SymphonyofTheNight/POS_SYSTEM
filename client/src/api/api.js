@@ -185,8 +185,8 @@ export const admin_username = (adminID, token, username, password, newusername) 
     password: password
 }, { headers: { 'Authorization': `Bearer ${token}` } });
 
-export const admin_password = (adminID, token, username, password, newpassword) => base_api.put(`/Settings/${adminID}`, {
-    admin: username,
+export const admin_password = (adminID, token, password, newpassword, repeatpassword) => base_api.put(`/Settings/${adminID}`, {
     password: password,
-    newpassword: newpassword
+    newpassword: newpassword,
+    repeatpassword: repeatpassword
 }, { headers: { 'Authorization': `Bearer ${token}` } });
