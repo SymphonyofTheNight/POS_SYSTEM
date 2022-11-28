@@ -386,7 +386,7 @@
                 }
 
                 .chartContainer {
-                    @include baseDisplay(green, 50vh, 1280px);
+                    @include baseDisplay($--bg-div-color, 50vh, 1280px);
                     display: flex;
                     flex-direction: column;
 

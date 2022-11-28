@@ -155,7 +155,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                         <Line type="monotone" dataKey="targetsales" stroke="#e71755" />
                     </LineChart>
                 </div>
-                <div className='data-meterContainer'>
+                {/* <div className='data-meterContainer'>
                     <div className='salesContainer'>
                         <div className='progress-line-container'>
                             <span className='text'>
@@ -176,7 +176,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className='activityContainer'>
                 <div className='titleContainer'>
