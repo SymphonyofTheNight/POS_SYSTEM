@@ -67,23 +67,27 @@ export const add_customer = (customer, points) => base_api.post(`/Customer/${cus
     ]
 }, { headers: { 'Authorization': `Bearer ${customer.token}` } });
 
-export const edit_customer = (customer, points) => base_api.patch(`/Customer/${customer._id}`, {
+export const edit_customer = (adminID, token, identifier, fullname, address, contact_number, product_name, total, note, due_date, points) => base_api.patch(`/Customer/${adminID}`, {
     customer: [
         {
-            identifier: customer.identifier,
-            fullname: customer.fullname,
-            address: customer.address,
-            contact_number: customer.contact_number,
-            product_name: customer.product_name,
-            total: customer.total,
-            note: customer.note,
-            due_date: customer.due_date,
+            identifier: identifier,
+            fullname: fullname,
+            address: address,
+            contact_number: contact_number,
+            product_name: product_name,
+            total: total,
+            note: note,
+            due_date: due_date,
             points: points
         }
     ]
-}, { headers: { 'Authorization': `Bearer ${customer.token}` } })
+}, {
+    headers: {
+        'Authorization': `Bearer ${token}`
+    }
+})
 
-export const delete_customer = (owner_id, token, customer_item_id) => base_api.put(`/Customer/${owner_id}`, {
+export const delete_customer = (owner_id, token, customer_item_id) => base_api.put(`/ Customer / ${owner_id}`, {
     customer: [
         {
             _id: customer_item_id
@@ -96,7 +100,7 @@ export const delete_customer = (owner_id, token, customer_item_id) => base_api.p
 // add products tommorow !!
 // add edit products tommorow !!
 
-export const add_products = (products) => base_api.post(`/Products/${products._id}`, {
+export const add_products = (products) => base_api.post(`/ Products / ${products._id}`, {
     products: [
         {
             identifier: products.identifier,
@@ -113,7 +117,7 @@ export const add_products = (products) => base_api.post(`/Products/${products._i
     ]
 }, { headers: { 'Authorization': `Bearer ${products.token}` } })
 
-export const edit_products = (products) => base_api.patch(`/Products/${products._id}`, {
+export const edit_products = (products) => base_api.patch(`/ Products / ${products._id}`, {
     products: [
         {
             identifier: products.identifier,
@@ -130,7 +134,7 @@ export const edit_products = (products) => base_api.patch(`/Products/${products.
     ]
 }, { headers: { 'Authorization': `Bearer ${products.token}` } })
 
-export const delete_products = (owner_id, token, products_item_id) => base_api.put(`/Products/${owner_id}`, {
+export const delete_products = (owner_id, token, products_item_id) => base_api.put(`/ Products / ${owner_id}`, {
     products: [
         {
             _id: products_item_id
@@ -140,7 +144,7 @@ export const delete_products = (owner_id, token, products_item_id) => base_api.p
 
 // sales api
 
-export const add_sales = (owner_id, token, identifier, product_name, generic_name, description, qty, amount, profit) => base_api.post(`Sales/${owner_id}`, {
+export const add_sales = (owner_id, token, identifier, product_name, generic_name, description, qty, amount, profit) => base_api.post(`Sales / ${owner_id}`, {
     sales: [
         {
             identifier: identifier,
@@ -154,7 +158,7 @@ export const add_sales = (owner_id, token, identifier, product_name, generic_nam
     ]
 }, { headers: { 'Authorization': `Bearer ${token}` } })
 
-export const delete_sales = (owner_id, token, sales_id) => base_api.put(`/Sales/${owner_id}`, {
+export const delete_sales = (owner_id, token, sales_id) => base_api.put(`/ Sales / ${owner_id}`, {
     sales: [
         {
             _id: sales_id
@@ -167,7 +171,7 @@ export const delete_sales = (owner_id, token, sales_id) => base_api.put(`/Sales/
 export const sales_report = (
     owner_id,
     token,
-    data) => base_api.patch(`/Checkout/${owner_id}`,
+    data) => base_api.patch(`/ Checkout / ${owner_id}`,
         {
             sales_report: data // array of objects
         }, {
@@ -175,17 +179,17 @@ export const sales_report = (
     }
     )
 
-export const empty_sales = (owner_id) => base_api.put(`/Checkout/${owner_id}`, { sales: [] });
+export const empty_sales = (owner_id) => base_api.put(`/ Checkout / ${owner_id}`, { sales: [] });
 
 // admin edit
 
-export const admin_username = (adminID, token, username, password, newusername) => base_api.patch(`/Settings/${adminID}`, {
+export const admin_username = (adminID, token, username, password, newusername) => base_api.patch(`/ Settings / ${adminID}`, {
     admin: username,
     password: password,
     newusername: newusername
 }, { headers: { 'Authorization': `Bearer ${token}` } });
 
-export const admin_password = (adminID, token, password, newpassword, repeatpassword) => base_api.put(`/Settings/${adminID}`, {
+export const admin_password = (adminID, token, password, newpassword, repeatpassword) => base_api.put(`/ Settings / ${adminID}`, {
     password: password,
     newpassword: newpassword,
     repeatpassword: repeatpassword

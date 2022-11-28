@@ -11,7 +11,8 @@ const Customer = ({
     setCheck_If_Edit,
     setModalTitle,
     setCustomer,
-    customer
+    customer,
+    setIncrement
 }) => {
 
     const get_customer = useSelector(state => state.reducer.store);
@@ -35,6 +36,7 @@ const Customer = ({
                 note: findCustomer[0].note,
                 due_date: findCustomer[0].due_date
             })
+            setIncrement(findCustomer[0].points)
         }
     }, [findCustomer])
 
