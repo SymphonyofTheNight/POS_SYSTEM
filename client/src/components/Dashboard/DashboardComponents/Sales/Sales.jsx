@@ -34,6 +34,15 @@ const Sales = () => {
 
         console.log(quantity_multiplier, multiply_original_price);
 
+        console.log(Localstorage?.result?._id,
+            Localstorage?.token,
+            check_id[0]?.identifier,
+            check_id[0]?.brand_name,
+            check_id[0]?.generic_name,
+            check_id[0]?.category_description,
+            counter,
+            quantity_multiplier,
+            get_total_profit)
         if (check_id) {
             add_sales(
                 Localstorage?.result?._id,
@@ -74,7 +83,7 @@ const Sales = () => {
         }
     }, [_get_sales])
 
-    console.log({ message: get_total_profit })
+    console.log(_get_sales)
 
     // fix tommorow add object into use state array 
 

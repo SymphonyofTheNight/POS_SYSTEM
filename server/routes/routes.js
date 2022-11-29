@@ -10,9 +10,11 @@ import {
     edit_customer,
     delete_customer,
     add_products,
+    // add_ng_product,
     edit_product,
     delete_product,
     add_sales,
+    // add_ng_sales,
     delete_sales,
     report_of_sales,
     empty_sales
@@ -39,10 +41,12 @@ router.patch('/Customer/:id', middleware, edit_customer);
 router.put('/Customer/:id', middleware, delete_customer);
 
 router.post('/Products/:id', middleware, add_products);
+// router.post('/Products/:id', middleware, add_ng_product);
 router.patch('/Products/:id', middleware, edit_product);
 router.put('/Products/:id', middleware, delete_product);
 
 router.post('/Sales/:id', middleware, add_sales);
+// router.post('/Sales/:id', add_ng_sales);
 router.put('/Sales/:id', middleware, delete_sales);
 
 router.patch('/Checkout/:id', middleware, report_of_sales);

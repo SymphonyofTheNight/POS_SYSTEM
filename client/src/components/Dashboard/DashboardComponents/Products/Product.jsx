@@ -46,6 +46,8 @@ const Product = ({
     const delete_products_handler = (e) => {
         e.preventDefault();
 
+        console.log(Localstorage?.result?._id, Localstorage?.token, get_prod_id)
+
         if (Localstorage && get_prod_id) delete_products(Localstorage?.result?._id, Localstorage?.token, get_prod_id)
 
         window.location.reload();
