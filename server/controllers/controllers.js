@@ -152,6 +152,11 @@ export const edit_customer = async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
 
         await OwnerModels.findByIdAndUpdate(id, {
+
+            $inc: {
+                "customer.$[i].points": req.body.customer[0].points,
+            },
+
             $set: {
                 "customer.$[i].identifier": req.body.customer[0].identifier,
                 "customer.$[i].fullname": req.body.customer[0].fullname,
@@ -161,7 +166,8 @@ export const edit_customer = async (req, res) => {
                 "customer.$[i].total": req.body.customer[0].total,
                 "customer.$[i].note": req.body.customer[0].note,
                 "customer.$[i].due_date": req.body.customer[0].due_date,
-            }
+            },
+
         }, {
             arrayFilters: [
                 {
@@ -308,6 +314,10 @@ export const add_sales = async (req, res) => {
 
         await OwnerModels.findByIdAndUpdate(id, {
 
+            $inc: {
+                "products.$[i].quantity": - req.body.sales[0].qty
+            },
+
             $push: {
                 sales: {
                     identifier: req.body.sales[0].identifier,
@@ -320,19 +330,14 @@ export const add_sales = async (req, res) => {
                 }
             },
 
-            // $set: {
-            //     "products.$[i].identifier": req.body.products[0].identifier,
-            //     "products.$[i].quantity": req.body.products[0].quantity
-            // },
-
         },
-            // {
-            //     arrayFilters: [
-            //         {
-            //             "i.identifier": req.body.products[0].identifier
-            //         }
-            //     ]
-            // }, 
+            {
+                arrayFilters: [
+                    {
+                        "i.identifier": req.body.products[0].identifier
+                    }
+                ]
+            },
             {
                 new: true
             })

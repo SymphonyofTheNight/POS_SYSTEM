@@ -32,17 +32,6 @@ const Sales = () => {
         const multiply_original_price = check_id[0]?.original_price * counter;
         const get_total_profit = quantity_multiplier - multiply_original_price;
 
-        console.log(quantity_multiplier, multiply_original_price);
-
-        console.log(Localstorage?.result?._id,
-            Localstorage?.token,
-            check_id[0]?.identifier,
-            check_id[0]?.brand_name,
-            check_id[0]?.generic_name,
-            check_id[0]?.category_description,
-            counter,
-            quantity_multiplier,
-            get_total_profit)
         if (check_id) {
             add_sales(
                 Localstorage?.result?._id,
@@ -83,9 +72,9 @@ const Sales = () => {
         }
     }, [_get_sales])
 
-    console.log(_get_sales)
+    //  TOMMOROW GET THE PRODUCT IDENTIFIER AND SUPPLY IT ON API ADD SALES 
 
-    // fix tommorow add object into use state array 
+    console.log(_get_product_id)
 
     return (
         <div className='Sales'>
