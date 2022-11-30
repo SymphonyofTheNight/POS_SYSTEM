@@ -46,7 +46,6 @@ router.patch('/Products/:id', middleware, edit_product);
 router.put('/Products/:id', middleware, delete_product);
 
 router.post('/Sales/:id', middleware, add_sales);
-// router.post('/Sales/:id', add_ng_sales);
 router.put('/Sales/:id', middleware, delete_sales);
 
 router.patch('/Checkout/:id', middleware, report_of_sales);

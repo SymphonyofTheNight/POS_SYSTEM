@@ -248,10 +248,9 @@ const Dashboard = () => {
 
             setOpen_Modal_Customer(state => !state)
 
-            window.location.reload();
+            window.location.reload()
 
         }
-
     }
 
     const add_product_onHandleSubmit = (e) => {
@@ -640,7 +639,7 @@ const Dashboard = () => {
                                     <div className='due_date-container'>
                                         <span className='text'>Points: </span>
                                         <input className='due_date-form'
-                                            value={increment}
+                                            value={check_if_edit ? increment : increment}
                                             type='number'
                                             placeholder='click any'
                                             onChange={(e) => {
