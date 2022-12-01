@@ -312,10 +312,12 @@ export const add_sales = async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
 
-        await OwnerModels.findByIdAndUpdate(id, {
+        // const prod = req.body.products;
+
+        await OwnerModels.findByIdAndUpdate({ '_id': id, "products.identifier": req.body.sales[0].identifier }, {
 
             $inc: {
-                "products.$[i].quantity": - req.body.sales[0].qty
+                "products[0].$.quantity": - req.body.sales[0].qty
             },
 
             $push: {
@@ -328,16 +330,16 @@ export const add_sales = async (req, res) => {
                     amount: req.body.sales[0].amount,
                     profit: req.body.sales[0].profit
                 }
-            },
+            }
 
         },
-            {
-                arrayFilters: [
-                    {
-                        "i.identifier": req.body.products[0].identifier
-                    }
-                ]
-            },
+            // {
+            //     arrayFilters: [
+            //         {
+            //             "i.identifier": req.body.products[0].identifier
+            //         }
+            //     ]
+            // },
             {
                 new: true
             })
