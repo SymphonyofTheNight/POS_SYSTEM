@@ -144,7 +144,7 @@ export const delete_products = (owner_id, token, products_item_id) => base_api.p
 
 // sales api
 
-export const add_sales = (owner_id, token, identifier, product_name, generic_name, description, qty, amount, profit, prod_iden) => base_api.post(`/Sales/${owner_id}`, {
+export const add_sales = (owner_id, token, identifier, product_name, generic_name, description, qty, amount, profit) => base_api.post(`/Sales/${owner_id}`, {
     sales: [
         {
             identifier: identifier,
@@ -154,11 +154,6 @@ export const add_sales = (owner_id, token, identifier, product_name, generic_nam
             qty: qty,
             amount: amount,
             profit: profit
-        }
-    ],
-    products: [
-        {
-            identifier: prod_iden
         }
     ]
 }, { headers: { 'Authorization': `Bearer ${token}` } })

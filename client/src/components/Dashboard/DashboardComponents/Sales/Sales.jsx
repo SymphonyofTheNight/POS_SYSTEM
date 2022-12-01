@@ -42,10 +42,10 @@ const Sales = () => {
                 check_id[0]?.category_description,
                 counter,
                 quantity_multiplier,
-                get_total_profit,
+                get_total_profit
             )
 
-            window.location.reload();
+            // window.location.reload();
 
         }
 
@@ -74,7 +74,7 @@ const Sales = () => {
 
     //  TOMMOROW GET THE PRODUCT IDENTIFIER AND SUPPLY IT ON API ADD SALES 
 
-    console.log(_get_product_id)
+    // console.log(_get_product_id)
 
     return (
         <div className='Sales'>
