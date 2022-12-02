@@ -36,7 +36,7 @@ const Sales = () => {
             add_sales(
                 Localstorage?.result?._id,
                 Localstorage?.token,
-                check_id[0]?.identifier,
+                check_id[0]?._id,
                 check_id[0]?.brand_name,
                 check_id[0]?.generic_name,
                 check_id[0]?.category_description,
