@@ -152,6 +152,8 @@ const Sales = () => {
                         </thead>
                         <tbody>
                             {_get_sales && Object.keys(_get_sales[0].sales).map((key, value) => {
+
+                                console.log(_get_sales[0].sales[key]?.identifier)
                                 return (
                                     <tr>
                                         <td>{_get_sales[0].sales[key].product_name}</td>
@@ -166,8 +168,10 @@ const Sales = () => {
                                                     delete_sales(
                                                         Localstorage?.result?._id,
                                                         Localstorage?.token,
-                                                        _get_sales[0].sales[key]._id)
-
+                                                        _get_sales[0].sales[key]._id,
+                                                        _get_sales[0].sales[key]?.identifier,
+                                                        _get_sales[0].sales[key]?.qty,
+                                                    )
                                                     window.location.reload();
 
                                                 }}
