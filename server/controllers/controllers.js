@@ -309,12 +309,10 @@ export const add_sales = async (req, res) => {
 
     const prod_id = req.body.sales[0].identifier
 
-    console.log(req.body);
-    console.log(prod_id)
+    console.log(req.body)
+
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: 'Invalid ID' });
-
-        // const prod = req.body.products;
 
         await OwnerModels.findOneAndUpdate({ '_id': id, "products._id": prod_id }, {
 
@@ -335,13 +333,6 @@ export const add_sales = async (req, res) => {
             }
 
         },
-            // {
-            //     arrayFilters: [
-            //         {
-            //             "i.identifier": req.body.products[0].identifier
-            //         }
-            //     ]
-            // },
             {
                 new: true
             })
@@ -355,22 +346,32 @@ export const delete_sales = async (req, res) => {
 
     const { id } = req.params;
 
+    const { prod_id } = req.body.sales[0].identifier;
+
+    console.log(req.body)
+
     try {
-        await OwnerModels.findByIdAndUpdate(id, {
+        await OwnerModels.findOneAndUpdate({ '_id': id, "products._id": prod_id }, {
+
+            $inc: {
+                "products.$.quantity": req.body.sales[0].qty
+            },
+
             $pull: {
                 sales: {
-                    _id: req.body.sales[0]._id
+                    _id: req.body.sales[0]._id,
                 }
             }
+
         }, {
-            new: true
+            new: false
         })
     } catch (error) {
         res.status(404).json(error);
     }
 }
 
-// sales report 
+// sales report
 
 export const report_of_sales = async (req, res) => {
 
