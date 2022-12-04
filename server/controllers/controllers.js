@@ -346,9 +346,10 @@ export const delete_sales = async (req, res) => {
 
     const { id } = req.params;
 
-    const { prod_id } = req.body.sales[0].identifier;
+    const prod_id = req.body.sales[0].identifier;
 
-    console.log(req.body)
+    console.log(prod_id)
+    console.log(req.body.sales[0].qty)
 
     try {
         await OwnerModels.findOneAndUpdate({ '_id': id, "products._id": prod_id }, {
@@ -360,12 +361,14 @@ export const delete_sales = async (req, res) => {
             $pull: {
                 sales: {
                     _id: req.body.sales[0]._id,
+                    identifier: req.body.sales[0].identifier,
+                    qty: req.body.sales[0].qty
                 }
             }
 
         }, {
-            new: false
-        })
+            new: true
+        }).exec()
     } catch (error) {
         res.status(404).json(error);
     }

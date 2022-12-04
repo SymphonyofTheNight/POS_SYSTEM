@@ -4,10 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
+// components 
+import Dashboard from '../../Dashboard.jsx';
+
 // import api 
 import { add_sales, delete_sales } from '../../../../api/api.js';
 
-const Sales = () => {
+const Sales = ({ setComponent, setNav }) => {
 
     const navigate = useNavigate();
 
@@ -45,7 +48,8 @@ const Sales = () => {
                 get_total_profit
             )
 
-            // window.location.reload();
+
+            window.location.reload();
 
         }
 
@@ -172,7 +176,13 @@ const Sales = () => {
                                                         _get_sales[0].sales[key]?.identifier,
                                                         _get_sales[0].sales[key]?.qty,
                                                     )
-                                                    window.location.reload();
+                                                    setComponent(<Dashboard />)
+                                                    setNav('/Dashboard')
+                                                    navigate('/Dashboard')
+                                                    //here
+                                                    setInterval(() => {
+                                                        window.location.reload();
+                                                    }, 2000);
 
                                                 }}
                                             >
