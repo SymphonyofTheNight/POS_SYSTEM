@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FaPen, FaTrash } from 'react-icons/fa';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 // import aoi
 import { delete_products } from '../../../../api/api.js';
@@ -18,6 +18,7 @@ const Product = ({
     const get_products = useSelector(state => state.reducer.store);
     const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
     const [get_prod_id, setGet_Prod_Id] = useState();
+    const [search, setSearch] = useState('');
 
     const findProduct = useSelector(state => get_prod_id ? state.reducer?.store?.map(val => val.products.find(sup => sup._id === get_prod_id)) : null);
 
@@ -39,9 +40,7 @@ const Product = ({
                 quantity: findProduct[0].quantity
             })
         }
-    }, [findProduct])
-
-    console.log(findProduct);
+    }, [findProduct]);
 
     const delete_products_handler = (e) => {
         e.preventDefault();
@@ -53,6 +52,8 @@ const Product = ({
         window.location.reload();
     }
 
+    console.log(search)
+
     return (
         <div className='Products'>
             <div className='innerContainer'>
@@ -61,19 +62,34 @@ const Product = ({
                         Products
                     </span>
                 </div>
-                {/* <div className='select-container'>
-                    <select className="form-select" aria-label="Default select example">
-                        <option defaultValue="Open this select menu">Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                <div className='select-container'>
+                    <input className='search-engine'
+                        onChange={(e) => {
+                            setSearch(e.target.value)
+                        }}
+                    />
                     <button className='addBtn'
-                       
+                        onClick={() => {
+                            setOpen_Modal_Products(state => !state)
+                            setCheck_If_Edit(false)
+                            setModalTitle('Add Product')
+                            setProducts({
+                                ...products,
+                                brand_name: '',
+                                generic_name: '',
+                                category_description: '',
+                                supplier: '',
+                                added_date: '',
+                                expiration_date: '',
+                                original_price: '',
+                                selling_price: '',
+                                quantity: ''
+                            });
+                        }}
                     >
                         Add
                     </button>
-                </div> */}
+                </div>
                 <div className='table-container'>
                     <table className="table">
                         <thead>
@@ -90,7 +106,14 @@ const Product = ({
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        {get_products[0] ? Object.keys(get_products[0]?.products).map((key, value) => {
+                        {get_products[0] ? Object.keys(get_products[0]?.products).filter(val => {
+                            // console.log(get_products[0]?.products[val].brand_name)
+                            if (search === "") {
+                                return val
+                            } else if (get_products[0]?.products[val].brand_name.toLowerCase().includes(search.toLowerCase())) {
+                                return val
+                            }
+                        }).map(key => {
                             return (
                                 <tbody key={get_products[0]?.products[key]._id}>
                                     <tr>
@@ -153,10 +176,75 @@ const Product = ({
                                     </tr>
                                 </tbody>
                             )
-                        }) : null}
+                        })
+                            : null}
+                        {/* {get_products[0] ? Object.keys(get_products[0]?.products).map((key, value) => {
+                            return (
+                                <tbody key={get_products[0]?.products[key]._id}>
+                                    <tr>
+                                        <th scope="row">{get_products[0]?.products[key].brand_name}</th>
+                                        <td>{get_products[0]?.products[key].generic_name}</td>
+                                        <td>{get_products[0]?.products[key].category_description}</td>
+                                        <td>{get_products[0]?.products[key].supplier}</td>
+                                        <td>{get_products[0]?.products[key].added_date}</td>
+                                        <td>{get_products[0]?.products[key].expiration_date}</td>
+                                        <td>{get_products[0]?.products[key].original_price}</td>
+                                        <td>{get_products[0]?.products[key].selling_price}</td>
+                                        <td>{get_products[0]?.products[key].quantity}</td>
+                                        <td>
+                                            <div className='btnContainer'
+                                                style={{
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <button
+                                                    type='submit'
+                                                    className='editBtn'
+                                                    style={{
+                                                        border: '0px solid transparent',
+                                                        width: '2vw',
+                                                        height: 'auto',
+                                                        display: 'grid',
+                                                        placeItems: 'center',
+                                                        background: 'none'
+                                                    }}
+                                                    onClick={() => {
+                                                        setGet_Prod_Id(get_products[0]?.products[key]._id)
+                                                        setCheck_If_Edit(state => !state)
+                                                        setOpen_Modal_Products(state => !state)
+                                                        setModalTitle('Edit Customer')
+                                                    }}
+                                                >
+                                                    <FaPen />
+                                                </button>
+                                                <form onSubmit={delete_products_handler} >
+                                                    <button
+                                                        type='submit'
+                                                        className='editBtn'
+                                                        style={{
+                                                            border: '0px solid transparent',
+                                                            width: '2vw',
+                                                            height: 'auto',
+                                                            display: 'grid',
+                                                            placeItems: 'center',
+                                                            background: 'none'
+                                                        }}
+                                                        onClick={() => {
+                                                            setGet_Prod_Id(get_products[0]?.products[key]._id)
+                                                        }}
+                                                    >
+                                                        <FaTrash />
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            )
+                        }) : null} */}
                     </table>
                 </div>
-                <div className='btn-submit-container'>
+                {/* <div className='btn-submit-container'>
                     <button className='btnSubmit'
                         onClick={() => {
                             setOpen_Modal_Products(state => !state)
@@ -178,7 +266,7 @@ const Product = ({
                     >
                         Add
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

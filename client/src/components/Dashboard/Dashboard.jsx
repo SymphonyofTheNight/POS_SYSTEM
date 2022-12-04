@@ -148,8 +148,6 @@ const Dashboard = () => {
     const _date_date = new Date().getDate();
     const _date_year = new Date().getFullYear();
 
-    console.log(_date_month)
-
     // redux storage
     // const redux_storage = useSelector(state => state.reducer.store);
 
@@ -328,7 +326,7 @@ const Dashboard = () => {
                         marginTop: '1.5vh'
                     }}
                         onClick={() => {
-                            setComponent(<Sales />)
+                            setComponent(<Sales setComponent={setComponent} setNav={setNav} />)
                             setNav('/Sales')
                             navigate('/Sales')
                         }}
