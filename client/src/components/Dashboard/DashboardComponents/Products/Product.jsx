@@ -110,7 +110,10 @@ const Product = ({
                             // console.log(get_products[0]?.products[val].brand_name)
                             if (search === "") {
                                 return val
-                            } else if (get_products[0]?.products[val].brand_name.toLowerCase().includes(search.toLowerCase())) {
+                            } else if (
+                                get_products[0]?.products[val].brand_name.toLowerCase().includes(search.toLowerCase()) ||
+                                get_products[0]?.products[val].identifier.toLowerCase().includes(search.toLowerCase())
+                            ) {
                                 return val
                             }
                         }).map(key => {

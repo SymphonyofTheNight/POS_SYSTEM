@@ -176,13 +176,11 @@ const Sales = ({ setComponent, setNav }) => {
                                                         _get_sales[0].sales[key]?.identifier,
                                                         _get_sales[0].sales[key]?.qty,
                                                     )
-                                                    setComponent(<Dashboard />)
-                                                    setNav('/Dashboard')
-                                                    navigate('/Dashboard')
+                                                    // setComponent(<Dashboard />)
+                                                    // setNav('/Dashboard')
+                                                    // navigate('/Dashboard')
                                                     //here
-                                                    setInterval(() => {
-                                                        window.location.reload();
-                                                    }, 2000);
+                                                    window.location.reload();
 
                                                 }}
                                             >
