@@ -9,6 +9,18 @@ const model_schema = mongoose.Schema({
         type: String,
         require: true
     },
+    store_name: {
+        type: String,
+        require: true
+    },
+    address: {
+        type: String,
+        require: true
+    },
+    contact_number: {
+        type: Number,
+        require: true
+    },
     total_profit: {
         type: Number,
         require: true,

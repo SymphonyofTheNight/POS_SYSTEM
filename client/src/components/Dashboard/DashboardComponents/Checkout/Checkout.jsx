@@ -18,6 +18,7 @@ const Checkout = () => {
     const _get_date = new Date().getDay();
     const _get_month = new Date().getMonth();
     const _get_year = new Date().getFullYear();
+    const _get_date_now = new Date();
 
     const [totalAmount, setTotalAmount] = useState();
     const [get_vat, setGet_Vat] = useState();
@@ -118,8 +119,10 @@ const Checkout = () => {
                 <div className='branchdetailsContainer'>
 
                     <div className='innerContainer-1'>
-                        <span className='Text'>Number: 09XXXXXXXXX</span> <br />
+                        <span className='Text'>Seller: Admin</span> <br />
+                        <span className='Text'>Number: 09922325221</span> <br />
                         <span className='Text'>Date: {_get_month + 1 + '/' + _get_date + '/' + _get_year}</span> <br />
+                        <span className='Text'>Time: {new Date().toLocaleTimeString()}</span>
                     </div>
 
                     <div className='innerContainer-2'>
@@ -147,7 +150,6 @@ const Checkout = () => {
 
                 <div className='productsContainer'>
                     {getSales && Object.keys(getSales[0]?.sales).map((key, value) => {
-                        // console.log(getSales[0]?.sales[key])
                         return (
                             <div className='products'>
                                 <span className='text-1'>{getSales[0]?.sales[key]?.product_name}</span>
@@ -163,23 +165,13 @@ const Checkout = () => {
                     <span className='text-3'>Subtotal</span>
                     <span className='text-4'>{totalAmount}</span>
                 </div>
-                <div className='VatContainerLabels'>
-                    <span className='text-3'>Vat 6%</span>
-                    <span className='text-4'>{get_vat}</span>
-                </div>
                 <div className='TotalContainerLabels'>
                     <span className='text-3'>Total</span>
                     <span className='text-4'>{get_total}</span>
                 </div>
-                {/* <button
-                    onClick={() => {
-                        window.print()
-                    }}>
-                    print
-                </button> */}
             </div>
         </div>
     )
 }
 
-export default Checkout;
+export default Checkout
