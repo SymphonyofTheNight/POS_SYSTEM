@@ -56,19 +56,27 @@ const Customer = ({
                         Customer
                     </span>
                 </div>
-                {/* <div className='select-container'>
-                    <select className="form-select" aria-label="Default select example">
-                        <option defaultValue="Open this select menu">Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                <div className='select-container'>
                     <button className='addBtn'
-                        
+                        onClick={() => {
+                            setOpen_Modal_Customer(state => !state)
+                            setCheck_If_Edit(false)
+                            setModalTitle('Add Customer')
+                            setCustomer({
+                                ...customer,
+                                fullname: '',
+                                address: '',
+                                contact_number: '',
+                                product_name: '',
+                                total: '',
+                                note: '',
+                                due_date: ''
+                            });
+                        }}
                     >
                         Add
                     </button>
-                </div> */}
+                </div>
                 <div className='table-container'>
                     <table className="table">
                         <thead>
@@ -148,27 +156,6 @@ const Customer = ({
                             )
                         }) : null}
                     </table>
-                </div>
-                <div className='btn-submit-container'>
-                    <button className='btnSubmit'
-                        onClick={() => {
-                            setOpen_Modal_Customer(state => !state)
-                            setCheck_If_Edit(false)
-                            setModalTitle('Add Customer')
-                            setCustomer({
-                                ...customer,
-                                fullname: '',
-                                address: '',
-                                contact_number: '',
-                                product_name: '',
-                                total: '',
-                                note: '',
-                                due_date: ''
-                            });
-                        }}
-                    >
-                        Add
-                    </button>
                 </div>
             </div>
         </div>

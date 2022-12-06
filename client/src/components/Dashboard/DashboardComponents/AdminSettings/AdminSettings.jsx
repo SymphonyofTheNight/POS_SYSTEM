@@ -17,7 +17,7 @@ const AdminSettings = ({
 
     return (
         <div className='AdminSettings-Container'>
-            <div className='innerContainer'>
+            <div className='innerContainer-1'>
                 <div className='page-title-container'>
                     <span className='text'>
                         Settings
@@ -48,13 +48,13 @@ const AdminSettings = ({
                         <span className='text-label'>
                             Password
                         </span>
-                        <input 
-                        className='input-form' 
-                        type='password' 
-                        value={admin_info[0].password} 
-                        onChange={(e)=> {
-                            setChangepass({...changepass, password:e.target.value })
-                        }}
+                        <input
+                            className='input-form'
+                            type='password'
+                            value={admin_info[0].password}
+                            onChange={(e) => {
+                                setChangepass({ ...changepass, password: e.target.value })
+                            }}
                         />
                         <button className='btnEdit'
                             onClick={() => {
@@ -64,6 +64,16 @@ const AdminSettings = ({
                             Edit
                         </button>
                     </div>
+                </div>
+            </div>
+            <div className='innerContainer-2'>
+                <div className='page-title-container'>
+                    <span className='text'>
+                        Admin Info
+                    </span>
+                </div>
+                <div className='form-container'>
+                    
                 </div>
             </div>
         </div>

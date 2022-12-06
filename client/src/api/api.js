@@ -87,7 +87,7 @@ export const edit_customer = (adminID, token, identifier, fullname, address, con
     }
 })
 
-export const delete_customer = (owner_id, token, customer_item_id) => base_api.put(`/Customer/ ${owner_id}`, {
+export const delete_customer = (owner_id, token, customer_item_id) => base_api.put(`/Customer/${owner_id}`, {
     customer: [
         {
             _id: customer_item_id
