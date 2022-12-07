@@ -125,7 +125,7 @@ const model_schema = mongoose.Schema({
                 type: String,
                 require: true,
             },
-            generic_name: {
+            variation: {
                 type: String,
                 require: true,
             },
@@ -163,7 +163,7 @@ const model_schema = mongoose.Schema({
                 type: String,
                 require: true,
             },
-            generic_name: {
+            variation: {
                 type: String,
                 require: true,
             },
@@ -294,7 +294,7 @@ const model_schema = mongoose.Schema({
                 type: String,
                 require: true,
             },
-            generic_name: {
+            variation: {
                 type: String,
                 require: true,
             },

@@ -185,14 +185,20 @@ export const empty_sales = (owner_id) => base_api.put(`/Checkout/${owner_id}`, {
 
 // admin edit
 
-export const admin_username = (adminID, token, username, password, newusername) => base_api.patch(`/Settings/${adminID}`, {
+// export const admin_username = (adminID, token, username, password, newusername) => base_api.patch(`/Settings/${adminID}`, {
+//     admin: username,
+//     password: password,
+//     newusername: newusername
+// }, { headers: { 'Authorization': `Bearer ${token}` } });
+
+// export const admin_password = (adminID, token, password, newpassword, repeatpassword) => base_api.put(`/Settings/${adminID}`, {
+//     password: password,
+//     newpassword: newpassword,
+//     repeatpassword: repeatpassword
+// }, { headers: { 'Authorization': `Bearer ${token}` } });
+
+export const change_admin_account = (adminID, token, username, password, old_password) => base_api.patch(`/Settings/${adminID}`, {
     admin: username,
     password: password,
-    newusername: newusername
-}, { headers: { 'Authorization': `Bearer ${token}` } });
-
-export const admin_password = (adminID, token, password, newpassword, repeatpassword) => base_api.put(`/Settings/${adminID}`, {
-    password: password,
-    newpassword: newpassword,
-    repeatpassword: repeatpassword
-}, { headers: { 'Authorization': `Bearer ${token}` } });
+    old_password: old_password
+}, { headers: { 'Authorization': `Bearer ${token}` } })

@@ -6,10 +6,11 @@ dotenv.config();
 
 // schema
 import OwnerModels from '../models/models.js';
+import { report_of_sales } from './controllers.js';
 
 export const registration = async (req, res) => {
 
-    const { admin, password } = req.body;
+    const { admin, password, store_name, address, contact_number } = req.body;
 
     try {
         const check_user_exist = await OwnerModels.findOne({ admin });
@@ -20,7 +21,10 @@ export const registration = async (req, res) => {
 
         const created_user_from_mongoose = await OwnerModels.create({
             admin: admin,
-            password: hash_salt
+            password: hash_salt,
+            store_name: store_name,
+            address: address,
+            contact_number: contact_number
         });
 
         const token = await jwt.sign({
@@ -104,6 +108,35 @@ export const change_password = async (req, res) => {
 
     } catch (error) {
         res.status(404).json({ message: error });
+    }
+
+}
+
+export const change_account_details = async (req, res) => {
+
+    const { username, password, old_password } = req.body;
+    const { id } = req.params;
+
+    console.log(req.body);
+    console.log(id);
+
+    try {
+
+        const checkifexisting = await OwnerModels.findOne({ username });
+        if (!checkifexisting) return res.status(404).json({ message: 'user does not exist' });
+
+        const check_if_correct_pass = await bcrypt.compare(old_password, checkifexisting.password);
+        if (!check_if_correct_pass) return res.status(404).json({ message: 'Invalid credentials' });
+
+        const hash_pass = await bcrypt.hash(password, 12);
+
+        await OwnerModels.findByIdAndUpdate(id, {
+            admin: username,
+            password: hash_pass
+        }, { new: true })
+
+    } catch (error) {
+        res.status(404).json(error);
     }
 
 }

@@ -1087,7 +1087,7 @@
                                 margin-left: 1.5vw;
                                 top: 35%;
                                 height: 4.5vh;
-                                width: 20vw;
+                                width: 30vw;
                                 outline: none;
                                 padding: 12px 12px;
                             }
@@ -1168,9 +1168,76 @@
                     }
 
                     .form-container {
-                        @include baseDisplay(blue, 34vh, 1280px);
+                        @include baseDisplay(none, 34vh, 1280px);
                         display: flex;
                         flex-direction: row;
+                        flex-wrap: wrap;
+
+                        .store-name-text-container {
+                            @include baseDisplay(rgb(211, 211, 211), 17vh, 640px);
+                            position: relative;
+
+                            .label {
+                                position: absolute;
+                                font-family: 'Poppins', sans-serif;
+                                font-size: 1em;
+                                margin-left: 2vw;
+                                top: 30%
+                            }
+
+                            .text {
+                                position: absolute;
+                                font-family: 'Poppins', sans-serif;
+                                font-size: 2em;
+                                margin-left: 2vw;
+                                top: 40%
+                            }
+
+                        }
+
+                        .address-name-text-container {
+                            @include baseDisplay(rgb(211, 211, 211), 17vh, 640px);
+                            position: relative;
+
+                            .label {
+                                position: absolute;
+                                font-family: 'Poppins', sans-serif;
+                                font-size: 1em;
+                                margin-left: 2vw;
+                                top: 30%
+                            }
+
+                            .text {
+                                position: absolute;
+                                font-family: 'Poppins', sans-serif;
+                                font-size: 2em;
+                                margin-left: 2vw;
+                                top: 40%
+                            }
+
+                        }
+
+                        .contact-name-text-container {
+                            @include baseDisplay(rgb(211, 211, 211), 17vh, 640px);
+                            position: relative;
+
+                            .label {
+                                position: absolute;
+                                font-family: 'Poppins', sans-serif;
+                                font-size: 1em;
+                                margin-left: 2vw;
+                                top: 30%
+                            }
+
+                            .text {
+                                position: absolute;
+                                font-family: 'Poppins', sans-serif;
+                                font-size: 2em;
+                                margin-left: 2vw;
+                                top: 40%
+                            }
+
+                        }
                     }
                 }
             }
@@ -2062,9 +2129,9 @@
     }
 
     .modal-admin {
-        background: rgba($color: #000000, $alpha: 0.3);
+        background: rgba($color: #000000, $alpha: 0);
         height: 100vh;
-        width: 100vw;
+        width: 80vw;
         position: absolute;
         top: 0;
         left: 0;
@@ -2076,7 +2143,7 @@
         .modal-container {
             background: rgba($color: #ffffff, $alpha: 1.0);
             height: auto;
-            width: 30vw;
+            width: 23.5vw;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
@@ -2085,22 +2152,38 @@
             .titleContainer {
                 background: rgba($color: #812b2b, $alpha: 0);
                 height: 7vh;
-                width: 30vw;
+                width: 23.5vw;
                 display: flex;
                 align-items: flex-end;
                 justify-content: flex-start;
+                position: relative;
 
                 .text {
                     font: $--text-font;
                     margin-left: 1.5vw;
                     font-size: 2em;
                 }
+
+                .btnClose {
+                    background: rgba($color: #000000, $alpha: 0);
+                    height: 4vh;
+                    width: 3vw;
+                    position: absolute;
+                    top: 3vh;
+                    right: 1.5vw;
+                    border: 0px solid transparent;
+
+                    .icon {
+                        font-size: 1.5em;
+                        color: rgb(37, 37, 37);
+                    }
+                }
             }
 
             .form-input-container {
                 background: rgba($color: #812424, $alpha: 0);
                 height: auto;
-                width: 30vw;
+                width: 23.5vw;
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
@@ -2108,7 +2191,7 @@
                 .username-container {
                     background: rgba($color: #8b8019, $alpha: 0);
                     height: 7vh;
-                    width: 30vw;
+                    width: 23.5vw;
                     display: grid;
                     align-items: flex-end;
                     justify-content: flex-start;
@@ -2137,7 +2220,7 @@
                 .password-container {
                     background: rgba($color: #1b198b, $alpha: 0);
                     height: 7vh;
-                    width: 30vw;
+                    width: 23.5vw;
                     display: grid;
                     align-items: flex-end;
                     justify-content: flex-start;
@@ -2190,44 +2273,44 @@
                 //     }
                 // }
 
-                .newusername-container {
-                    background: rgba($color: #74198b, $alpha: 0);
-                    height: 7vh;
-                    width: 30vw;
-                    display: grid;
-                    align-items: flex-end;
-                    justify-content: flex-start;
-                    position: relative;
+                // .newusername-container {
+                //     background: rgba($color: #74198b, $alpha: 1);
+                //     height: 7vh;
+                //     width: 23.5vw;
+                //     display: grid;
+                //     align-items: flex-end;
+                //     justify-content: flex-start;
+                //     position: relative;
 
-                    .category-description-form {
-                        margin-left: 1.5vw;
-                        height: 4vh;
-                        width: 20vw;
-                        outline: none;
-                        padding: 0px 12px;
-                        margin-bottom: 1vh;
-                    }
+                //     .category-description-form {
+                //         margin-left: 1.5vw;
+                //         height: 4vh;
+                //         width: 20vw;
+                //         outline: none;
+                //         padding: 0px 12px;
+                //         margin-bottom: 1vh;
+                //     }
 
-                    .text {
-                        font-family: $--text-font;
-                        position: absolute;
-                        font-size: .8em;
-                        top: 0;
-                        font-weight: bold;
-                        left: 1.5vw;
-                    }
-                }
+                //     .text {
+                //         font-family: $--text-font;
+                //         position: absolute;
+                //         font-size: .8em;
+                //         top: 0;
+                //         font-weight: bold;
+                //         left: 1.5vw;
+                //     }
+                // }
 
                 .btnContainerSubmit {
                     background: rgba($color: #198b48, $alpha: 0);
                     height: 10vh;
-                    width: 30vw;
+                    width: 23.5vw;
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
 
                     .btnAddSubmit {
-                        margin-right: 1.5vw;
+                        margin-right: 2vw;
                         outline: none;
                         height: 4vh;
                         width: 6vw;
@@ -2262,177 +2345,177 @@
         }
     }
 
-    .modal-admin-2 {
-        background: rgba($color: #000000, $alpha: 0.3);
-        height: 100vh;
-        width: 100vw;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: grid;
-        place-items: center;
+    // .modal-admin-2 {
+    //     background: rgba($color: #000000, $alpha: 0.3);
+    //     height: 100vh;
+    //     width: 80vw;
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     display: grid;
+    //     place-items: center;
 
-        position: relative;
+    //     position: relative;
 
-        .modal-container {
-            background: rgba($color: #ffffff, $alpha: 1.0);
-            height: auto;
-            width: 30vw;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
+    //     .modal-container {
+    //         background: rgba($color: #ffffff, $alpha: 1.0);
+    //         height: auto;
+    //         width: 30vw;
+    //         border-radius: 10px;
+    //         display: flex;
+    //         flex-direction: column;
+    //         flex-wrap: wrap;
 
-            .titleContainer {
-                background: rgba($color: #812b2b, $alpha: 0);
-                height: 7vh;
-                width: 30vw;
-                display: flex;
-                align-items: flex-end;
-                justify-content: flex-start;
+    //         .titleContainer {
+    //             background: rgba($color: #812b2b, $alpha: 0);
+    //             height: 7vh;
+    //             width: 30vw;
+    //             display: flex;
+    //             align-items: flex-end;
+    //             justify-content: flex-start;
 
-                .text {
-                    font: $--text-font;
-                    margin-left: 1.5vw;
-                    font-size: 2em;
-                }
-            }
+    //             .text {
+    //                 font: $--text-font;
+    //                 margin-left: 1.5vw;
+    //                 font-size: 2em;
+    //             }
+    //         }
 
-            .form-input-container {
-                background: rgba($color: #812424, $alpha: 0);
-                height: auto;
-                width: 30vw;
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
+    //         .form-input-container {
+    //             background: rgba($color: #812424, $alpha: 0);
+    //             height: auto;
+    //             width: 30vw;
+    //             display: flex;
+    //             flex-direction: column;
+    //             flex-wrap: wrap;
 
-                .password-container {
-                    background: rgba($color: #8b8019, $alpha: 0);
-                    height: 7vh;
-                    width: 30vw;
-                    display: grid;
-                    align-items: flex-end;
-                    justify-content: flex-start;
-                    position: relative;
-                    margin-top: 1vh;
+    //             .password-container {
+    //                 background: rgba($color: #8b8019, $alpha: 0);
+    //                 height: 7vh;
+    //                 width: 30vw;
+    //                 display: grid;
+    //                 align-items: flex-end;
+    //                 justify-content: flex-start;
+    //                 position: relative;
+    //                 margin-top: 1vh;
 
-                    .brand-name-form {
-                        margin-left: 1.5vw;
-                        height: 4vh;
-                        width: 20vw;
-                        outline: none;
-                        padding: 0px 12px;
-                        margin-bottom: 1vh;
-                    }
+    //                 .brand-name-form {
+    //                     margin-left: 1.5vw;
+    //                     height: 4vh;
+    //                     width: 20vw;
+    //                     outline: none;
+    //                     padding: 0px 12px;
+    //                     margin-bottom: 1vh;
+    //                 }
 
-                    .text {
-                        font-family: $--text-font;
-                        position: absolute;
-                        font-size: .8em;
-                        top: 0;
-                        font-weight: bold;
-                        left: 1.5vw;
-                    }
-                }
+    //                 .text {
+    //                     font-family: $--text-font;
+    //                     position: absolute;
+    //                     font-size: .8em;
+    //                     top: 0;
+    //                     font-weight: bold;
+    //                     left: 1.5vw;
+    //                 }
+    //             }
 
-                .old-password-container {
-                    background: rgba($color: #1b198b, $alpha: 0);
-                    height: 7vh;
-                    width: 30vw;
-                    display: grid;
-                    align-items: flex-end;
-                    justify-content: flex-start;
-                    position: relative;
+    //             .old-password-container {
+    //                 background: rgba($color: #1b198b, $alpha: 0);
+    //                 height: 7vh;
+    //                 width: 30vw;
+    //                 display: grid;
+    //                 align-items: flex-end;
+    //                 justify-content: flex-start;
+    //                 position: relative;
 
-                    .generic-name-form {
-                        margin-left: 1.5vw;
-                        height: 4vh;
-                        width: 20vw;
-                        outline: none;
-                        padding: 0px 12px;
-                        margin-bottom: 1vh;
-                    }
+    //                 .generic-name-form {
+    //                     margin-left: 1.5vw;
+    //                     height: 4vh;
+    //                     width: 20vw;
+    //                     outline: none;
+    //                     padding: 0px 12px;
+    //                     margin-bottom: 1vh;
+    //                 }
 
-                    .text {
-                        font-family: $--text-font;
-                        position: absolute;
-                        font-size: .8em;
-                        top: 0;
-                        font-weight: bold;
-                        left: 1.5vw;
-                    }
-                }
+    //                 .text {
+    //                     font-family: $--text-font;
+    //                     position: absolute;
+    //                     font-size: .8em;
+    //                     top: 0;
+    //                     font-weight: bold;
+    //                     left: 1.5vw;
+    //                 }
+    //             }
 
-                .repeat-password-container {
-                    background: rgba($color: #74198b, $alpha: 0);
-                    height: 7vh;
-                    width: 30vw;
-                    display: grid;
-                    align-items: flex-end;
-                    justify-content: flex-start;
-                    position: relative;
+    //             .repeat-password-container {
+    //                 background: rgba($color: #74198b, $alpha: 0);
+    //                 height: 7vh;
+    //                 width: 30vw;
+    //                 display: grid;
+    //                 align-items: flex-end;
+    //                 justify-content: flex-start;
+    //                 position: relative;
 
-                    .category-description-form {
-                        margin-left: 1.5vw;
-                        height: 4vh;
-                        width: 20vw;
-                        outline: none;
-                        padding: 0px 12px;
-                        margin-bottom: 1vh;
-                    }
+    //                 .category-description-form {
+    //                     margin-left: 1.5vw;
+    //                     height: 4vh;
+    //                     width: 20vw;
+    //                     outline: none;
+    //                     padding: 0px 12px;
+    //                     margin-bottom: 1vh;
+    //                 }
 
-                    .text {
-                        font-family: $--text-font;
-                        position: absolute;
-                        font-size: .8em;
-                        top: 0;
-                        font-weight: bold;
-                        left: 1.5vw;
-                    }
-                }
+    //                 .text {
+    //                     font-family: $--text-font;
+    //                     position: absolute;
+    //                     font-size: .8em;
+    //                     top: 0;
+    //                     font-weight: bold;
+    //                     left: 1.5vw;
+    //                 }
+    //             }
 
-                .btnContainerSubmit {
-                    background: rgba($color: #198b48, $alpha: 0);
-                    height: 10vh;
-                    width: 30vw;
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
+    //             .btnContainerSubmit {
+    //                 background: rgba($color: #198b48, $alpha: 0);
+    //                 height: 10vh;
+    //                 width: 30vw;
+    //                 display: flex;
+    //                 align-items: center;
+    //                 justify-content: flex-end;
 
-                    .btnAddSubmit {
-                        margin-right: 1.5vw;
-                        outline: none;
-                        height: 4vh;
-                        width: 6vw;
-                        border: 0px solid transparent;
-                        background: #0e6cb9;
-                        color: white;
-                    }
-                }
-            }
-        }
+    //                 .btnAddSubmit {
+    //                     margin-right: 1.5vw;
+    //                     outline: none;
+    //                     height: 4vh;
+    //                     width: 6vw;
+    //                     border: 0px solid transparent;
+    //                     background: #0e6cb9;
+    //                     color: white;
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        .btnClose {
-            background: rgba($color: #000000, $alpha: 0);
-            height: 4vh;
-            width: 3vw;
-            position: absolute;
-            top: 1.5vh;
-            right: 1.5vw;
-            border: 0px solid transparent;
+    //     .btnClose {
+    //         background: rgba($color: #000000, $alpha: 0);
+    //         height: 4vh;
+    //         width: 3vw;
+    //         position: absolute;
+    //         top: 1.5vh;
+    //         right: 1.5vw;
+    //         border: 0px solid transparent;
 
-            .icon {
-                font-size: 2em;
-                color: rgb(37, 37, 37);
-            }
-        }
+    //         .icon {
+    //             font-size: 2em;
+    //             color: rgb(37, 37, 37);
+    //         }
+    //     }
 
-        .btnClose:hover {
-            .icon {
-                font-size: 2.3em;
-                color: rgb(0, 0, 0);
-            }
-        }
-    }
+    //     .btnClose:hover {
+    //         .icon {
+    //             font-size: 2.3em;
+    //             color: rgb(0, 0, 0);
+    //         }
+    //     }
+    // }
 
 }

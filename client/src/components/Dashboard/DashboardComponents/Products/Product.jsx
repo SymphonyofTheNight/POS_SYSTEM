@@ -121,7 +121,7 @@ const Product = ({
                                 <tbody key={get_products[0]?.products[key]._id}>
                                     <tr>
                                         <th scope="row">{get_products[0]?.products[key].brand_name}</th>
-                                        <td>{get_products[0]?.products[key].generic_name}</td>
+                                        <td>{get_products[0]?.products[key].variation}</td>
                                         <td>{get_products[0]?.products[key].category_description}</td>
                                         <td>{get_products[0]?.products[key].supplier}</td>
                                         <td>{get_products[0]?.products[key].added_date}</td>
