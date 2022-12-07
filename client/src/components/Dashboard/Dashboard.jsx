@@ -30,7 +30,7 @@ import AdminSettings from './DashboardComponents/AdminSettings/AdminSettings';
 
 // action thunk 
 // import { add_supplier } from '../../controllers/actions.js';
-import { add_supplier, edit_supplier, add_customer, edit_customer, add_products, edit_products, admin_username, admin_password } from '../../api/api.js';
+import { add_supplier, edit_supplier, add_customer, edit_customer, add_products, edit_products, change_admin_account } from '../../api/api.js';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -40,7 +40,7 @@ import '../../scss/_Dashboard.scss';
 const Dashboard = () => {
 
     const [open_modal_admin_setting, setOpen_Modal_Admin_Setting] = useState(false);
-    const [open_modal_admin_setting_2, setOpen_Modal_Admin_Setting_2] = useState(false);
+    // const [open_modal_admin_setting_2, setOpen_Modal_Admin_Setting_2] = useState(false);
     const [open_modal_supplier, setOpen_Modal_Supplier] = useState(false);
     const [open_modal_customer, setOpen_Modal_Customer] = useState(false);
     const [open_modal_products, setOpen_Modal_Products] = useState(false);
@@ -48,7 +48,7 @@ const Dashboard = () => {
     // const [check_if_add, setCheck_If_Add] = useState(false);
     const [getId] = useState(); // get id of product
     const [increment, setIncrement] = useState(0); // increment point system
-    const [dummy_increment, setDummy_increment] = useState(0);
+    // const [dummy_increment, setDummy_increment] = useState(0);
     const [modaltitle, setModalTitle] = useState(''); // modal title 
 
     // const findSupplier = useSelector(state => getId ? state.reducer?.store?.map(val => val.supplier.find(sup => sup._id === getId)) : null);
@@ -80,7 +80,7 @@ const Dashboard = () => {
     const [tabswitch, setTabswitch] = useState(false);
 
     // get custormer 
-    const get_customer = useSelector(state => state.reducer.store);
+    const get_admin = useSelector(state => state.reducer.store);
 
     // get supplier for select 
     const get_suppliers = useSelector(state => state.reducer.store);
@@ -135,14 +135,14 @@ const Dashboard = () => {
     const [changeuser, setChangeuser] = useState({
         username: '',
         password: '',
-        newusername: ''
+        old_password: ''
     })
 
-    const [changepass, setChangepass] = useState({
-        password: '',
-        newpassword: '',
-        repeatpassword: ''
-    })
+    // const [changepass, setChangepass] = useState({
+    //     password: '',
+    //     newpassword: '',
+    //     repeatpassword: ''
+    // })
 
     const _date_month = new Date().getMonth();
     const _date_date = new Date().getDate();
@@ -177,6 +177,17 @@ const Dashboard = () => {
             nav_tab.current.style.transform = 'translateX(0vw)';
         }
     }, [tabswitch]);
+
+
+    useEffect(() => {
+        if (check_if_edit) {
+            setChangeuser({
+                ...changeuser,
+                username: get_admin[0]?.admin,
+                password: ''
+            })
+        }
+    }, [check_if_edit])
 
     const add_supplier_onHandleSubmit = (e) => {
 
@@ -276,29 +287,42 @@ const Dashboard = () => {
         navigate(0);
     }
 
-    const admin_username_onHandleSubmit = (e) => {
-        e.preventDefault();
+    // const admin_username_onHandleSubmit = (e) => {
+    //     e.preventDefault();
 
-        console.log(changeuser)
-        if (changeuser) {
-            admin_username(Localstorage.result._id, Localstorage.token, changeuser.username, changeuser.password, changeuser.newusername);
-            setOpen_Modal_Admin_Setting(state => !state)
-            window.location.reload()
-        }
-    }
+    //     console.log(changeuser)
+    //     if (changeuser) {
+    //         admin_username(Localstorage.result._id, Localstorage.token, changeuser.username, changeuser.password, changeuser.newusername);
+    //         setOpen_Modal_Admin_Setting(state => !state)
+    //         window.location.reload()
+    //     }
+    // }
 
-    const admin_password_onHandleSubmit = (e) => {
-        e.preventDefault();
+    // const admin_password_onHandleSubmit = (e) => {
+    //     e.preventDefault();
 
-        if (changepass.newpassword === changepass.repeatpassword) {
-            console.log(Localstorage.result._id, Localstorage.token, changepass)
-            admin_password(Localstorage.result._id, Localstorage.token, changepass.password, changepass.newpassword, changepass.repeatpassword);
-            setOpen_Modal_Admin_Setting_2(state => !state);
-            window.location.reload();
-        } else {
-            alert("repeat the same password");
-        }
-    }
+    //     if (changepass.newpassword === changepass.repeatpassword) {
+    //         console.log(Localstorage.result._id, Localstorage.token, changepass)
+    //         admin_password(Localstorage.result._id, Localstorage.token, changepass.password, changepass.newpassword, changepass.repeatpassword);
+    //         setOpen_Modal_Admin_Setting_2(state => !state);
+    //         window.location.reload();
+    //     } else {
+    //         alert("repeat the same password");
+    //     }
+    // }
+
+    // console.log(get_admin)
+
+    // const admin_account_settings_onHandleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     console.log(Localstorage?.result?._id,
+    //         Localstorage?.token,
+    //         changeuser.username,
+    //         changeuser.password)
+
+
+    // }
 
     return (
         <div className='Dashboard'>
@@ -453,9 +477,11 @@ const Dashboard = () => {
                                 navigate('/Settings')
                                 setComponent(<AdminSettings
                                     setOpen_Modal_Admin_Setting={setOpen_Modal_Admin_Setting}
-                                    setOpen_Modal_Admin_Setting_2={setOpen_Modal_Admin_Setting_2}
-                                    changepass={changepass}
-                                    setChangepass={setChangepass}
+                                    // setOpen_Modal_Admin_Setting_2={setOpen_Modal_Admin_Setting_2}
+                                    // changepass={changepass}
+                                    // setChangepass={setChangepass}
+                                    // check_if_edit={check_if_edit}
+                                    setCheck_If_Edit={setCheck_If_Edit}
                                     changeuser={changeuser}
                                     setChangeuser={setChangeuser}
                                 />)
@@ -817,7 +843,7 @@ const Dashboard = () => {
                 </>
             )}
 
-            {open_modal_admin_setting ? (
+            {/* {open_modal_admin_setting ? (
                 <form onSubmit={admin_username_onHandleSubmit} >
                     <div className='modal-admin'>
                         <div className='modal-container'>
@@ -938,6 +964,89 @@ const Dashboard = () => {
                         </button>
                     </div>
                 </form>
+            ) : (
+                <>
+                </>
+            )} */}
+
+            {open_modal_admin_setting ? (
+                // <form onSubmit={admin_account_settings_onHandleSubmit} >
+                <div className='modal-admin'>
+                    <div className='modal-container'>
+                        <div className='titleContainer'>
+                            <span className='text'>
+                                Edit Admin
+                            </span>
+                            <button className='btnClose' onClick={() => {
+                                setOpen_Modal_Admin_Setting(state => !state)
+                                setCheck_If_Edit(false)
+                            }}>
+                                <FaTimes className='icon' />
+                            </button>
+                        </div>
+                        <div className='form-input-container'>
+                            <div className='username-container'>
+                                <span className='text'>username: </span>
+                                <input className='brand-name-form'
+                                    value={check_if_edit ? changeuser.username : changeuser.username}
+                                    type='text'
+                                    placeholder='username'
+                                    onChange={(e) => {
+                                        setChangeuser({ ...changeuser, username: e.target.value })
+                                    }} />
+                            </div>
+                            <div className='password-container'>
+                                <span className='text'>new password: </span>
+                                <input className='generic-name-form'
+                                    value={check_if_edit ? changeuser.password : changeuser.password}
+                                    type='password'
+                                    placeholder='new password'
+                                    onChange={(e) => {
+                                        setChangeuser({ ...changeuser, password: e.target.value })
+                                    }} />
+                            </div>
+                            <div className='password-container'>
+                                <span className='text'>old password: </span>
+                                <input className='generic-name-form'
+                                    value={check_if_edit ? changeuser.old_password : changeuser.old_password}
+                                    type='password'
+                                    placeholder='old password'
+                                    onChange={(e) => {
+                                        setChangeuser({ ...changeuser, old_password: e.target.value })
+                                    }} />
+                            </div>
+
+                            <div className='btnContainerSubmit'>
+                                <button className='btnAddSubmit'
+                                    onClick={() => {
+                                        if (changeuser.username && changeuser.password) {
+
+                                            console.log(Localstorage?.result?._id,
+                                                Localstorage?.token,
+                                                changeuser.username,
+                                                changeuser.password,
+                                                changeuser.old_password)
+
+                                            change_admin_account(
+                                                Localstorage?.result?._id,
+                                                Localstorage?.token,
+                                                changeuser.username,
+                                                changeuser.password,
+                                                changeuser.old_password
+                                            )
+
+                                            window.location.reload()
+
+                                        }
+                                    }}
+                                >
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                // </form>
             ) : (
                 <>
                 </>

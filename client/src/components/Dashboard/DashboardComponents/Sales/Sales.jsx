@@ -161,7 +161,7 @@ const Sales = ({ setComponent, setNav }) => {
                                 return (
                                     <tr>
                                         <td>{_get_sales[0].sales[key].product_name}</td>
-                                        <td>{_get_sales[0].sales[key].generic_name}</td>
+                                        <td>{_get_sales[0].sales[key].variation}</td>
                                         <td>{_get_sales[0].sales[key].description}</td>
                                         <td>{_get_sales[0].sales[key].qty}</td>
                                         <td>{_get_sales[0].sales[key].amount}</td>
