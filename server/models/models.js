@@ -163,7 +163,7 @@ const model_schema = mongoose.Schema({
                 type: String,
                 require: true,
             },
-            variation: {
+            variant: {
                 type: String,
                 require: true,
             },

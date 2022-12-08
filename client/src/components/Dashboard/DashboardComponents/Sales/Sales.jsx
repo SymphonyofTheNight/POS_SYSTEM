@@ -146,7 +146,7 @@ const Sales = ({ setComponent, setNav }) => {
                         <thead>
                             <tr>
                                 <th scope="col">Product_Name</th>
-                                <th scope="col">Generic_Name</th>
+                                {/* <th scope="col">Variant</th> */}
                                 <th scope="col">Category/Description</th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">Amount</th>
@@ -161,7 +161,7 @@ const Sales = ({ setComponent, setNav }) => {
                                 return (
                                     <tr>
                                         <td>{_get_sales[0].sales[key].product_name}</td>
-                                        <td>{_get_sales[0].sales[key].variation}</td>
+                                        {/* <td>{_get_sales[0].sales[key].variant}</td> */}
                                         <td>{_get_sales[0].sales[key].description}</td>
                                         <td>{_get_sales[0].sales[key].qty}</td>
                                         <td>{_get_sales[0].sales[key].amount}</td>

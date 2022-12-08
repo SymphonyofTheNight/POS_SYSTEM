@@ -224,7 +224,7 @@ export const add_products = async (req, res) => {
                 products: {
                     identifier: req.body.products[0].identifier,
                     brand_name: req.body.products[0].brand_name,
-                    generic_name: req.body.products[0].generic_name,
+                    variant: req.body.products[0].variant,
                     category_description: req.body.products[0].category_description,
                     selling_price: req.body.products[0].selling_price,
                     original_price: req.body.products[0].original_price,
@@ -254,7 +254,7 @@ export const edit_product = async (req, res) => {
             $set: {
                 "products.$[i].identifier": req.body.products[0].identifier,
                 "products.$[i].brand_name": req.body.products[0].brand_name,
-                "products.$[i].generic_name": req.body.products[0].generic_name,
+                "products.$[i].variant": req.body.products[0].variant,
                 "products.$[i].category_description": req.body.products[0].category_description,
                 "products.$[i].selling_price": req.body.products[0].selling_price,
                 "products.$[i].original_price": req.body.products[0].original_price,

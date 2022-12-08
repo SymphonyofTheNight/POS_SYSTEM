@@ -30,7 +30,7 @@ const Product = ({
                 token: Localstorage?.token,
                 identifier: findProduct[0].identifier,
                 brand_name: findProduct[0].brand_name,
-                generic_name: findProduct[0].generic_name,
+                variant: findProduct[0].variant,
                 category_description: findProduct[0].category_description,
                 supplier: findProduct[0].supplier,
                 added_date: findProduct[0].added_date,
@@ -76,7 +76,7 @@ const Product = ({
                             setProducts({
                                 ...products,
                                 brand_name: '',
-                                generic_name: '',
+                                variant: '',
                                 category_description: '',
                                 supplier: '',
                                 added_date: '',
@@ -95,7 +95,7 @@ const Product = ({
                         <thead>
                             <tr>
                                 <th scope="col">Brand_Name</th>
-                                <th scope="col">Generic_Name</th>
+                                <th scope="col">Variant</th>
                                 <th scope="col">Category/Description</th>
                                 <th scope="col">Supplier</th>
                                 <th scope="col">Receive_Date</th>
@@ -121,7 +121,7 @@ const Product = ({
                                 <tbody key={get_products[0]?.products[key]._id}>
                                     <tr>
                                         <th scope="row">{get_products[0]?.products[key].brand_name}</th>
-                                        <td>{get_products[0]?.products[key].variation}</td>
+                                        <td>{get_products[0]?.products[key].variant}</td>
                                         <td>{get_products[0]?.products[key].category_description}</td>
                                         <td>{get_products[0]?.products[key].supplier}</td>
                                         <td>{get_products[0]?.products[key].added_date}</td>
