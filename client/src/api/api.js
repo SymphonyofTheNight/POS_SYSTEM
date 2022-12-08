@@ -105,7 +105,7 @@ export const add_products = (products) => base_api.post(`/Products/${products._i
         {
             identifier: products.identifier,
             brand_name: products.brand_name,
-            generic_name: products.generic_name,
+            variant: products.variant,
             category_description: products.category_description,
             supplier: products.supplier,
             added_date: products.added_date,
@@ -122,7 +122,7 @@ export const edit_products = (products) => base_api.patch(`/Products/${products.
         {
             identifier: products.identifier,
             brand_name: products.brand_name,
-            generic_name: products.generic_name,
+            variant: products.variant,
             category_description: products.category_description,
             supplier: products.supplier,
             added_date: products.added_date,

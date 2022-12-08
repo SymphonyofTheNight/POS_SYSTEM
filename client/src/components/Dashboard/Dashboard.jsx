@@ -124,7 +124,7 @@ const Dashboard = () => {
         token: storage?.token,
         identifier: uuidv4().split('-')[0],
         brand_name: '',
-        generic_name: '',
+        variant: '',
         category_description: '',
         supplier: '',
         added_date: '',
@@ -731,13 +731,13 @@ const Dashboard = () => {
                                         }} />
                                 </div>
                                 <div className='generic-name-container'>
-                                    <span className='text'>Generic name: </span>
+                                    <span className='text'>Variant: </span>
                                     <input className='generic-name-form'
-                                        value={check_if_edit ? products.generic_name : products.generic_name}
+                                        value={check_if_edit ? products.variant : products.variant}
                                         type='text'
-                                        placeholder='generic name'
+                                        placeholder='variant'
                                         onChange={(e) => {
-                                            setProducts({ ...products, generic_name: e.target.value })
+                                            setProducts({ ...products, variant: e.target.value })
                                         }} />
                                 </div>
                                 <div className='category-description-container'>
