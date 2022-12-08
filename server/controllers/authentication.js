@@ -114,24 +114,23 @@ export const change_password = async (req, res) => {
 
 export const change_account_details = async (req, res) => {
 
-    const { username, password, old_password } = req.body;
+    const { admin, old_admin, password, old_password } = req.body;
     const { id } = req.params;
-
-    console.log(req.body);
-    console.log(id);
 
     try {
 
-        const checkifexisting = await OwnerModels.findOne({ username });
+        const checkifexisting = await OwnerModels.findOne({ old_admin });
+
         if (!checkifexisting) return res.status(404).json({ message: 'user does not exist' });
 
         const check_if_correct_pass = await bcrypt.compare(old_password, checkifexisting.password);
+
         if (!check_if_correct_pass) return res.status(404).json({ message: 'Invalid credentials' });
 
         const hash_pass = await bcrypt.hash(password, 12);
 
         await OwnerModels.findByIdAndUpdate(id, {
-            admin: username,
+            admin: admin,
             password: hash_pass
         }, { new: true })
 

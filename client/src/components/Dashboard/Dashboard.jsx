@@ -30,7 +30,7 @@ import AdminSettings from './DashboardComponents/AdminSettings/AdminSettings';
 
 // action thunk 
 // import { add_supplier } from '../../controllers/actions.js';
-import { add_supplier, edit_supplier, add_customer, edit_customer, add_products, edit_products, change_admin_account } from '../../api/api.js';
+import { add_supplier, edit_supplier, add_customer, edit_customer, add_products, edit_products, edit_admin } from '../../api/api.js';
 
 // brand img
 import brand from '../../assets/img/brand.png';
@@ -90,12 +90,14 @@ const Dashboard = () => {
     const [nav, setNav] = useState('/ Dashboard');
 
     // localstorage 
-    const [Localstorage] = useState(JSON.parse(localStorage.getItem('Administrator')));
+    const [storage] = useState(JSON.parse(localStorage.getItem('Administrator')));
+
+    console.log(storage?.token)
 
     //supplier
     const [supplier, setSupplier] = useState({
-        _id: Localstorage?.result?._id,
-        token: Localstorage?.token,
+        _id: storage?.result?._id,
+        token: storage?.token,
         identifier: uuidv4().split('-')[0],
         supplier_name: '',
         address: '',
@@ -105,8 +107,8 @@ const Dashboard = () => {
     });
 
     const [customer, setCustomer] = useState({
-        _id: Localstorage?.result?._id,
-        token: Localstorage?.token,
+        _id: storage?.result?._id,
+        token: storage?.token,
         identifier: uuidv4().split('-')[0],
         fullname: '',
         address: '',
@@ -118,8 +120,8 @@ const Dashboard = () => {
     });
 
     const [products, setProducts] = useState({
-        _id: Localstorage?.result?._id,
-        token: Localstorage?.token,
+        _id: storage?.result?._id,
+        token: storage?.token,
         identifier: uuidv4().split('-')[0],
         brand_name: '',
         generic_name: '',
@@ -133,7 +135,8 @@ const Dashboard = () => {
     })
 
     const [changeuser, setChangeuser] = useState({
-        username: '',
+        admin: '',
+        old_admin: '',
         password: '',
         old_password: ''
     })
@@ -183,7 +186,8 @@ const Dashboard = () => {
         if (check_if_edit) {
             setChangeuser({
                 ...changeuser,
-                username: get_admin[0]?.admin,
+                admin: '',
+                old_admin: get_admin[0]?.admin,
                 password: ''
             })
         }
@@ -320,8 +324,6 @@ const Dashboard = () => {
     //         Localstorage?.token,
     //         changeuser.username,
     //         changeuser.password)
-
-
     // }
 
     return (
@@ -986,13 +988,23 @@ const Dashboard = () => {
                         </div>
                         <div className='form-input-container'>
                             <div className='username-container'>
-                                <span className='text'>username: </span>
+                                <span className='text'>new username: </span>
                                 <input className='brand-name-form'
-                                    value={check_if_edit ? changeuser.username : changeuser.username}
+                                    value={check_if_edit ? changeuser.admin : changeuser.admin}
                                     type='text'
                                     placeholder='username'
                                     onChange={(e) => {
-                                        setChangeuser({ ...changeuser, username: e.target.value })
+                                        setChangeuser({ ...changeuser, admin: e.target.value })
+                                    }} />
+                            </div>
+                            <div className='username-container'>
+                                <span className='text'>old username: </span>
+                                <input className='brand-name-form'
+                                    value={check_if_edit ? changeuser.old_admin : changeuser.old_admin}
+                                    type='text'
+                                    placeholder='username'
+                                    onChange={(e) => {
+                                        setChangeuser({ ...changeuser, old_admin: e.target.value })
                                     }} />
                             </div>
                             <div className='password-container'>
@@ -1019,23 +1031,25 @@ const Dashboard = () => {
                             <div className='btnContainerSubmit'>
                                 <button className='btnAddSubmit'
                                     onClick={() => {
-                                        if (changeuser.username && changeuser.password) {
+                                        if (changeuser.admin && changeuser.password) {
 
-                                            console.log(Localstorage?.result?._id,
-                                                Localstorage?.token,
-                                                changeuser.username,
+                                            console.log(storage?.result?._id,
+                                                storage?.token,
+                                                changeuser.admin,
+                                                changeuser.old_admin,
                                                 changeuser.password,
                                                 changeuser.old_password)
 
-                                            change_admin_account(
-                                                Localstorage?.result?._id,
-                                                Localstorage?.token,
-                                                changeuser.username,
+                                            edit_admin(
+                                                storage?.result?._id,
+                                                storage?.token,
+                                                changeuser.admin,
+                                                changeuser.old_admin,
                                                 changeuser.password,
                                                 changeuser.old_password
                                             )
 
-                                            window.location.reload()
+                                            // window.location.reload()
 
                                         }
                                     }}

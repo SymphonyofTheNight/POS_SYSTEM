@@ -197,8 +197,15 @@ export const empty_sales = (owner_id) => base_api.put(`/Checkout/${owner_id}`, {
 //     repeatpassword: repeatpassword
 // }, { headers: { 'Authorization': `Bearer ${token}` } });
 
-export const change_admin_account = (adminID, token, username, password, old_password) => base_api.patch(`/Settings/${adminID}`, {
-    admin: username,
-    password: password,
+// export const change_admin_account = (adminID, token, new_user, password, old_password) => base_api.patch(`/Settings/${adminID}`, {
+//     admin: new_user,
+//     password: password,
+//     old_password: old_password
+// }, { headers: { 'Authorization': `Bearer ${token}` } })
+
+export const edit_admin = (adminID, token, new_username, old_username, new_password, old_password) => base_api.patch(`/Settings/${adminID}`, {
+    admin: new_username,
+    old_admin: old_username,
+    password: new_password,
     old_password: old_password
 }, { headers: { 'Authorization': `Bearer ${token}` } })
