@@ -31,17 +31,16 @@ const Login = () => {
         e.preventDefault();
 
         if (account.username && account.password) {
-            console.log(_check_user[0]?.password, account.password);
 
             const _bcrypt_pass = await bcrypt.compareSync(account.password, _check_user[0]?.password);
 
             console.log(_bcrypt_pass);
 
-            if (_bcrypt_pass) {
+            if (_bcrypt_pass && account.username === _check_user[0]?.admin) {
                 dispatch(_login(account.username, account.password))
                 navigate('/dashboard')
             } else {
-                alert('wrong password')
+                alert('wrong password or username.')
             }
 
         } else {

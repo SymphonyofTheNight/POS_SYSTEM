@@ -14,13 +14,15 @@ import {
     FaTruck,
     FaChartBar,
     FaSignOutAlt,
-    FaChartLine
+    FaChartLine,
+    FaStore
 } from 'react-icons/fa';
 
 // Dashboard Components
 import HomeDashboard from './DashboardComponents/Home/HomeDashboard';
 import Sales from './DashboardComponents/Sales/Sales';
 import Products from './DashboardComponents/Products/Product';
+import Inventory from './DashboardComponents/Inventory/Inventory';
 import Customer from './DashboardComponents/Customer/Customer';
 import Supplier from './DashboardComponents/Supplier/Supplier';
 import SalesReport from './DashboardComponents/SalesReport/SalesReport';
@@ -378,6 +380,18 @@ const Dashboard = () => {
                         <FaTable className='tableIcon' />
                         <span className='text'>
                             Products
+                        </span>
+                    </button>
+                    <button className='btn-1'
+                        onClick={() => {
+                            setComponent(<Inventory />)
+                            setNav('/Inventory')
+                            navigate('/Inventory')
+                        }}
+                    >
+                        <FaStore className='chartIcon' />
+                        <span className='text'>
+                            Inventory
                         </span>
                     </button>
                     <button className='btn-1'
@@ -1049,7 +1063,7 @@ const Dashboard = () => {
                                                 changeuser.old_password
                                             )
 
-                                            // window.location.reload()
+                                            window.location.reload()
 
                                         }
                                     }}
