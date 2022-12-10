@@ -110,6 +110,7 @@ export const add_products = (products) => base_api.post(`/Products/${products._i
             supplier: products.supplier,
             added_date: products.added_date,
             expiration_date: products.expiration_date,
+            expiration_date_js_format: products.expiration_date_js_format,
             original_price: products.original_price,
             selling_price: products.selling_price,
             quantity: products.quantity

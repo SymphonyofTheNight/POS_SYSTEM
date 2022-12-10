@@ -286,7 +286,54 @@
                     margin-top: 3vh;
 
                     .chart {
-                        @include baseDisplay(rgb(152, 45, 240), 18vh, 660px);
+                        @include baseDisplay(rgb(152, 45, 240), 18vh, 300px);
+                        border-radius: 4px;
+                        position: relative;
+                        // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
+
+                        .product-label {
+                            position: absolute;
+                            top: 10%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: .9em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+
+                        .product-lowest-title-text {
+                            position: absolute;
+                            top: 24%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1.5em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+
+                        .product-count-text-label {
+                            position: absolute;
+                            top: 60%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: .9em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+
+                        .product-count-text {
+                            position: absolute;
+                            top: 73%;
+                            left: 1vw;
+                            font-family: $--text-font;
+                            font-size: 1.5em;
+                            font-weight: bold;
+                            color: rgb(241, 241, 241);
+                        }
+                    }
+
+                    .chart-2 {
+                        @include baseDisplay(rgb(152, 45, 240), 18vh, 300px);
                         border-radius: 4px;
                         position: relative;
                         // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);

@@ -50,8 +50,6 @@ const Product = ({
         window.location.reload();
     }
 
-    console.log(search)
-
     return (
         <div className='Products'>
             <div className='innerContainer'>
@@ -105,7 +103,6 @@ const Product = ({
                             </tr>
                         </thead>
                         {get_products[0] ? Object.keys(get_products[0]?.products).filter(val => {
-                            // console.log(get_products[0]?.products[val].brand_name)
                             if (search === "") {
                                 return val
                             } else if (

@@ -12,6 +12,8 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
 
     const [totalSales, setTotalSales] = useState();
     const [sortedprod, setSortedProd] = useState();
+    const [get_exact_date, setGet_Exact_Date] = useState();
+    const [get_expire_days, setGet_Expire_Days] = useState();
 
     const data = [
         {
@@ -88,19 +90,51 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
         },
     ]
 
-    // const percentage = (totalSales, targetSales) => {
-    //     return (totalSales / targetSales) * 100
-    // }
+    const expire_Date = (date_string) => {
+        var b = date_string.split(/\D/);
+        var expiry = new Date(b[2], --b[0], b[1]);
+        return Math.round((expiry - new Date().setHours(0, 0, 0, 0)) / 8.64e7);
+    }
 
     useEffect(() => {
-
         const result = () => saletargets.reduce((oldvalue, newvalue) => oldvalue + newvalue, 0);
         setTotalSales(result());
-
         const sorted_products = () => get_products[0]?.products?.sort((a, b) => a?.quantity > b?.quantity ? 1 : -1)
         setSortedProd(sorted_products());
-
     }, [totalSales])
+
+    useEffect(() => {
+        const get_exp_dates = get_products[0]?.products.map(state => {
+            return state?.expiration_date_js_format
+        })
+        setGet_Expire_Days(get_exp_dates)
+
+        // if (get_expire_days) {
+        //     setGet_Exact_Date((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24))
+        // }
+    }, [])
+
+    // console.log((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24))
+    // console.log(Date.now())
+
+    // console.log(get_exact_date)
+
+    // console.log(get_expire_days && get_expire_days[0])
+
+    // var now = new Date().getTime();
+    // let closes_date = get_products[0]?.products.reduce((a,b) => a.expiration_date)
+
+    // console.log(now)
+
+    // console.log(get_products[0]?.products)
+
+    // console.log(get_products[0]?.products.map(state => {
+    //     console.log(state?.expiration_date)
+    // }))
+
+    // console.log(get_products[0]?.products.map(state => {
+    //     console.log(state?.expiration_date_js_format)
+    // }))
 
     return (
         <div className='Home'>
@@ -117,6 +151,21 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                     </span>
                     <span className='product-count-text'>
                         {sortedprod && sortedprod[0]?.quantity}
+                    </span>
+                </div>
+                <div className='chart-2'>
+                    {/* <input type='date' /> */}
+                    <span className='product-label'>
+                        Soon to Expire Product
+                    </span>
+                    <span className='product-lowest-title-text'>
+                        {sortedprod && sortedprod[0]?.brand_name}
+                    </span>
+                    <span className='product-count-text-label'>
+                        Days To Expire:
+                    </span>
+                    <span className='product-count-text'>
+                        {Math.floor((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24))}
                     </span>
                 </div>
                 <div className='chart-3'>
