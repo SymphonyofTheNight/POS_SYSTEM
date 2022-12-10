@@ -80,6 +80,7 @@ const Dashboard = () => {
     //hooks 
     const [Component, setComponent] = useState(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />);
     const [tabswitch, setTabswitch] = useState(false);
+    const [get_parsed_date, setGet_Parsed_Date] = useState();
 
     // get custormer 
     const get_admin = useSelector(state => state.reducer.store);
@@ -93,8 +94,6 @@ const Dashboard = () => {
 
     // localstorage 
     const [storage] = useState(JSON.parse(localStorage.getItem('Administrator')));
-
-    console.log(storage?.token)
 
     //supplier
     const [supplier, setSupplier] = useState({
@@ -130,7 +129,8 @@ const Dashboard = () => {
         category_description: '',
         supplier: '',
         added_date: '',
-        expiration_date: '',
+        expiration_date: get_parsed_date,
+        expiration_date_js_format: '',
         original_price: '',
         selling_price: '',
         quantity: ''
@@ -183,7 +183,6 @@ const Dashboard = () => {
         }
     }, [tabswitch]);
 
-
     useEffect(() => {
         if (check_if_edit) {
             setChangeuser({
@@ -194,6 +193,9 @@ const Dashboard = () => {
             })
         }
     }, [check_if_edit])
+
+    // useEffect(() => {
+    // }, [products])
 
     const add_supplier_onHandleSubmit = (e) => {
 
@@ -271,13 +273,20 @@ const Dashboard = () => {
     const add_product_onHandleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(products);
-
-        if (products) add_products(products)
+        if (products) {
+            let new_date = new Date(products.expiration_date)?.toISOString()
+            let parsed_date = Date.parse(new_date);
+            let submit_date = Math.floor((parsed_date - Date.now()) / (1000 * 60 * 60 * 24))
+            setGet_Parsed_Date(submit_date)
+            setProducts({...products,
+                expiration_date: get_parsed_date
+            })
+            console.log(products);
+        }
 
         setOpen_Modal_Products(state => !state)
 
-        navigate(0);
+        // navigate(0);
 
     }
 
@@ -793,15 +802,15 @@ const Dashboard = () => {
                                         type='text'
                                         placeholder={_date_month + 1 + '-' + _date_date + '-' + _date_year}
                                         onChange={() => {
-                                            setProducts({ ...products, added_date: _date_month + 1 + '-' + _date_date + '-' + _date_year })
+                                            setProducts({ ...products, added_date: _date_month + 1 + '/' + _date_date + '/' + _date_year })
                                         }} />
                                 </div>
                                 <div className='expire-date-container'>
                                     <span className='text'>Expire date: </span>
                                     <input className='expire-date-form'
                                         value={check_if_edit ? products.expiration_date : products.expiration_date}
-                                        type='text'
-                                        placeholder='mm-dd-yyyy'
+                                        type='date'
+                                        placeholder='yyyy-mm-dd'
                                         onChange={(e) => {
                                             setProducts({ ...products, expiration_date: e.target.value })
                                         }} />
@@ -920,9 +929,9 @@ const Dashboard = () => {
             ) : (
                 <>
                 </>
-            )}
+            )} */}
 
-            {open_modal_admin_setting_2 ? (
+            {/* {open_modal_admin_setting_2 ? (
                 <form onSubmit={admin_password_onHandleSubmit}>
                     <div className='modal-admin-2'>
                         <div className='modal-container'>
