@@ -80,6 +80,7 @@ const Dashboard = () => {
     //hooks 
     const [Component, setComponent] = useState(<HomeDashboard targetSales={targetSales} setTargetSales={setTargetSales} />);
     const [tabswitch, setTabswitch] = useState(false);
+    const [expire_date, setExpire_Date] = useState();
     const [get_parsed_date, setGet_Parsed_Date] = useState();
 
     // get custormer 
@@ -129,8 +130,8 @@ const Dashboard = () => {
         category_description: '',
         supplier: '',
         added_date: '',
-        expiration_date: get_parsed_date,
-        expiration_date_js_format: '',
+        // expiration_date: get_parsed_date,
+        // expiration_date_js_format: '',
         original_price: '',
         selling_price: '',
         quantity: ''
@@ -273,20 +274,18 @@ const Dashboard = () => {
     const add_product_onHandleSubmit = (e) => {
         e.preventDefault();
 
-        if (products) {
-            let new_date = new Date(products.expiration_date)?.toISOString()
+        if (products && expire_date) {
+            let new_date = new Date(expire_date)?.toISOString()
             let parsed_date = Date.parse(new_date);
-            let submit_date = Math.floor((parsed_date - Date.now()) / (1000 * 60 * 60 * 24))
-            setGet_Parsed_Date(submit_date)
-            setProducts({...products,
-                expiration_date: get_parsed_date
-            })
-            console.log(products);
+            // let submit_date = Math.floor((parsed_date - Date.now()) / (1000 * 60 * 60 * 24))
+            setGet_Parsed_Date(parsed_date)
+
+            add_products(products, parsed_date)
         }
 
         setOpen_Modal_Products(state => !state)
 
-        // navigate(0);
+        navigate(0);
 
     }
 
@@ -808,11 +807,11 @@ const Dashboard = () => {
                                 <div className='expire-date-container'>
                                     <span className='text'>Expire date: </span>
                                     <input className='expire-date-form'
-                                        value={check_if_edit ? products.expiration_date : products.expiration_date}
+                                        value={check_if_edit ? expire_date : expire_date}
                                         type='date'
-                                        placeholder='yyyy-mm-dd'
+                                        placeholder='mm-dd-yyyy'
                                         onChange={(e) => {
-                                            setProducts({ ...products, expiration_date: e.target.value })
+                                            setExpire_Date(e.target.value)
                                         }} />
                                 </div>
                                 <div className='original-price-container'>

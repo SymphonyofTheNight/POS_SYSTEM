@@ -194,10 +194,6 @@ const model_schema = mongoose.Schema({
             expiration_date: {
                 type: String,
                 require: true
-            },
-            expiration_date_js_format: {
-                type: String,
-                require: true
             }
         }
     ],
