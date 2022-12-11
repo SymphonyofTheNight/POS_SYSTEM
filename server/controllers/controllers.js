@@ -232,7 +232,6 @@ export const add_products = async (req, res) => {
                     supplier: req.body.products[0].supplier,
                     added_date: req.body.products[0].added_date,
                     expiration_date: req.body.products[0].expiration_date,
-                    expiration_date_js_format: req.body.products[0].expiration_date_js_format
                 }
             },
         }, { new: true });

@@ -14,6 +14,11 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
     const [sortedprod, setSortedProd] = useState();
     const [get_exact_date, setGet_Exact_Date] = useState();
     const [get_expire_days, setGet_Expire_Days] = useState();
+    const [datecon, setDateCon] = useState();
+
+    const find_soon_prod_exp = useSelector(state => datecon ? state.reducer?.store[0]?.products?.find(val => Math.floor((val.expiration_date - Date.now()) / (1000 * 60 * 60 * 24))) === datecon : null);
+
+    console.log(find_soon_prod_exp)
 
     const data = [
         {
@@ -90,11 +95,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
         },
     ]
 
-    const expire_Date = (date_string) => {
-        var b = date_string.split(/\D/);
-        var expiry = new Date(b[2], --b[0], b[1]);
-        return Math.round((expiry - new Date().setHours(0, 0, 0, 0)) / 8.64e7);
-    }
+    // find the item based on days gives false fix tommorow !!!
 
     useEffect(() => {
         const result = () => saletargets.reduce((oldvalue, newvalue) => oldvalue + newvalue, 0);
@@ -105,36 +106,35 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
 
     useEffect(() => {
         const get_exp_dates = get_products[0]?.products.map(state => {
-            return state?.expiration_date_js_format
+            return state?.expiration_date
         })
         setGet_Expire_Days(get_exp_dates)
-
-        // if (get_expire_days) {
-        //     setGet_Exact_Date((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24))
-        // }
     }, [])
 
-    // console.log((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24))
-    // console.log(Date.now())
+    useEffect(() => {
+        const get_short_days = get_products[0]?.products.map(state => {
+            return state?.expiration_date
+        });
+        const get_dates_parsed = get_short_days && get_short_days.map(val => {
+            return Math.floor((val - Date.now()) / (1000 * 60 * 60 * 24))
+        })
+        if (get_dates_parsed) setDateCon(get_dates_parsed)
 
-    // console.log(get_exact_date)
+        if (datecon) {
+            let min = Math.min(...datecon)
+            setGet_Exact_Date(min)
+        }
+        // const min = Math.min(...datecon)
+        // console.log(min)
 
-    // console.log(get_expire_days && get_expire_days[0])
-
-    // var now = new Date().getTime();
-    // let closes_date = get_products[0]?.products.reduce((a,b) => a.expiration_date)
-
-    // console.log(now)
-
-    // console.log(get_products[0]?.products)
-
-    // console.log(get_products[0]?.products.map(state => {
-    //     console.log(state?.expiration_date)
-    // }))
-
-    // console.log(get_products[0]?.products.map(state => {
-    //     console.log(state?.expiration_date_js_format)
-    // }))
+        // console.log((get_short_days[0] - Date.now()) / (1000 * 60 * 60 * 24));
+        // console.log(get_short_days && get_short_days.map(val => {
+        //     return Math.floor((val - Date.now()) / (1000 * 60 * 60 * 24))
+        // }))
+        // console.log(get_short_days.map(state => Math.floor(state - Date.now() / (1000 * 60 * 60 * 24))))
+        // console.log(get_short_days[0] - Date.now() / (1000 * 60 * 60 * 24))
+        // console.log(Math.floor((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24)))
+    }, [get_products])
 
     return (
         <div className='Home'>
@@ -165,7 +165,8 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                         Days To Expire:
                     </span>
                     <span className='product-count-text'>
-                        {Math.floor((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24))}
+                        {get_exact_date && get_exact_date}
+                        {/* {Math.floor((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24))} */}
                     </span>
                 </div>
                 <div className='chart-3'>

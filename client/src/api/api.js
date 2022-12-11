@@ -100,7 +100,7 @@ export const delete_customer = (owner_id, token, customer_item_id) => base_api.p
 // add products tommorow !!
 // add edit products tommorow !!
 
-export const add_products = (products) => base_api.post(`/Products/${products._id}`, {
+export const add_products = (products, exp_date) => base_api.post(`/Products/${products._id}`, {
     products: [
         {
             identifier: products.identifier,
@@ -109,8 +109,7 @@ export const add_products = (products) => base_api.post(`/Products/${products._i
             category_description: products.category_description,
             supplier: products.supplier,
             added_date: products.added_date,
-            expiration_date: products.expiration_date,
-            expiration_date_js_format: products.expiration_date_js_format,
+            expiration_date: exp_date,
             original_price: products.original_price,
             selling_price: products.selling_price,
             quantity: products.quantity
