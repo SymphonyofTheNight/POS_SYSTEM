@@ -313,6 +313,10 @@ const model_schema = mongoose.Schema({
             profit: {
                 type: Number,
                 require: true,
+            },
+            time_stamp: {
+                type: String,
+                require: true,
             }
         }
     ]

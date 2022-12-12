@@ -10,7 +10,7 @@
     overflow: hidden;
 
     .nav-tab {
-        @include baseDisplay($--bg-div-color, 100vh, 13vw);
+        @include baseDisplay($--bg-theme-color-2, 100vh, 13vw);
         box-shadow: 0px 5px 5px rgba($color: #000000, $alpha: 1.0);
         display: flex;
         flex-direction: column;
@@ -42,7 +42,7 @@
                 border: 0px solid transparent;
 
                 .meter {
-                    color: #0e6cb9;
+                    color: $--bg-theme-color;
                     position: absolute;
                     left: 10%;
                     font-size: 1.3em;
@@ -51,7 +51,7 @@
                 .text {
                     font-family: $--text-font;
                     font-size: 1em;
-                    color: #0e6cb9;
+                    color: $--bg-theme-color;
                     position: absolute;
                     right: 10%;
                 }
@@ -66,35 +66,35 @@
                 border: 0px solid transparent;
 
                 .cartIcon {
-                    color: #0e6cb9;
+                    color: $--bg-theme-color;
                     position: absolute;
                     left: 10%;
                     font-size: 1.3em;
                 }
 
                 .tableIcon {
-                    color: #0e6cb9;
+                    color: $--bg-theme-color;
                     position: absolute;
                     left: 10%;
                     font-size: 1.3em;
                 }
 
                 .personIcon {
-                    color: #0e6cb9;
+                    color: $--bg-theme-color;
                     position: absolute;
                     left: 10%;
                     font-size: 1.3em;
                 }
 
                 .truckIcon {
-                    color: #0e6cb9;
+                    color: $--bg-theme-color;
                     position: absolute;
                     left: 10%;
                     font-size: 1.3em;
                 }
 
                 .chartIcon {
-                    color: #0e6cb9;
+                    color: $--bg-theme-color;
                     position: absolute;
                     left: 10%;
                     font-size: 1.3em;
@@ -103,37 +103,37 @@
                 .text {
                     font-family: $--text-font;
                     font-size: .8em;
-                    color: #0e6cb9;
+                    color: $--bg-theme-color;
                     position: absolute;
                     right: 10%;
                 }
             }
 
             .btn-1:hover {
-                background: #0e6cb9;
+                background: $--bg-theme-color;
 
                 .cartIcon {
-                    color: $--bg-div-color;
+                    color: $--bg-theme-color-2;
                 }
 
                 .tableIcon {
-                    color: $--bg-div-color;
+                    color: $--bg-theme-color-2;
                 }
 
                 .personIcon {
-                    color: $--bg-div-color;
+                    color: $--bg-theme-color-2;
                 }
 
                 .truckIcon {
-                    color: $--bg-div-color;
+                    color: $--bg-theme-color-2;
                 }
 
                 .chartIcon {
-                    color: $--bg-div-color;
+                    color: $--bg-theme-color-2;
                 }
 
                 .text {
-                    color: $--bg-div-color;
+                    color: $--bg-theme-color-2;
                 }
             }
         }
@@ -148,7 +148,7 @@
             border: 0px solid transparent;
 
             .signoutIcon {
-                color: #0e6cb9;
+                color: $--bg-theme-color;
                 position: absolute;
                 left: 10%;
                 font-size: 1.3em;
@@ -157,21 +157,21 @@
             .text {
                 font-family: $--text-font;
                 font-size: .9em;
-                color: #0e6cb9;
+                color: $--bg-theme-color;
                 position: absolute;
                 right: 10%;
             }
         }
 
         .btnLogout:hover {
-            background: #0e6cb9;
+            background: $--bg-theme-color;
 
             .signoutIcon {
-                color: $--bg-div-color;
+                color: $--bg-theme-color-2;
             }
 
             .text {
-                color: $--bg-div-color;
+                color: $--bg-theme-color-2;
                 font-family: $--text-font;
             }
         }
@@ -286,7 +286,7 @@
                     margin-top: 3vh;
 
                     .chart {
-                        @include baseDisplay(rgb(152, 45, 240), 18vh, 300px);
+                        @include baseDisplay($--bg-theme-color-2, 18vh, 300px);
                         border-radius: 4px;
                         position: relative;
                         // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
@@ -298,7 +298,7 @@
                             font-family: $--text-font;
                             font-size: .9em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
 
                         .product-lowest-title-text {
@@ -308,7 +308,7 @@
                             font-family: $--text-font;
                             font-size: 1.5em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
 
                         .product-count-text-label {
@@ -318,7 +318,7 @@
                             font-family: $--text-font;
                             font-size: .9em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
 
                         .product-count-text {
@@ -328,12 +328,12 @@
                             font-family: $--text-font;
                             font-size: 1.5em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
                     }
 
                     .chart-2 {
-                        @include baseDisplay(rgb(152, 45, 240), 18vh, 300px);
+                        @include baseDisplay($--bg-theme-color-2, 18vh, 300px);
                         border-radius: 4px;
                         position: relative;
                         // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
@@ -345,7 +345,7 @@
                             font-family: $--text-font;
                             font-size: .9em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
 
                         .product-lowest-title-text {
@@ -355,7 +355,7 @@
                             font-family: $--text-font;
                             font-size: 1.5em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
 
                         .product-count-text-label {
@@ -365,7 +365,7 @@
                             font-family: $--text-font;
                             font-size: .9em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
 
                         .product-count-text {
@@ -375,12 +375,12 @@
                             font-family: $--text-font;
                             font-size: 1.5em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
                     }
 
                     .chart-3 {
-                        @include baseDisplay(rgb(226, 162, 43), 18vh, 300px);
+                        @include baseDisplay($--bg-theme-color-2, 18vh, 300px);
                         border-radius: 4px;
                         position: relative;
                         // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
@@ -392,7 +392,7 @@
                             font-family: $--text-font;
                             font-size: 1.5em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
 
                         .category-text {
@@ -401,12 +401,12 @@
                             left: 1vw;
                             font-family: $--text-font;
                             font-size: 1em;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
                     }
 
                     .chart-4 {
-                        @include baseDisplay(rgb(243, 50, 43), 18vh, 300px);
+                        @include baseDisplay($--bg-theme-color-2, 18vh, 300px);
                         border-radius: 4px;
                         position: relative;
                         // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
@@ -418,7 +418,7 @@
                             font-family: $--text-font;
                             font-size: 1.5em;
                             font-weight: bold;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
 
                         .category-text {
@@ -427,13 +427,13 @@
                             left: 1vw;
                             font-family: $--text-font;
                             font-size: 1em;
-                            color: rgb(241, 241, 241);
+                            color: $--bg-theme-color;
                         }
                     }
                 }
 
                 .chartContainer {
-                    @include baseDisplay($--bg-div-color, 50vh, 1280px);
+                    @include baseDisplay($--bg-theme-color-2, 50vh, 1280px);
                     display: flex;
                     flex-direction: column;
 
@@ -540,13 +540,13 @@
                     // box-shadow: 1px 0px 5px rgba($color: #000000, $alpha: 0.5);
 
                     .titleContainer {
-                        @include baseDisplay($--bg-div-color, 5vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 5vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
 
                         .text {
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                             margin-left: 1vw;
                             font-family: $--text-font;
                             font-weight: bold;
@@ -576,7 +576,7 @@
 
 
                     .page-title-container {
-                        @include baseDisplay($--bg-div-color, 8vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 8vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
@@ -585,7 +585,7 @@
                             font-family: $--text-font;
                             font-size: 2em;
                             margin-left: 1vw;
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -644,8 +644,8 @@
                             margin-left: .5vw;
                             border: 0px solid transparent;
                             font-family: $--text-font;
-                            background: #0e6cb9;
-                            color: white;
+                            background: $--bg-theme-color-2;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -673,8 +673,8 @@
                             margin: 1vw;
                             font-family: $--text-font;
                             border: 0px solid transparent;
-                            background: #0e6cb9;
-                            color: white;
+                            background: $--bg-theme-color-2;
+                            color: $--bg-theme-color;
                         }
 
                         .total-text {
@@ -712,7 +712,7 @@
 
 
                     .page-title-container {
-                        @include baseDisplay($--bg-div-color, 8vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 8vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
@@ -721,7 +721,7 @@
                             font-family: $--text-font;
                             font-size: 2em;
                             margin-left: 1vw;
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -763,8 +763,8 @@
                             margin-left: .5vw;
                             border: 0px solid transparent;
                             font-family: $--text-font;
-                            background: #0e6cb9;
-                            color: white;
+                            background: $--bg-theme-color-2;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -816,7 +816,7 @@
 
 
                     .page-title-container {
-                        @include baseDisplay($--bg-div-color, 8vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 8vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
@@ -825,7 +825,7 @@
                             font-family: $--text-font;
                             font-size: 2em;
                             margin-left: 1vw;
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -859,7 +859,7 @@
 
 
                     .page-title-container {
-                        @include baseDisplay($--bg-div-color, 8vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 8vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
@@ -868,7 +868,7 @@
                             font-family: $--text-font;
                             font-size: 2em;
                             margin-left: 1vw;
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -886,8 +886,8 @@
                             margin-right: 1vw;
                             border: 0px solid transparent;
                             font-family: $--text-font;
-                            background: #0e6cb9;
-                            color: white;
+                            background: $--bg-theme-color-2;
+                            color: $--bg-theme-color;
                             position: absolute;
                             right: 0;
                         }
@@ -940,7 +940,7 @@
 
 
                     .page-title-container {
-                        @include baseDisplay($--bg-div-color, 8vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 8vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
@@ -949,7 +949,7 @@
                             font-family: $--text-font;
                             font-size: 2em;
                             margin-left: 1vw;
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -967,8 +967,8 @@
                             margin-right: 1vw;
                             border: 0px solid transparent;
                             font-family: $--text-font;
-                            background: #0e6cb9;
-                            color: white;
+                            background: $--bg-theme-color-2;
+                            color: $--bg-theme-color;
                             position: absolute;
                             right: 0;
                         }
@@ -1021,7 +1021,7 @@
 
 
                     .page-title-container {
-                        @include baseDisplay($--bg-div-color, 8vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 8vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
@@ -1030,7 +1030,7 @@
                             font-family: $--text-font;
                             font-size: 2em;
                             margin-left: 1vw;
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -1534,8 +1534,8 @@
                         height: 4vh;
                         width: 6vw;
                         border: 0px solid transparent;
-                        background: #0e6cb9;
-                        color: white;
+                        background: $--bg-theme-color-2;
+                        color: $--bg-theme-color;
                     }
                 }
             }
@@ -1819,8 +1819,8 @@
                         height: 4vh;
                         width: 6vw;
                         border: 0px solid transparent;
-                        background: #0e6cb9;
-                        color: white;
+                        background: $--bg-theme-color-2;
+                        color: $--bg-theme-color;
                     }
                 }
             }
@@ -2188,8 +2188,8 @@
                         height: 4vh;
                         width: 6vw;
                         border: 0px solid transparent;
-                        background: #0e6cb9;
-                        color: white;
+                        background: $--bg-theme-color-2;
+                        color: $--bg-theme-color;
                     }
                 }
             }
@@ -2335,62 +2335,6 @@
                     }
                 }
 
-                // .contact-number-container {
-                //     background: rgba($color: #198b48, $alpha: 0);
-                //     height: 7vh;
-                //     width: 30vw;
-                //     display: grid;
-                //     align-items: flex-end;
-                //     justify-content: flex-start;
-                //     position: relative;
-
-                //     .contact-number-form {
-                //         margin-left: 1.5vw;
-                //         height: 4vh;
-                //         width: 20vw;
-                //         outline: none;
-                //         padding: 0px 12px;
-                //         margin-bottom: 1vh;
-                //     }
-
-                //     .text {
-                //         font-family: $--text-font;
-                //         position: absolute;
-                //         font-size: .8em;
-                //         top: 0;
-                //         font-weight: bold;
-                //         left: 1.5vw;
-                //     }
-                // }
-
-                // .newusername-container {
-                //     background: rgba($color: #74198b, $alpha: 1);
-                //     height: 7vh;
-                //     width: 23.5vw;
-                //     display: grid;
-                //     align-items: flex-end;
-                //     justify-content: flex-start;
-                //     position: relative;
-
-                //     .category-description-form {
-                //         margin-left: 1.5vw;
-                //         height: 4vh;
-                //         width: 20vw;
-                //         outline: none;
-                //         padding: 0px 12px;
-                //         margin-bottom: 1vh;
-                //     }
-
-                //     .text {
-                //         font-family: $--text-font;
-                //         position: absolute;
-                //         font-size: .8em;
-                //         top: 0;
-                //         font-weight: bold;
-                //         left: 1.5vw;
-                //     }
-                // }
-
                 .btnContainerSubmit {
                     background: rgba($color: #198b48, $alpha: 0);
                     height: 10vh;
@@ -2405,8 +2349,8 @@
                         height: 4vh;
                         width: 6vw;
                         border: 0px solid transparent;
-                        background: #0e6cb9;
-                        color: white;
+                        background: $--bg-theme-color-2;
+                        color: $--bg-theme-color;
                     }
                 }
             }
@@ -2434,178 +2378,5 @@
             }
         }
     }
-
-    // .modal-admin-2 {
-    //     background: rgba($color: #000000, $alpha: 0.3);
-    //     height: 100vh;
-    //     width: 80vw;
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     display: grid;
-    //     place-items: center;
-
-    //     position: relative;
-
-    //     .modal-container {
-    //         background: rgba($color: #ffffff, $alpha: 1.0);
-    //         height: auto;
-    //         width: 30vw;
-    //         border-radius: 10px;
-    //         display: flex;
-    //         flex-direction: column;
-    //         flex-wrap: wrap;
-
-    //         .titleContainer {
-    //             background: rgba($color: #812b2b, $alpha: 0);
-    //             height: 7vh;
-    //             width: 30vw;
-    //             display: flex;
-    //             align-items: flex-end;
-    //             justify-content: flex-start;
-
-    //             .text {
-    //                 font: $--text-font;
-    //                 margin-left: 1.5vw;
-    //                 font-size: 2em;
-    //             }
-    //         }
-
-    //         .form-input-container {
-    //             background: rgba($color: #812424, $alpha: 0);
-    //             height: auto;
-    //             width: 30vw;
-    //             display: flex;
-    //             flex-direction: column;
-    //             flex-wrap: wrap;
-
-    //             .password-container {
-    //                 background: rgba($color: #8b8019, $alpha: 0);
-    //                 height: 7vh;
-    //                 width: 30vw;
-    //                 display: grid;
-    //                 align-items: flex-end;
-    //                 justify-content: flex-start;
-    //                 position: relative;
-    //                 margin-top: 1vh;
-
-    //                 .brand-name-form {
-    //                     margin-left: 1.5vw;
-    //                     height: 4vh;
-    //                     width: 20vw;
-    //                     outline: none;
-    //                     padding: 0px 12px;
-    //                     margin-bottom: 1vh;
-    //                 }
-
-    //                 .text {
-    //                     font-family: $--text-font;
-    //                     position: absolute;
-    //                     font-size: .8em;
-    //                     top: 0;
-    //                     font-weight: bold;
-    //                     left: 1.5vw;
-    //                 }
-    //             }
-
-    //             .old-password-container {
-    //                 background: rgba($color: #1b198b, $alpha: 0);
-    //                 height: 7vh;
-    //                 width: 30vw;
-    //                 display: grid;
-    //                 align-items: flex-end;
-    //                 justify-content: flex-start;
-    //                 position: relative;
-
-    //                 .generic-name-form {
-    //                     margin-left: 1.5vw;
-    //                     height: 4vh;
-    //                     width: 20vw;
-    //                     outline: none;
-    //                     padding: 0px 12px;
-    //                     margin-bottom: 1vh;
-    //                 }
-
-    //                 .text {
-    //                     font-family: $--text-font;
-    //                     position: absolute;
-    //                     font-size: .8em;
-    //                     top: 0;
-    //                     font-weight: bold;
-    //                     left: 1.5vw;
-    //                 }
-    //             }
-
-    //             .repeat-password-container {
-    //                 background: rgba($color: #74198b, $alpha: 0);
-    //                 height: 7vh;
-    //                 width: 30vw;
-    //                 display: grid;
-    //                 align-items: flex-end;
-    //                 justify-content: flex-start;
-    //                 position: relative;
-
-    //                 .category-description-form {
-    //                     margin-left: 1.5vw;
-    //                     height: 4vh;
-    //                     width: 20vw;
-    //                     outline: none;
-    //                     padding: 0px 12px;
-    //                     margin-bottom: 1vh;
-    //                 }
-
-    //                 .text {
-    //                     font-family: $--text-font;
-    //                     position: absolute;
-    //                     font-size: .8em;
-    //                     top: 0;
-    //                     font-weight: bold;
-    //                     left: 1.5vw;
-    //                 }
-    //             }
-
-    //             .btnContainerSubmit {
-    //                 background: rgba($color: #198b48, $alpha: 0);
-    //                 height: 10vh;
-    //                 width: 30vw;
-    //                 display: flex;
-    //                 align-items: center;
-    //                 justify-content: flex-end;
-
-    //                 .btnAddSubmit {
-    //                     margin-right: 1.5vw;
-    //                     outline: none;
-    //                     height: 4vh;
-    //                     width: 6vw;
-    //                     border: 0px solid transparent;
-    //                     background: #0e6cb9;
-    //                     color: white;
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     .btnClose {
-    //         background: rgba($color: #000000, $alpha: 0);
-    //         height: 4vh;
-    //         width: 3vw;
-    //         position: absolute;
-    //         top: 1.5vh;
-    //         right: 1.5vw;
-    //         border: 0px solid transparent;
-
-    //         .icon {
-    //             font-size: 2em;
-    //             color: rgb(37, 37, 37);
-    //         }
-    //     }
-
-    //     .btnClose:hover {
-    //         .icon {
-    //             font-size: 2.3em;
-    //             color: rgb(0, 0, 0);
-    //         }
-    //     }
-    // }
 
 }

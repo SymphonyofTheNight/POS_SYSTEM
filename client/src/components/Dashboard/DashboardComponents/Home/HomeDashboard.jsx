@@ -16,7 +16,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
     const [get_expire_days, setGet_Expire_Days] = useState();
     const [datecon, setDateCon] = useState();
 
-    const find_soon_prod_exp = useSelector(state => datecon ? state.reducer?.store[0]?.products?.find(val => Math.floor((val.expiration_date - Date.now()) / (1000 * 60 * 60 * 24))) === datecon : null);
+    const find_soon_prod_exp = useSelector(state => get_exact_date ? state.reducer?.store[0]?.products?.find(val => Math.floor((val.expiration_date - Date.now()) / (1000 * 60 * 60 * 24)) === get_exact_date) : null);
 
     console.log(find_soon_prod_exp)
 
@@ -109,7 +109,7 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
             return state?.expiration_date
         })
         setGet_Expire_Days(get_exp_dates)
-    }, [])
+    }, [get_products])
 
     useEffect(() => {
         const get_short_days = get_products[0]?.products.map(state => {
@@ -119,21 +119,10 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
             return Math.floor((val - Date.now()) / (1000 * 60 * 60 * 24))
         })
         if (get_dates_parsed) setDateCon(get_dates_parsed)
-
         if (datecon) {
             let min = Math.min(...datecon)
             setGet_Exact_Date(min)
         }
-        // const min = Math.min(...datecon)
-        // console.log(min)
-
-        // console.log((get_short_days[0] - Date.now()) / (1000 * 60 * 60 * 24));
-        // console.log(get_short_days && get_short_days.map(val => {
-        //     return Math.floor((val - Date.now()) / (1000 * 60 * 60 * 24))
-        // }))
-        // console.log(get_short_days.map(state => Math.floor(state - Date.now() / (1000 * 60 * 60 * 24))))
-        // console.log(get_short_days[0] - Date.now() / (1000 * 60 * 60 * 24))
-        // console.log(Math.floor((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24)))
     }, [get_products])
 
     return (
@@ -154,19 +143,17 @@ const HomeDashboard = ({ targetSales, setTargetSales }) => {
                     </span>
                 </div>
                 <div className='chart-2'>
-                    {/* <input type='date' /> */}
                     <span className='product-label'>
                         Soon to Expire Product
                     </span>
                     <span className='product-lowest-title-text'>
-                        {sortedprod && sortedprod[0]?.brand_name}
+                        {find_soon_prod_exp ? find_soon_prod_exp?.brand_name : 'Loading'}
                     </span>
                     <span className='product-count-text-label'>
                         Days To Expire:
                     </span>
                     <span className='product-count-text'>
-                        {get_exact_date && get_exact_date}
-                        {/* {Math.floor((get_expire_days && get_expire_days[0] - Date.now()) / (1000 * 60 * 60 * 24))} */}
+                        {get_exact_date ? get_exact_date : 'Loading'}
                     </span>
                 </div>
                 <div className='chart-3'>

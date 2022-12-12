@@ -32,11 +32,6 @@ const SalesReport = () => {
                         )
                     })}
                 </div>
-                {/* <div className='btn-submit-container'>
-                    <button className='btnSubmit'>
-                        Submit
-                    </button>
-                </div> */}
             </div>
         </div>
     )
