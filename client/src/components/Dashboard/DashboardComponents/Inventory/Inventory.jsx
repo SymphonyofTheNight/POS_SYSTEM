@@ -10,7 +10,7 @@ const Inventory = () => {
             <div className='innerContainer'>
                 <div className='page-title-container'>
                     <span className='text'>
-                        Products
+                        Inventory
                     </span>
                 </div>
                 <div className='table-container'>
