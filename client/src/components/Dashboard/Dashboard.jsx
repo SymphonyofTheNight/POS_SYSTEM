@@ -37,6 +37,7 @@ import { add_supplier, edit_supplier, add_customer, edit_customer, add_products,
 
 // brand img
 import brand from '../../assets/img/brand.png';
+import newlogo from '../../assets/img/newlogo.png'
 
 import '../../scss/_Dashboard.scss';
 
@@ -306,7 +307,7 @@ const Dashboard = () => {
         <div className='Dashboard'>
             <nav className='nav-tab' ref={nav_tab}>
                 <div className='titleContainer'>
-                    <img src={brand} className='brand' alt='brand logo' />
+                    <img src={newlogo} className='brand' alt='brand logo' />
                 </div>
                 <div className='navigation'>
                     <button className='category'

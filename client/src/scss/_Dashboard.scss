@@ -19,12 +19,12 @@
         position: relative;
 
         .titleContainer {
-            @include baseDisplay(none, 15vh, 13vw);
+            @include baseDisplay(none, 17vh, 13vw);
             display: grid;
             place-items: center;
 
             .brand {
-                height: 11vh;
+                height: 15vh;
             }
         }
 
@@ -613,7 +613,7 @@
                         }
 
                         .counter-form-container {
-                            @include baseDisplay(rgb(9, 16, 27), 4vh, auto);
+                            @include baseDisplay($--bg-theme-color-2, 4vh, auto);
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -622,11 +622,13 @@
                             .decrement-btn {
                                 height: 4vh;
                                 width: 2vw;
+                                border: 2px solid $--bg-theme-color-2;
                             }
 
                             .increment-btn {
                                 height: 4vh;
                                 width: 2vw;
+                                border: 2px solid $--bg-theme-color-2;
                             }
 
                             .count-container {
@@ -634,7 +636,7 @@
                                 width: 2vw;
                                 display: grid;
                                 place-items: center;
-                                color: white;
+                                color: $--bg-theme-color;
                             }
                         }
 
@@ -1137,7 +1139,7 @@
                     // position: relative;
 
                     .page-title-container {
-                        @include baseDisplay($--bg-div-color, 6vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 6vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
@@ -1148,7 +1150,7 @@
                             font-family: $--text-font;
                             font-size: 1.5em;
                             margin-left: 1vw;
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                         }
                     }
 
@@ -1184,7 +1186,7 @@
 
                             .btnEdit {
                                 height: 4.5vh;
-                                background: #0e6cb9;
+                                background: $--bg-theme-color;
                                 color: white;
                                 font-family: 'Poppins', sans-serif;
                                 border: 0px solid transparent;
@@ -1223,8 +1225,8 @@
 
                             .btnEdit {
                                 height: 4.5vh;
-                                background: #0e6cb9;
-                                color: white;
+                                background: $--bg-theme-color-2;
+                                color: $--bg-theme-color;
                                 font-family: 'Poppins', sans-serif;
                                 border: 0px solid transparent;
                                 width: 9vw;
@@ -1242,7 +1244,7 @@
                     margin-top: 4vh;
 
                     .page-title-container {
-                        @include baseDisplay($--bg-div-color, 6vh, 1280px);
+                        @include baseDisplay($--bg-theme-color-2, 6vh, 1280px);
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
@@ -1253,7 +1255,7 @@
                             font-family: $--text-font;
                             font-size: 1.5em;
                             margin-left: 1vw;
-                            color: #0e6cb9;
+                            color: $--bg-theme-color;
                         }
                     }
 
