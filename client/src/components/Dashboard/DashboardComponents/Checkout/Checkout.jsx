@@ -162,13 +162,13 @@ const Checkout = () => {
                 </div>
                 <div className='line-2' />
                 <div className='SubtotalContainerLabels'>
-                    <span className='text-3'>Subtotal</span>
+                    <span className='text-3'>Total</span>
                     <span className='text-4'>{totalAmount}</span>
                 </div>
-                <div className='TotalContainerLabels'>
+                {/* <div className='TotalContainerLabels'>
                     <span className='text-3'>Total</span>
                     <span className='text-4'>{get_total}</span>
-                </div>
+                </div> */}
             </div>
         </div>
     )

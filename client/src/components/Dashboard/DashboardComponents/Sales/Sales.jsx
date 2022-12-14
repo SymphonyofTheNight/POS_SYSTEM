@@ -145,7 +145,7 @@ const Sales = ({ setComponent, setNav }) => {
                                 <th scope="col">Category/Description</th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Profit</th>
+                                {/* <th scope="col">Profit</th> */}
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -159,7 +159,7 @@ const Sales = ({ setComponent, setNav }) => {
                                         <td>{_get_sales[0].sales[key].description}</td>
                                         <td>{_get_sales[0].sales[key].qty}</td>
                                         <td>{_get_sales[0].sales[key].amount}</td>
-                                        <td>{_get_sales[0].sales[key].profit * _get_sales[0].sales[key].qty}</td>
+                                        {/* <td>{_get_sales[0].sales[key].profit * _get_sales[0].sales[key].qty}</td> */}
                                         <div className='btn-container'>
                                             <button
                                                 onClick={() => {
@@ -188,9 +188,9 @@ const Sales = ({ setComponent, setNav }) => {
                     <span className='total-text'>
                         Total: {get_total_amount}
                     </span>
-                    <span className='profit-text'>
+                    {/* <span className='profit-text'>
                         Profit: {get_total_profit}
-                    </span>
+                    </span> */}
 
                     <button className='btnSubmit'
                         onClick={() => {
