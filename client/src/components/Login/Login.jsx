@@ -48,10 +48,6 @@ const Login = () => {
             alert('invalid user')
 
         }
-        // if (account.username && account.password) {
-        //     dispatch(_login(account.username, account.password))
-        //     navigate('/dashboard')
-        // }
     }
 
     return (
